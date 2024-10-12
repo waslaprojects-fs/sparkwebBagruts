@@ -1,0 +1,30 @@
+/* styles.css */
+.carousel-item {
+    height: 90vh; /* Adjust the height here */
+  }
+  
+  .carousel-item img {
+    object-fit: cover; /* Ensure images cover the area */
+    height: 100%; /* Ensure image height matches carousel item */
+    width: 100%; /* Ensure image width matches carousel item */
+  }
+  
+  .row-container {
+    padding-left: 2vw;
+    display: flex;            /* Enable Flexbox */
+    align-items: center;     /* Center items vertically */
+}
+
+.bd-placeholder-img {
+    margin-right: 10px;      /* Add some space between the SVG and the heading */
+}
+.instructor{
+  background-color: aqua;
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+.instructor h3{
+  padding-top: 10vh;
+  background-color: palevioletred;
+  padding-bottom: 10vh;
+}

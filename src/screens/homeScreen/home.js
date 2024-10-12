@@ -1,10 +1,14 @@
 import React from "react";
 import MainSection from "./mainSection.js";
+import Instructors from "./instructorsSection.js"
+import Students from "./students.js";
 function Home() {
   return (
-    <div>
+    <section>
       <MainSection/>
-    </div>
+      <Instructors/>
+      <Students/>
+    </section>
   );
 }
 
