@@ -44,10 +44,10 @@ function Header() {
               </li>
               <li className="nav-item">
                 <Link
-                  to="/pricing"
+                  to="/examsScreen"
                   className={`nav-link ${location.pathname === '/pricing' ? 'active' : ''}`}
                 >
-                  Pricing
+                  تمرّن
                 </Link>
               </li>
               <li className="nav-item">

@@ -1,7 +1,7 @@
 import './coursol.css'
 export default function Students(){
-    return <section>
-        <h3>طُلّابنا</h3>
+    return <section class="Students">
+        <h3>طُلّابنا و إنجازاتهم</h3>
         <section class="row">
         {  /*first*/ }
             <section class="col-lg-2">

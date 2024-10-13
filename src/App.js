@@ -4,7 +4,7 @@ import './App.css';
 import Header from './tools/header';
 import Home from './screens/homeScreen/home.js';
 import Dawrat from './screens/dawrat/dawrat.js';
-
+import ExamsScreen from './screens/ExamsScreen/examsScreen.js'
 function App() {
   return (
     <Router>
@@ -14,6 +14,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/dawrat" element={<Dawrat />} />
+          <Route path="/examsScreen" element={<ExamsScreen />} />
         </Routes>
       </div>
     </Router>

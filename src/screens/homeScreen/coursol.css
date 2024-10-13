@@ -25,10 +25,10 @@
   background-color: aqua;
 
 }
-.instructor h3{
-  padding-top: 10vh;
+.instructor h3 , .Students h3{
+  padding-top: 5vh;
   background-color: palevioletred;
-  padding-bottom: 10vh;
+  padding-bottom: 5vh;
 }
 .row{
 
