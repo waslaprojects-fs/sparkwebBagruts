@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box; /* Ensure padding and border are included in width */
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%; /* Ensure full width */
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+.container {
+  max-width: 100%; /* Prevent exceeding viewport width */
+}
+
+.row {
+  margin-left: 0; /* Reset margin for rows */
+  margin-right: 0; /* Reset margin for rows */
+}
+
+.card {
+  width: 30vw; /* Adjust width of cards */
+  height: 50vh; /* Fixed height for cards */
+  margin: 5vh 5vw; /* Add vertical margin and horizontal margin to avoid overflow */
+  border-radius: 30px;
+  background: #ffffff;
+  box-shadow: 15px 15px 30px #bebebe,
+              -15px -15px 30px #ffffff;
+}
