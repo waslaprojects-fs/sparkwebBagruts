@@ -18,6 +18,14 @@ function Header() {
     }
   };
 
+  // Function to close the navbar when a link is clicked
+  const handleLinkClick = () => {
+    const navbarCollapse = document.getElementById('navbarNav');
+    if (navbarCollapse.classList.contains('show')) {
+      navbarCollapse.classList.remove('show');
+    }
+  };
+
   useEffect(() => {
     // Add click event listener when the component mounts
     document.addEventListener('mousedown', handleClickOutside);
@@ -51,6 +59,7 @@ function Header() {
                 <Link
                   to="/"
                   className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
+                  onClick={handleLinkClick} // Close sidebar on click
                 >
                   Home
                 </Link>
@@ -59,6 +68,7 @@ function Header() {
                 <Link
                   to="/dawrat"
                   className={`nav-link ${location.pathname === '/dawrat' ? 'active' : ''}`}
+                  onClick={handleLinkClick} // Close sidebar on click
                 >
                   Features
                 </Link>
@@ -67,6 +77,7 @@ function Header() {
                 <Link
                   to="/examsScreen"
                   className={`nav-link ${location.pathname === '/examsScreen' ? 'active' : ''}`}
+                  onClick={handleLinkClick} // Close sidebar on click
                 >
                   تمرّن
                 </Link>
@@ -75,6 +86,7 @@ function Header() {
                 <Link
                   to="/faqs"
                   className={`nav-link ${location.pathname === '/faqs' ? 'active' : ''}`}
+                  onClick={handleLinkClick} // Close sidebar on click
                 >
                   FAQs
                 </Link>
@@ -83,6 +95,7 @@ function Header() {
                 <Link
                   to="/about"
                   className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`}
+                  onClick={handleLinkClick} // Close sidebar on click
                 >
                   About
                 </Link>
