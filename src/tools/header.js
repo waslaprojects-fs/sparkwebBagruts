@@ -1,15 +1,36 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
-import "./header.css";
+import './header.css';
+
 function Header() {
-  // Get the current location path from React Router
   const location = useLocation();
+  const navbarRef = useRef(null); // Ref to track the navbar collapse
+
+  // Function to handle clicks outside the sidebar
+  const handleClickOutside = (event) => {
+    if (navbarRef.current && !navbarRef.current.contains(event.target)) {
+      // Close the navbar collapse if clicking outside of it
+      const navbarCollapse = document.getElementById('navbarNav');
+      if (navbarCollapse.classList.contains('show')) {
+        navbarCollapse.classList.remove('show');
+      }
+    }
+  };
+
+  useEffect(() => {
+    // Add click event listener when the component mounts
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      // Clean up event listener when the component unmounts
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="container">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
+        <div className="container-fluid" ref={navbarRef}>
           <Link className="navbar-brand" to="/">
             Brand
           </Link>
@@ -45,7 +66,7 @@ function Header() {
               <li className="nav-item">
                 <Link
                   to="/examsScreen"
-                  className={`nav-link ${location.pathname === '/pricing' ? 'active' : ''}`}
+                  className={`nav-link ${location.pathname === '/examsScreen' ? 'active' : ''}`}
                 >
                   تمرّن
                 </Link>

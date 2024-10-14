@@ -32,7 +32,7 @@ function MainSection() {
           </svg>
           <div className="container">
             <div className="carousel-caption text-start">
-              <h1>Example headline.</h1>
+              <h1>GGGG headline.</h1>
               <p className="opacity-75">Some representative placeholder content for the first slide of the carousel.</p>
               <p><a className="btn btn-lg btn-primary" href="#">Sign up today</a></p>
             </div>

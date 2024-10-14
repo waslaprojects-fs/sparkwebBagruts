@@ -1,3 +1,47 @@
 .container{
     height: 10vh;
-}
+}/* Default navbar background */
+/* Default navbar background */
+.navbar {
+    background-color: #f8f9fa;
+  }
+  
+  /* Sidebar initial state (hidden) */
+.navbar-collapse {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Start off-screen */
+    width: 250px; /* Adjust sidebar width */
+    height: 100vh; /* Full viewport height */
+    background-color: #007bff; /* Change to desired color */
+    transition: right 0.3s ease; /* Smooth slide-in effect */
+    z-index: 1050; /* Ensure it's on top of other content */
+    padding-top: 60px; /* Add space for the brand */
+    opacity: 0;
+  }
+  
+  /* When the sidebar is visible */
+  .navbar-collapse.show {
+    right: 0; /* Slide in from the right */
+    opacity: 1; /* Fade in */
+  }
+  
+  /* Toggle button styling */
+  .navbar-toggler {
+    position: fixed; /* Keep it fixed so it stays in place */
+    top: 15px;
+    right: 15px;
+    z-index: 1100; /* Higher than the sidebar (1050) */
+    background-color: white; /* Make sure it's visible */
+    border: 1px solid #ccc;
+    padding: 8px 10px;
+  }
+  
+  /* Navigation links inside the sidebar */
+  .navbar-nav .nav-link {
+    color: white; /* White text color */
+    padding: 15px 20px;
+    display: block; /* Block display for full-width links */
+    transition: color 0.3s ease;
+  }
+  

@@ -1,4 +1,11 @@
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+
 export default function ExamsScreen() {
+  const navigate = useNavigate(); // Move this to the top of the component
+
+  const handleClick = () => {
+    navigate('/801'); // Navigate to '/newpage' on button click
+  };
     return (
       <section className="container text-center">
         <h1> MATH</h1>
@@ -8,7 +15,9 @@ export default function ExamsScreen() {
             <h3>رياضيات</h3>
             <div className="row">
               <div className="col-12">
-                <p>801</p>
+              <button class="btn btn-warning rounded-pill px-3" type="button" onClick={handleClick} >
+                801
+              </button>
                 <p>802</p>
                 <p>803</p>
                 <p>804</p>
