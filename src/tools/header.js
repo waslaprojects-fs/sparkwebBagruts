@@ -40,7 +40,7 @@ function Header() {
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid" ref={navbarRef}>
           <Link className="navbar-brand" to="/">
-            Brand
+            Spark
           </Link>
           <button
             className="navbar-toggler"
