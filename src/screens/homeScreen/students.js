@@ -1,67 +1,78 @@
-import './coursol.css'
-export default function Students(){
-    return <section class="Students">
-        <h3>طُلّابنا و إنجازاتهم</h3>
-        <section class="row">
-        {  /*first*/ }
-            <section class="col-lg-2">
-            <section class="row-container">
-    <svg class="bd-placeholder-img rounded-circle" width="60" height="60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <title>Placeholder</title>
-        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-    </svg>
-    <h2 class="fw-normal">Heading</h2>
-</section>
+import './coursol.css';
+import { useRef } from 'react';
 
-                 <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-                 </section>
-          {  /*seconed*/ }
-            <section class="col-lg-2">
-            <section class="row-container">
-    <svg class="bd-placeholder-img rounded-circle" width="60" height="60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <title>Placeholder</title>
-        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-    </svg>
-    <h2 class="fw-normal">Heading</h2>
-</section>
+export default function Students() {
+    const rowRef = useRef(null);
 
-                 <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-                 </section>
-                 {  /*third*/ }
-            <section class="col-lg-2">
-            <section class="row-container">
-    <svg class="bd-placeholder-img rounded-circle" width="60" height="60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <title>Placeholder</title>
-        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-    </svg>
-    <h2 class="fw-normal">Heading</h2>
-</section>
+    // Scroll one full section to the left
+    const scrollLeft = () => {
+        if (rowRef.current) {
+            const sectionWidth = rowRef.current.firstChild.offsetWidth; // Get the width of one section
+            rowRef.current.scrollBy({ left: -sectionWidth, behavior: 'smooth' });
+        }
+    };
 
-                 <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-                 </section>
-                 <section class="col-lg-2">
-            <section class="row-container">
-    <svg class="bd-placeholder-img rounded-circle" width="60" height="60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <title>Placeholder</title>
-        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-    </svg>
-    <h2 class="fw-normal">Heading</h2>
-</section>
+    // Scroll one full section to the right
+    const scrollRight = () => {
+        if (rowRef.current) {
+            const sectionWidth = rowRef.current.firstChild.offsetWidth; // Get the width of one section
+            rowRef.current.scrollBy({ left: sectionWidth, behavior: 'smooth' });
+        }
+    };
 
-                 <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-                 </section>
-                 <section class="col-lg-2">
-            <section class="row-container">
-    <svg class="bd-placeholder-img rounded-circle" width="60" height="60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <title>Placeholder</title>
-        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-    </svg>
-    <h2 class="fw-normal">Heading</h2>
-</section>
+    return (
+        <section>
+             <h3>طُلّابنا و إنجازاتهم</h3>
+             <section className="Students">
+           
+           {/* Left arrow */}
+           <button className="left-arrow" onClick={scrollLeft}>❮</button>
 
-                 <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-                 </section>
-    </section>
-    
-    </section>
+           {/* Main content */}
+           <section className="row" ref={rowRef}>
+               {/* First student */}
+               <section className="col-lg-2">
+                   <section className="row-container">
+                       <svg className="bd-placeholder-img rounded-circle" width="60" height="60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+                           <title>Placeholder</title>
+                           <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
+                       </svg>
+                       <h2 className="fw-normal">Heading</h2>
+                   </section>
+                   <p>Some representative placeholder content for the first column.</p>
+               </section>
+
+               {/* Second student */}
+               <section className="col-lg-2">
+                   <section className="row-container">
+                       <svg className="bd-placeholder-img rounded-circle" width="60" height="60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+                           <title>Placeholder</title>
+                           <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
+                       </svg>
+                       <h2 className="fw-normal">Heading</h2>
+                   </section>
+                   <p>Some representative placeholder content for the second column.</p>
+               </section>
+
+               {/* Third student */}
+               <section className="col-lg-2">
+                   <section className="row-container">
+                       <svg className="bd-placeholder-img rounded-circle" width="60" height="60" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+                           <title>Placeholder</title>
+                           <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
+                       </svg>
+                       <h2 className="fw-normal">Heading</h2>
+                   </section>
+                   <p>Some representative placeholder content for the third column.</p>
+               </section>
+
+               {/* Add more students here */}
+           </section>
+
+           {/* Right arrow */}
+           <button className="right-arrow" onClick={scrollRight}>❯</button>
+       </section>
+        </section>
+
+    );
 }
