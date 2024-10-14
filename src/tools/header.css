@@ -1,47 +1,98 @@
-.container{
-    height: 10vh;
-}/* Default navbar background */
-/* Default navbar background */
+/* General Styles */
+.container {
+  height: 8vh; /* Adjust height as needed */
+}
+
+/* Navbar Styles */
 .navbar {
-    background-color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar Styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px; /* Adjust width as needed */
+  height: 100%;
+  background-color: #f8f9fa; /* Light background for sidebar */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+  transform: translateX(-100%); /* Initially hidden */
+  z-index: 1000; /* Ensure it's above other elements */
+  padding-top: 60px; /* Space for the navbar toggler */
+}
+
+/* Show sidebar when 'show' class is added */
+.sidebar.show {
+  transform: translateX(0); /* Slide in the sidebar */
+}
+
+/* Sidebar links */
+.sidebar .nav-link {
+  padding: 15px 20px; /* Padding for each link */
+  color: #333; /* Text color */
+}
+
+/* Active link styles */
+.sidebar .nav-link.active {
+  background-color: #007bff; /* Active background color */
+  color: white; /* Active text color */
+}
+
+/* Toggler Button */
+.navbar-toggler {
+  margin-right: 15px; /* Spacing from the right */
+}
+
+/* Navbar Items */
+.navbar-nav .nav-link {
+  margin: 0 10px; /* Margin between links */
+}
+
+/* Active link styles */
+.navbar-nav .nav-link.active {
+  font-weight: bold; /* Bold text for active links */
+  color: #007bff; /* Active text color */
+}
+
+/* Media Queries (optional for further customization) */
+@media (max-width: 767px) {
+  .navbar {
+    display: block; /* Ensure the navbar is block on small screens */
   }
-  
-  /* Sidebar initial state (hidden) */
-.navbar-collapse {
-    position: fixed;
-    top: 0;
-    right: -300px; /* Start off-screen */
-    width: 250px; /* Adjust sidebar width */
-    height: 100vh; /* Full viewport height */
-    background-color: #007bff; /* Change to desired color */
-    transition: right 0.3s ease; /* Smooth slide-in effect */
-    z-index: 1050; /* Ensure it's on top of other content */
-    padding-top: 60px; /* Add space for the brand */
-    opacity: 0;
+  /*left sidebar*/
+
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    display: none; /* Hide the sidebar on larger screens */
   }
-  
-  /* When the sidebar is visible */
-  .navbar-collapse.show {
-    right: 0; /* Slide in from the right */
-    opacity: 1; /* Fade in */
-  }
-  
-  /* Toggle button styling */
-  .navbar-toggler {
-    position: fixed; /* Keep it fixed so it stays in place */
-    top: 15px;
-    right: 15px;
-    z-index: 1100; /* Higher than the sidebar (1050) */
-    background-color: white; /* Make sure it's visible */
-    border: 1px solid #ccc;
-    padding: 8px 10px;
-  }
-  
-  /* Navigation links inside the sidebar */
-  .navbar-nav .nav-link {
-    color: white; /* White text color */
-    padding: 15px 20px;
-    display: block; /* Block display for full-width links */
-    transition: color 0.3s ease;
-  }
-  
+}
+
+.navbar-nav .nav-link {
+  color: white; /* White text color */
+  padding: 15px 20px;
+  display: block; /* Block display for full-width links */
+  transition: color 0.3s ease;
+}
+.navbar-collapse.show {
+  right: 0; /* Slide in from the right */
+  opacity: 1; /* Fade in */
+}
+
+/* Toggle button styling */
+.navbar-toggler {
+  position: fixed; /* Keep it fixed so it stays in place */
+  top: 15px;
+  right: 15px;
+  z-index: 1100; /* Higher than the sidebar (1050) */
+  background-color: white; /* Make sure it's visible */
+  border: 1px solid #ccc;
+  padding: 8px 10px;
+}
+li{
+  z-index: 1;
+  background-color: #007bff;
+}
