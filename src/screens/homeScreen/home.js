@@ -8,12 +8,10 @@ function Home() {
     <section>
       <MainSection/>
       <section className="SeconedSection">
-      <Instructors/>
       <Students/>
+      <Instructors/>
       <Interested/>
       </section>
-
-
     </section>
   );
 }

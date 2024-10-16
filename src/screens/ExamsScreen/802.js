@@ -1,8 +1,5 @@
 export default function EX802(){
-    const tests=[
-        2024,
-    ]
-
+  
     return <section>
         <h1>جميع نماذج 802</h1>
         <div class="row mb-3 text-center">
