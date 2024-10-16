@@ -61,7 +61,7 @@ function Header() {
                   className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
                   onClick={handleLinkClick} // Close sidebar on click
                 >
-                  Home
+                  الرئيسية
                 </Link>
               </li>
               <li className="nav-item">
@@ -70,7 +70,7 @@ function Header() {
                   className={`nav-link ${location.pathname === '/dawrat' ? 'active' : ''}`}
                   onClick={handleLinkClick} // Close sidebar on click
                 >
-                  Features
+                  دوراتنا
                 </Link>
               </li>
               <li className="nav-item">
@@ -97,7 +97,7 @@ function Header() {
                   className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`}
                   onClick={handleLinkClick} // Close sidebar on click
                 >
-                  About
+                  عن المعهد
                 </Link>
               </li>
             </ul>

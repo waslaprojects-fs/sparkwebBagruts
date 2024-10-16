@@ -24,10 +24,15 @@ export default function Students() {
         <section className='allStudents'>
              <h3>طُلّابنا و إنجازاتهم</h3>
              <section className="Students">
-           
-           {/* Left arrow */}
-           <button className="left-arrow" onClick={scrollLeft}>❮</button>
+           <section className='Arrows'>
+     {/* Left arrow */}
+     <button className="left-arrow" onClick={scrollLeft}>❮</button>
 
+
+           {/* Right arrow */}
+           <button className="right-arrow" onClick={scrollRight}>❯</button>
+           </section>
+      
            {/* Main content */}
            <section className="row" ref={rowRef}>
                {/* First student */}
@@ -104,8 +109,6 @@ export default function Students() {
                </section>
            </section>
 
-           {/* Right arrow */}
-           <button className="right-arrow" onClick={scrollRight}>❯</button>
        </section>
         </section>
 

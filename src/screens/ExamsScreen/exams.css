@@ -3,19 +3,14 @@
 }
 
 body, html {
+  font-family: "Readex Pro", sans-serif;
   margin: 0;
   padding: 0;
   width: 100%; /* Ensure full width */
   overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
-.container {
-  background-color: #ffffff;
-opacity: 0.8;
-background-image:  linear-gradient(#e87a00 1px, transparent 1px), linear-gradient(to right, #e87a00 1px, #ffffff 1px);
-background-size: 20px 20px;
-  max-width: 100%; /* Prevent exceeding viewport width */
-}
+
 
 .row {
   margin-left: 0; /* Reset margin for rows */
@@ -29,5 +24,16 @@ background-size: 20px 20px;
   border-radius: 30px;
   background: #ffffff;
   box-shadow: 15px 15px 30px #bebebe,
-              -15px -15px 30px #ffffff;
+              -15px -15px 30px #ffffff
+}
+img{
+  height: 10vh;
+  width: 10vh;
+  margin: auto;
+  margin-bottom: 2vh;
+
+}
+h3{
+  background-color: aquamarine;
+  margin: 2vw,20vh;
 }

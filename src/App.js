@@ -7,11 +7,12 @@ import Dawrat from './screens/dawrat/dawrat.js';
 import ExamsScreen from './screens/ExamsScreen/examsScreen.js'
 import EX801 from './screens/ExamsScreen/801.js';
 import EX802 from './screens/ExamsScreen/802.js';
+import Footer from './tools/footer.js';
 
 function App() {
   return (
     <Router>
-      <div className="App">
+      <section className="App">
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -22,7 +23,8 @@ function App() {
           <Route path="/802" element={<EX802 />} />
 
         </Routes>
-      </div>
+        <Footer/>
+      </section>
     </Router>
   );
 }

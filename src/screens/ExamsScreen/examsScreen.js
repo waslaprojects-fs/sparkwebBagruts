@@ -14,6 +14,7 @@ export default function ExamsScreen() {
       <section className="row">
         {/* Column for رياضيات */}
         <section className="col-6 card">
+          <img src="assets/math.png"></img>
           <h3>رياضيات</h3>
           <section className="row">
             <section className="col-12">
@@ -44,6 +45,7 @@ export default function ExamsScreen() {
 
         {/* Column for فيزياء */}
         <section className="col-6 card">
+        <img src="assets/physics.png"></img>
           <h3>فيزياء</h3>
           <section className="row">
             <section className="col-12">
@@ -57,6 +59,7 @@ export default function ExamsScreen() {
       <div className="row mt-4">
         {/* Column for علم الحاسوب */}
         <div className="col-6 card">
+        <img src="assets/cs.png"></img>
           <h3>علم الحاسوب</h3>
           <div className="row">
             <div className="col-12">
@@ -67,6 +70,7 @@ export default function ExamsScreen() {
 
         {/* Column for الكترونيكا */}
         <div className="col-6 card">
+        <img src="assets/electronics.png"></img>
           <h3>الكترونيكا</h3>
           <div className="row">
             <div className="col-12">

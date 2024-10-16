@@ -13,10 +13,11 @@ body, html {
 
 /* Full-width navbar */
 .navbar {
-  background-color: #333 !important;
+  direction: rtl;
   width: 100vw; /* Full viewport width */
   height: 10vh;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ 
 }
 
 /* Ensure sidebar covers the entire screen */
@@ -41,7 +42,7 @@ body, html {
 }
 .navbar-brand{
   background-color: pink;
-  margin-left: 4vw;
+  margin-left: 2vw;
   
 }
 
@@ -55,10 +56,14 @@ body, html {
 .navbar-nav .nav-link.active {
   font-weight: bold; /* Bold text for active links */
 }
-
+.navbar-nav{
+  padding: 0;
+}
 .navbar-collapse.show {
   right: 0; /* Slide in from the right */
   opacity: 1; /* Fade in */
+  padding-right: 0;
+
 }
 
 /* Sidebar visibility on small screens */

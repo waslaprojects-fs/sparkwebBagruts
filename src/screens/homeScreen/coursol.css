@@ -50,16 +50,20 @@
   padding: 10px;
   cursor: pointer;
   z-index: 1;
+
 }
 
 .left-arrow {
   left: 0;
+
 }
 
 .right-arrow {
   right: 0;
 }
-
+.Arrows{
+  background-color: aqua;
+}
 .row {
   display: flex;
   flex-wrap: nowrap;
