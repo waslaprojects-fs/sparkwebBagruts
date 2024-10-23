@@ -37,3 +37,30 @@ h3{
   background-color: aquamarine;
   margin: 2vw,20vh;
 }
+.sol{
+  border-width: 2px;
+  color: black;
+  background-color: transparent;
+}
+
+.sol:hover{
+  background-color: #19875484;
+  color: black;
+}
+
+.sol , .ex {
+  width: 15vw;
+  margin: 2vh;
+  border-radius: 1.5vh;
+}
+
+
+@media (max-width: 767px) {
+  .sol , .ex {
+    width: 40vw;
+    margin: 2vh;
+    border-radius: 1.5vh;
+  }
+  
+  
+}

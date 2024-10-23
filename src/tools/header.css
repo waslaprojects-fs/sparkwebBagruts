@@ -38,6 +38,7 @@ body, html {
 .navbar-toggler {
   background-color: pink;
   margin-right: 4vw;
+  margin-left: 4vw;
   z-index: 1100;
 }
 .navbar-brand{

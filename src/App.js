@@ -6,7 +6,6 @@ import Home from './screens/homeScreen/home.js';
 import Dawrat from './screens/dawrat/dawrat.js';
 import ExamsScreen from './screens/ExamsScreen/examsScreen.js'
 import EX801 from './screens/ExamsScreen/801.js';
-import EX802 from './screens/ExamsScreen/802.js';
 import Footer from './tools/footer.js';
 
 function App() {
@@ -19,8 +18,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/dawrat" element={<Dawrat />} />
           <Route path="/examsScreen" element={<ExamsScreen />} />
-          <Route path="/801" element={<EX801 />} />
-          <Route path="/802" element={<EX802 />} />
+          <Route path="/exams" element={<EX801 />} />
 
         </Routes>
         <Footer/>
