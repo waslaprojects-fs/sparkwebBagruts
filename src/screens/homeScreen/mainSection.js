@@ -29,13 +29,13 @@ function MainSection() {
       <div class="carousel-item">
       <img class="bd-placeholder-img" width="100%" height="100%" 
      src='/assets/main.jpg'
-     alt="Main Image" />
+     alt="Main" />
 
         <div class="container">
           <div class="carousel-caption text-start">
             <h1>عنوان المثال.</h1>
             <p class="opacity-75">تشير الدراسات الإحصائية حسب الجمعية الأمريكية للغات بأن الإقبال على العربية زاد %126 في الولايات المتحدة الأمريكية وحدها بين عامي 2002 و2009م.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">سجل اليوم</a></p>
+            <p><a class="btn btn-lg btn-primary" href="/">سجل اليوم</a></p>
           </div>
         </div>
       </div>
@@ -45,7 +45,7 @@ function MainSection() {
           <div class="carousel-caption">
             <h1>عنوان مثال آخر.</h1>
             <p>حسب المجلس الثقافي البريطاني فإن تعليم الإنجليزية داخل بريطانيا يسهم في تعزيز اقتصادها بما يتجاوز ملياري جنيه سنوياً، كما أنه وفر أكثر من 26 ألف وظيفة.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">أعرف أكثر</a></p>
+            <p><a class="btn btn-lg btn-primary" href="/">أعرف أكثر</a></p>
           </div>
         </div>
       </div>
@@ -55,7 +55,7 @@ function MainSection() {
           <div class="carousel-caption text-end">
             <h1>واحد أكثر لقياس جيد.</h1>
             <p>الإحصاءات لحجم الاستثمار اللغوي خارج بريطانيا تتفاوت من سنة لأخرى إلا أن المدير التنفيذي للمجلس الثقافي البريطاني إدي بايرز يرى أن استثمار تعليم الإنجليزية في الخارج لا يحسب على المستوى المالي فحسب بل على المستوى السياسي أيضاً.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">تصفح المعرض</a></p>
+            <p><a class="btn btn-lg btn-primary" href="/">تصفح المعرض</a></p>
           </div>
         </div>
       </div>

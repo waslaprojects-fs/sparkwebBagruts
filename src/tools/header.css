@@ -5,11 +5,11 @@ body, html {
   width: 100vw;
   overflow-x: hidden; /* Prevent any horizontal scroll */
 }
+
 .container, .navbar {
   margin: 0;
   padding: 0;
 }
-
 
 /* Full-width navbar */
 .navbar {
@@ -17,10 +17,9 @@ body, html {
   width: 100vw; /* Full viewport width */
   height: 10vh;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
- 
 }
 
-/* Ensure sidebar covers the entire screen */
+/* Sidebar styles */
 .sidebar {
   position: fixed;
   top: 0;
@@ -37,34 +36,35 @@ body, html {
 /* Toggler Button */
 .navbar-toggler {
   background-color: pink;
-  margin-right: 4vw;
-  margin-left: 4vw;
+  margin-left: 4vw; /* Adjusted for spacing */
   z-index: 1100;
 }
-.navbar-brand{
+
+/* Navbar Brand */
+.navbar-brand {
   background-color: pink;
   margin-left: 2vw;
-  
 }
 
 /* Navbar Items */
 .navbar-nav .nav-link {
   margin: 0 10px; /* Margin between links */
-  color: white; /* White text color */
+  color: rgb(98, 53, 53); /* White text color */
 }
 
 /* Active link styles */
 .navbar-nav .nav-link.active {
   font-weight: bold; /* Bold text for active links */
 }
-.navbar-nav{
+
+.navbar-nav {
   padding: 0;
 }
+
+/* Collapse styles */
 .navbar-collapse.show {
   right: 0; /* Slide in from the right */
   opacity: 1; /* Fade in */
-  padding-right: 0;
-
 }
 
 /* Sidebar visibility on small screens */
@@ -72,18 +72,18 @@ body, html {
   .navbar-collapse {
     position: fixed;
     top: 0;
-    right: -300px; /* Start off-screen */
+    left: 0; /* Start off-screen from the left */
     width: 250px;
     height: 100vh;
     background-color: #e8eaec;
-    transition: right 0.3s ease;
+    transition: transform 0.3s ease;
     z-index: 1050;
-    padding-top: 60px;
     opacity: 0;
+    transform: translateX(-100%); /* Hidden off-screen initially */
   }
 
   .navbar-collapse.show {
-    right: 0; /* Slide in */
+    transform: translateX(0); /* Slide in */
     opacity: 1;
   }
 }
