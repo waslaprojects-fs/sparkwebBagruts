@@ -1,7 +1,43 @@
 import { useNavigate } from 'react-router-dom';
 import './exams.css';
+import exams806 from './exams/806'
 
 const exams801 = [
+  { 
+    2024: {    
+      "صيف موعد ب": {
+        ex: "https://firebasestorage.googleapis.com/v0/b/sparkbagrut.appspot.com/o/802%2F17.pdf?alt=media&token=df49ed85-ebcb-49f9-a90f-0c8af8f9c4e7",
+        sol: "https://firebasestorage.googleapis.com/v0/b/sparkbagrut.appspot.com/o/802%2F17.pdf?alt=media&token=df49ed85-ebcb-49f9-a90f-0c8af8f9c4e7"
+      },
+      "صيف موعد أ": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23"
+      },
+      "شتاء": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23",
+      }
+    }
+  },
+  { 
+    2023: {    
+      "صيف موعد ب": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23"
+      },
+      "صيف موعد أ": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23"
+      },
+      "شتاء": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23",
+      }
+    }
+  }
+];
+
+const exams802 = [
   { 
     2024: {    
       "صيف موعد ب": {
@@ -36,7 +72,148 @@ const exams801 = [
   }
 ];
 
+const exams803 = [
+  { 
+    2024: {    
+      "صيف موعد ب": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23"
+      },
+      "صيف موعد أ": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23"
+      },
+      "شتاء": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23",
+      }
+    }
+  },
+  { 
+    2023: {    
+      "صيف موعد ب": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23"
+      },
+      "صيف موعد أ": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23"
+      },
+      "شتاء": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23",
+      }
+    }
+  }
+];
+const exams804 = [
+  { 
+    2024: {    
+      "صيف موعد ب": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23"
+      },
+      "صيف موعد أ": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23"
+      },
+      "شتاء": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23",
+      }
+    }
+  },
+  { 
+    2023: {    
+      "صيف موعد ب": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23"
+      },
+      "صيف موعد أ": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23"
+      },
+      "شتاء": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23",
+      }
+    }
+  }
+];
+const exams805 = [
+  { 
+    2024: {    
+      "صيف موعد ب": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23"
+      },
+      "صيف موعد أ": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23"
+      },
+      "شتاء": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23",
+      }
+    }
+  },
+  { 
+    2023: {    
+      "صيف موعد ب": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23"
+      },
+      "صيف موعد أ": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23"
+      },
+      "شتاء": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23",
+      }
+    }
+  }
+];
+
+const exams807 = [
+  { 
+    2024: {    
+      "صيف موعد ب": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23"
+      },
+      "صيف موعد أ": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23"
+      },
+      "شتاء": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23",
+      }
+    }
+  },
+  { 
+    2023: {    
+      "صيف موعد ب": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23"
+      },
+      "صيف موعد أ": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23"
+      },
+      "شتاء": {
+        ex: "https://panet.com/city/23",
+        sol: "https://panet.com/city/23",
+      }
+    }
+  }
+];
+
+
 export default function ExamsScreen() {
+
+
   const navigate = useNavigate();
 
   const handleClick = (num, title) => {
@@ -53,26 +230,14 @@ export default function ExamsScreen() {
           <section className="row">
             <section className="col-12">
               <section className="d-flex flex-column align-items-center">
-                <button
-                  className="btn btn-warning rounded-pill px-3 mb-2"
-                  type="button"
-                  onClick={() => handleClick(801, "نماذج 801")}
-                >
-                  801
-                </button>
-                <button
-                  className="btn btn-warning rounded-pill px-3 mb-2"
-                  type="button"
-                  onClick={() => handleClick(802, "نماذج 802")}
-                >
-                  802
-                </button>
+                <button className="btn btn-warning rounded-pill px-3 mb-2" type="button" onClick={() => handleClick(801, "نماذج 801")}>801</button>
+                <button className="btn btn-warning rounded-pill px-3 mb-2" type="button" onClick={() => handleClick(802, "نماذج 802")}>802</button>
+                <button className="btn btn-warning rounded-pill px-3 mb-2" type="button" onClick={() => handleClick(803, "نماذج 803")}>803</button>
+                <button className="btn btn-warning rounded-pill px-3 mb-2" type="button" onClick={() => handleClick(804, "نماذج 804")}>804</button>
+                <button className="btn btn-warning rounded-pill px-3 mb-2" type="button" onClick={() => handleClick(805, "نماذج 805")}>805</button>
+                <button className="btn btn-warning rounded-pill px-3 mb-2" type="button" onClick={() => handleClick(806, "نماذج 806")}>806</button>
+                <button className="btn btn-warning rounded-pill px-3 mb-2" type="button" onClick={() => handleClick(807, "نماذج 807")}>807</button>
               </section>
-              <p>803</p>
-              <p>804</p>
-              <p>805</p>
-              <p>806</p>
-              <p>807</p>
             </section>
           </section>
         </section>
@@ -102,7 +267,7 @@ export default function ExamsScreen() {
 
         <div className="col-6 card">
           <img src="assets/electronics.png" alt="Electronics" />
-          <h3>الكترونيكا</h3>
+          <h3>إلكترونيات</h3>
           <div className="row">
             <div className="col-12">
               <p>جميع النماذج</p>
