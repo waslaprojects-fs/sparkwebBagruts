@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import './exams.css';
-export default function EX801() {
+export default function MathPage() {
   const location = useLocation();
   const { exams801, title } = location.state || {}; // Destructure exams801 and title from state
 

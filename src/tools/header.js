@@ -5,44 +5,51 @@ import './header.css';
 
 function Header() {
   const location = useLocation();
-  const navbarRef = useRef(null); // Ref to track the navbar collapse
+  const navbarRef = useRef(null);
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
 
-  // Function to handle clicks outside the sidebar
-  const handleClickOutside = (event) => {
-    if (navbarRef.current && !navbarRef.current.contains(event.target)) {
-      closeSidebar();
-    }
-  };
-
-  // Function to close the sidebar
   const closeSidebar = () => {
     setIsSidebarVisible(false);
   };
 
-  // Function to handle toggler button click
   const toggleSidebar = () => {
     setIsSidebarVisible((prev) => !prev);
   };
 
-  // Close sidebar when a link is clicked
   const handleLinkClick = () => {
-    closeSidebar();
+    closeSidebar(); // Close sidebar when a link is clicked
   };
- 
+
   useEffect(() => {
-    // Add click event listener when the component mounts
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      // Clean up event listener when the component unmounts
-      document.removeEventListener('mousedown', handleClickOutside);
+    // Handle scroll event to close the sidebar
+    const handleScroll = () => {
+      if (isSidebarVisible) {
+        closeSidebar(); // Close sidebar on scroll
+      }
     };
-  }, [handleClickOutside]);
+
+    // Add scroll event listener when the component mounts
+    window.addEventListener('scroll', handleScroll);
+
+    // Add click event listener for outside click
+    const handleClickOutside = (event) => {
+      if (navbarRef.current && !navbarRef.current.contains(event.target)) {
+        closeSidebar(); // Close sidebar when clicking outside
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll); // Clean up scroll event listener
+      document.removeEventListener('mousedown', handleClickOutside); // Clean up event listener when the component unmounts
+    };
+  }, [isSidebarVisible]); // Include isSidebarVisible as a dependency
 
   return (
-    <div className="container">
+    <section className="container">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid" ref={navbarRef}>
+        <section className="container-fluid" ref={navbarRef}>
           <Link className="navbar-brand" to="/">Spark</Link>
           <button
             className="navbar-toggler"
@@ -54,7 +61,7 @@ function Header() {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className={`navbar-collapse ${isSidebarVisible ? 'show' : ''}`} id="navbarNav">
+          <section className={`navbar-collapse ${isSidebarVisible ? 'show' : ''}`} id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
                 <Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} onClick={handleLinkClick}>
@@ -82,10 +89,10 @@ function Header() {
                 </Link>
               </li>
             </ul>
-          </div>
-        </div>
+          </section>
+        </section>
       </nav>
-    </div>
+    </section>
   );
 }
 

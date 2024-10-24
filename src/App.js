@@ -5,7 +5,7 @@ import Header from './tools/header';
 import Home from './screens/homeScreen/home.js';
 import Dawrat from './screens/dawrat/dawrat.js';
 import ExamsScreen from './screens/ExamsScreen/examsScreen.js'
-import EX801 from './screens/ExamsScreen/801.js';
+import MathPage from './screens/ExamsScreen/math.js';
 import Footer from './tools/footer.js';
 // Import the functions you need from the SDKs you need
 // import { initializeApp } from "firebase/app";
@@ -38,7 +38,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/dawrat" element={<Dawrat />} />
           <Route path="/examsScreen" element={<ExamsScreen />} />
-          <Route path="/exams" element={<EX801 />} />
+          <Route path="/exams" element={<MathPage />} />
 
         </Routes>
         <Footer/>
