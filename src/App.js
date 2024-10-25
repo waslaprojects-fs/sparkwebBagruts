@@ -8,7 +8,6 @@ import ExamsScreen from './screens/ExamsScreen/examsScreen.js'
 import MathPage from './screens/ExamsScreen/math.js';
 import Footer from './tools/footer.js';
 import NotFound from './screens/NotFound.js'; // Create a NotFound component
-
 // Import the functions you need from the SDKs you need
 // import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";

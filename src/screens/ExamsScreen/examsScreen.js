@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+ import { useNavigate } from 'react-router-dom';
 import './exams.css';
 import exams806 from './exams/806'
 

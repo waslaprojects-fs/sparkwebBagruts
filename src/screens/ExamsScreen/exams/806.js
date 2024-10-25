@@ -1,26 +1,65 @@
-// exams/806.js
-const baseUrl = "https://firebasestorage.googleapis.com/v0/b/sparkbagrut.appspot.com/o/files%2F22.pdf?alt=media";
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+import { initializeApp } from 'firebase/app';
 
-// Define the years and terms for which exams and solutions are available
-const years = [2022, 2023];
-const terms = [
-  { name: "صيف موعد ب", suffix: "b" },
-  { name: "صيف موعد أ", suffix: "a" },
-  { name: "شتاء", suffix: "" },
-];
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBLckaBgQ8oP7ZL8JcON_QTAHAsIz9b20M",
+  authDomain: "sparkbagrut.firebaseapp.com",
+  projectId: "sparkbagrut",
+  storageBucket: "sparkbagrut.appspot.com",
+  messagingSenderId: "847207233604",
+  appId: "1:847207233604:web:2e6b922f527cd47ea86411",
+  measurementId: "G-EC8627LXCS"
+};
 
-// Construct the exams and solutions structure
-const exams806 = years.map(year => {
-  const sessions = {};
-  terms.forEach(term => {
-    // Construct exam and solution links correctly
-    sessions[term.name] = {
-      ex: "https://firebasestorage.googleapis.com/v0/b/sparkbagrut.appspot.com/o/806%2F22b.pdf?alt=media&token=fedf8daf-4a6d-4f0f-acd3-a0f02b648fb1",   // Exam link
-      sol: `https://firebasestorage.googleapis.com/v0/b/sparkbagrut.appspot.com/o/files%2F${year}_${term.suffix}_solution.pdf?alt=media`, // Solution link
+// Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
+const storage = getStorage(firebaseApp);
+
+// Fetch URLs Function
+export const fetchBagrutURLs = async () => {
+  const currentList = [];
+
+  // Loop through the years from 2023 to 2017
+  for (let j = 23; j >= 17; j--) {
+    const year = 2000 + j;  // Converting to a full year format, e.g., 2023
+    const sessionData = {
+      [year]: {
+        "صيف موعد ب": {
+          ex: null,
+          sol: null
+        },
+        "صيف موعد أ": {
+          ex: null,
+          sol: null
+        },
+        "شتاء": {
+          ex: null,
+          sol: null
+        }
+      }
     };
-  });
-  return { [year]: sessions }; // Return an object for the current year
-});
 
-// Export the constructed exams806 object for use in other modules
-export default exams806;
+    try {
+      // Fetch URLs for "صيف موعد ب"
+      sessionData[year]["صيف موعد ب"].ex = await getDownloadURL(ref(storage, `806/${j}b.pdf`));
+      sessionData[year]["صيف موعد ب"].sol = await getDownloadURL(ref(storage, `806/${j}b.pdf`));
+      
+      // Fetch URLs for "صيف موعد أ"
+      sessionData[year]["صيف موعد أ"].ex = await getDownloadURL(ref(storage, `806/${j}a.pdf`));
+      sessionData[year]["صيف موعد أ"].sol = await getDownloadURL(ref(storage, `806/${j}a.pdf`));
+      
+      // Fetch URLs for "شتاء"
+      sessionData[year]["شتاء"].ex = await getDownloadURL(ref(storage, `806/${j}.pdf`));
+      sessionData[year]["شتاء"].sol = await getDownloadURL(ref(storage, `806/${j}.pdf`));
+      
+      // Add the structured data for the year to the list
+      currentList.push(sessionData);
+    } catch (error) {
+      console.error(`Error fetching file URL for year ${year}:`, error);
+    }
+  }
+  console.log("hi");
+  console.log(currentList);
+  return currentList;
+};
