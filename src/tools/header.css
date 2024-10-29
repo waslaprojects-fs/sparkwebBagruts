@@ -37,21 +37,19 @@ html {
 
 /* Toggler Button */
 .navbar-toggler {
-  background-color: pink;
   margin-left: 4vw; /* Adjusted for spacing */
   z-index: 1100;
 }
 
 /* Navbar Brand */
 .navbar-brand {
-  background-color: pink;
   margin-left: 2vw;
 }
 
 /* Navbar Items */
 .navbar-nav .nav-link {
   margin: 0 10px; /* Margin between links */
-  color: rgb(98, 53, 53); /* White text color */
+  color: rgb(0, 0, 0); /* White text color */
 }
 
 /* Active link styles */
@@ -88,7 +86,6 @@ html {
   .navbar-collapse.show {
     transform: translateX(0); /* Slide in */
     opacity: 1;
-    background-color: aquamarine;
   }
 }
 
