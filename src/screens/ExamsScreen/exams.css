@@ -22,9 +22,11 @@ body, html {
   height: 50vh; /* Fixed height for cards */
   margin: 5vh 5vw; /* Add vertical margin and horizontal margin to avoid overflow */
   border-radius: 30px;
-  background: #ffffff;
+  
   box-shadow: 15px 15px 30px #bebebe,
-              -15px -15px 30px #ffffff
+              -15px -15px 30px #ffffff;
+
+          
 }
 img{
   height: 10vh;
@@ -53,7 +55,15 @@ h3{
   margin: 2vh;
   border-radius: 1.5vh;
 }
+.mathcard{
+  background-color: pink;
 
+
+  background-color: #ffffff;
+  opacity: 0.8;
+  background-image:  linear-gradient(#f7b445 1px, transparent 1px), linear-gradient(to right, #f7b445 1px, #ffffff 1px);
+  background-size:10px 10px;
+}
 
 @media (max-width: 767px) {
   .sol , .ex {

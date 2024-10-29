@@ -1,13 +1,13 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import './App.css';
-import Header from './tools/header';
-import Home from './screens/homeScreen/home.js';
-import Dawrat from './screens/dawrat/dawrat.js';
-import ExamsScreen from './screens/ExamsScreen/examsScreen.js'
-import MathPage from './screens/ExamsScreen/math.js';
-import Footer from './tools/footer.js';
-import NotFound from './screens/NotFound.js'; // Create a NotFound component
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Header from "./tools/header";
+import Home from "./screens/homeScreen/home.js";
+import Dawrat from "./screens/dawrat/dawrat.js";
+import ExamsScreen from "./screens/ExamsScreen/examsScreen.js";
+import MathPage from "./screens/ExamsScreen/math.js";
+import Footer from "./tools/footer.js";
+import NotFound from "./screens/NotFound.js"; // Create a NotFound component
 // Import the functions you need from the SDKs you need
 // import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
@@ -38,7 +38,13 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/dawrat" element={<Dawrat />} />
           <Route path="/examsScreen" element={<ExamsScreen />} />
-          <Route path="/exams" element={<MathPage />} />
+          <Route path="/exams/exams801" element={<MathPage />} />
+          <Route path="/exams802" element={<MathPage />} />
+          <Route path="/exams803" element={<MathPage />} />
+          <Route path="/exams804" element={<MathPage />} />
+          <Route path="/exams805" element={<MathPage />} />
+          <Route path="/exams806" element={<MathPage />} />
+          <Route path="/exams807" element={<MathPage />} />
           <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
         </Routes>
         <Footer />

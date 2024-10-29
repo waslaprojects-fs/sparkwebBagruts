@@ -1,12 +1,14 @@
 /* Ensure body and html have no padding/margin */
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   width: 100vw;
   overflow-x: hidden; /* Prevent any horizontal scroll */
 }
 
-.container, .navbar {
+.container,
+.navbar {
   margin: 0;
   padding: 0;
 }
@@ -87,7 +89,6 @@ body, html {
     transform: translateX(0); /* Slide in */
     opacity: 1;
     background-color: aquamarine;
-
   }
 }
 

@@ -1,43 +1,53 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
-import './exams.css';
-import { exams806 } from './exams/806'; // Adjust the path as necessary
+import React from "react";
+import { useLocation } from "react-router-dom";
+import "./exams.css";
 
 export default function MathPage() {
   const location = useLocation();
-  const { title } = location.state || {}; // Get title from location state
+  const { examsData, title } = location.state || {}; // Dynamically get exams data and title
 
   return (
     <section>
       <h1>{title}</h1>
-      {Object.keys(exams806).length > 0 ? (
-        Object.keys(exams806).map((year) => {
-          const examSessions = exams806[year]; // Get the sessions for each year
-
-          return (
-            <section key={year}>
-              <h2>{year}</h2>
-              {Object.keys(examSessions).map((sessionName) => (
-                <section key={sessionName}>
-                  <button 
-                    className="btn btn-success rounded-pill px-3 sol" 
-                    onClick={() => window.open(examSessions[sessionName].sol || '#', '_blank')}
-                  >
-                    {`${sessionName} - حل`} {/* Solutions Button */}
-                  </button>
-                  <button 
-                    className="btn btn-success rounded-pill px-3 ex" 
-                    onClick={() => window.open(examSessions[sessionName].ex || '#', '_blank')}
-                  >
-                    {`${sessionName} - نموذج`} {/* Exams Button */}
-                  </button>
-                </section>
-              ))}
-            </section>
-          );
-        })
+      {examsData && Object.keys(examsData).length > 0 ? (
+        Object.keys(examsData)
+          .sort((a, b) => b - a) // Sort keys in descending order
+          .map((year) => {
+            const examSessions = examsData[year];
+            return (
+              <section key={year}>
+                <h2>{year}</h2>
+                {Object.keys(examSessions).map((sessionName) => (
+                  <section key={sessionName}>
+                    <button
+                      className="btn btn-success rounded-pill px-3 sol"
+                      onClick={() =>
+                        window.open(
+                          examSessions[sessionName].sol || "#",
+                          "_blank"
+                        )
+                      }
+                    >
+                      {`${sessionName} - حل`} {/* Solutions Button */}
+                    </button>
+                    <button
+                      className="btn btn-success rounded-pill px-3 ex"
+                      onClick={() =>
+                        window.open(
+                          examSessions[sessionName].ex || "#",
+                          "_blank"
+                        )
+                      }
+                    >
+                      {`${sessionName} - نموذج`} {/* Exams Button */}
+                    </button>
+                  </section>
+                ))}
+              </section>
+            );
+          })
       ) : (
-        <p>No exams available for this year.</p> // Message if no exams found
+        <p>No exams available for this year.</p>
       )}
     </section>
   );
