@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import "./coursol.css";
+import "../../styles.css";
 function MainSection() {
   useEffect(() => {
     if (window.bootstrap) {

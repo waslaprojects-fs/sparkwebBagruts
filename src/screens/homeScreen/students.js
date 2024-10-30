@@ -1,4 +1,4 @@
-import "./coursol.css";
+import "../../styles.css";
 import { useRef } from "react";
 
 export default function Students() {
@@ -39,7 +39,7 @@ export default function Students() {
         {/* Main content */}
         <section className="row" ref={rowRef}>
           {/* First student */}
-          <section className="col-lg-2 card">
+          <section className="col-lg-2 studentCard">
             <section className="row-container">
               <svg
                 className="bd-placeholder-img rounded-circle"
@@ -64,7 +64,7 @@ export default function Students() {
           </section>
 
           {/* Second student */}
-          <section className="col-lg-2 card">
+          <section className="col-lg-2 studentCard">
             <section className="row-container">
               <svg
                 className="bd-placeholder-img rounded-circle"
@@ -91,7 +91,7 @@ export default function Students() {
           </section>
 
           {/* Third student */}
-          <section className="col-lg-2 card">
+          <section className="col-lg-2 studentCard">
             <section className="row-container">
               <svg
                 className="bd-placeholder-img rounded-circle"
@@ -117,7 +117,7 @@ export default function Students() {
 
           {/* Add more students here */}
           {/* First student */}
-          <section className="col-lg-2 card">
+          <section className="col-lg-2 studentCard">
             <section className="row-container">
               <svg
                 className="bd-placeholder-img rounded-circle"
@@ -142,7 +142,7 @@ export default function Students() {
           </section>
 
           {/* Second student */}
-          <section className="col-lg-2 card">
+          <section className="col-lg-2 studentCard">
             <section className="row-container">
               <svg
                 className="bd-placeholder-img rounded-circle"
@@ -169,7 +169,7 @@ export default function Students() {
           </section>
 
           {/* Third student */}
-          <section className="col-lg-2 card">
+          <section className="col-lg-2 studentCard">
             <section className="row-container">
               <svg
                 className="bd-placeholder-img rounded-circle"

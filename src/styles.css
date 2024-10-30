@@ -1,0 +1,243 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  overflow-x: hidden; /* Prevent any horizontal scroll */
+}
+
+.container,
+.navbar {
+  margin: 0;
+  padding: 0;
+}
+
+/* Full-width navbar */
+.navbar {
+  direction: rtl;
+  width: 100vw; /* Full viewport width */
+  height: 10vh;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px; /* Adjust width as needed */
+  height: 100vh; /* Full height */
+  background-color: #f8f9fa; /* Light background for sidebar */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+  transform: translateX(-100%); /* Initially hidden */
+  z-index: 1000; /* Ensure it's above other elements */
+}
+
+/* Toggler Button */
+.navbar-toggler {
+  margin-left: 4vw; /* Adjusted for spacing */
+  z-index: 1100;
+}
+
+/* Navbar Brand */
+.navbar-brand {
+  margin-left: 2vw;
+}
+
+/* Navbar Items */
+.navbar-nav .nav-link {
+  margin: 0 10px; /* Margin between links */
+  color: rgb(0, 0, 0); /* White text color */
+}
+
+/* Active link styles */
+.navbar-nav .nav-link.active {
+  font-weight: bold; /* Bold text for active links */
+}
+
+.navbar-nav {
+  padding: 0;
+}
+
+/* Collapse styles */
+.navbar-collapse.show {
+  right: 0; /* Slide in from the right */
+  opacity: 1; /* Fade in */
+}
+
+/*ExamsCard*/
+.card {
+  width: 30vw; /* Adjust width of cards */
+  height: 50vh; /* Fixed height for cards */
+  margin: 5vh 5vw; /* Add vertical margin and horizontal margin to avoid overflow */
+  border: none;
+  border-radius: 5vh;
+  box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+}
+.studentCard {
+  width: 20vw; /* Adjust width of cards */
+  height: 35vh; /* Fixed height for cards */
+  margin: 5vh 5vw; /* Add vertical margin and horizontal margin to avoid overflow */
+  border: none;
+  border-radius: 5vh;
+  box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+}
+
+img {
+  height: 10vh;
+  width: 10vh;
+  margin: auto;
+  margin-bottom: 2vh;
+}
+h3 {
+  height: 8vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.sol {
+  border-width: 2px;
+  color: black;
+  background-color: transparent;
+}
+
+.sol:hover {
+  background-color: #19875484;
+  color: black;
+}
+
+.sol,
+.ex {
+  width: 15vw;
+  margin: 2vh;
+  border-radius: 1.5vh;
+}
+/* styles.css */
+.carousel-item {
+  height: 50vh; /* Adjust the height here */
+}
+.SeconedSection {
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+.carousel-item img {
+  object-fit: cover; /* Ensure images cover the area */
+  height: 100%; /* Ensure image height matches carousel item */
+  width: 100%; /* Ensure image width matches carousel item */
+}
+.row-container {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 10vh; /* Ensure the container has enough height to center items */
+}
+
+.bd-placeholder-img {
+  margin-right: 10px; /* Add some space between the SVG and the heading */
+}
+
+.instructor h3,
+.Students h3 {
+  padding-top: 5vh;
+
+  padding-bottom: 5vh;
+}
+.row {
+  justify-content: center;
+}
+.Students {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+
+  .left-arrow,
+  .right-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  .left-arrow {
+    left: 0;
+  }
+
+  .right-arrow {
+    right: 0;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 20px;
+    scroll-behavior: smooth; /* Smooth scrolling for a better experience */
+    width: 100%;
+  }
+}
+.allStudents h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+}
+
+@media (max-width: 767px) {
+  .row-container {
+    width: 100%;
+    padding-left: 2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items vertically */
+  }
+  .card {
+    width: 50vw !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .sol,
+  .ex {
+    width: 40vw;
+    margin: 2vh;
+    border-radius: 1.5vh;
+  }
+}
+
+/* Sidebar visibility on small screens */
+@media (max-width: 1000px) {
+  .navbar-collapse {
+    position: fixed;
+    top: 0;
+    left: 0; /* Start off-screen from the left */
+    width: 250px;
+    height: 100vh;
+    padding-top: 15vh;
+    background-color: #e8eaec;
+    transition: transform 0.3s ease;
+    z-index: 1050;
+    opacity: 0;
+    transform: translateX(-100%); /* Hidden off-screen initially */
+  }
+
+  .navbar-collapse.show {
+    transform: translateX(0); /* Slide in */
+    opacity: 1;
+  }
+}
+
+/* Hide the sidebar on larger screens */
+@media (min-width: 1001px) {
+  .sidebar {
+    display: none;
+  }
+}

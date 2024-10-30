@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import "./exams.css";
+import "../../styles.css";
 
 export default function MathPage() {
   const location = useLocation();
@@ -11,7 +11,7 @@ export default function MathPage() {
       <h1>{title}</h1>
       {examsData && Object.keys(examsData).length > 0 ? (
         Object.keys(examsData)
-          .sort((a, b) => b - a) // Sort keys in descending order
+          .sort((a, b) => b - a)
           .map((year) => {
             const examSessions = examsData[year];
             return (

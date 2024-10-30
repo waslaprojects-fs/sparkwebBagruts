@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
-import "./header.css";
+import "../styles.css";
 
 function Header() {
   const location = useLocation();
