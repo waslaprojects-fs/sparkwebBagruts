@@ -19,7 +19,7 @@ export default function ExamsScreen() {
   return (
     <section className="container text-center">
       <h1>قسم التمرّن</h1>
-      <section className="row">
+      <section className="rowEX">
         <section className="col-6 card">
           <img src="assets/math.png" alt="Math" />
           <h3>رياضيات</h3>
@@ -84,24 +84,23 @@ export default function ExamsScreen() {
             <p>كهرباء</p>
           </section>
         </section>
+      </section>
+      <section className=" mt-4 rowEX">
+        <div className="col-6 card">
+          <img src="assets/cs.png" alt="Computer Science" />
+          <h3>علم الحاسوب</h3>
+          <section className="row col-12 d-flex flex-column align-items-center">
+            <p>جميع النماذج</p>
+          </section>
+        </div>
 
-        <section className="row mt-4">
-          <div className="col-6 card">
-            <img src="assets/cs.png" alt="Computer Science" />
-            <h3>علم الحاسوب</h3>
-            <section className="row col-12 d-flex flex-column align-items-center">
-              <p>جميع النماذج</p>
-            </section>
-          </div>
-
-          <div className="col-6 card">
-            <img src="assets/electronics.png" alt="Electronics" />
-            <h3>إلكترونيات</h3>
-            <section className="row col-12 d-flex flex-column align-items-center">
-              <p>جميع النماذج</p>
-            </section>
-          </div>
-        </section>
+        <div className="col-6 card">
+          <img src="assets/electronics.png" alt="Electronics" />
+          <h3>إلكترونيات</h3>
+          <section className="row col-12 d-flex flex-column align-items-center">
+            <p>جميع النماذج</p>
+          </section>
+        </div>
       </section>
     </section>
   );

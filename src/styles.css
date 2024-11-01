@@ -3,6 +3,8 @@ html {
   margin: 0;
   padding: 0;
   width: 100vw;
+  align-items: center;
+  justify-content: center;
   overflow-x: hidden; /* Prevent any horizontal scroll */
 }
 
@@ -69,11 +71,18 @@ html {
 /*ExamsCard*/
 .card {
   width: 30vw; /* Adjust width of cards */
-  height: 50vh; /* Fixed height for cards */
+  height: 80vh; /* Fixed height for cards */
   margin: 5vh 5vw; /* Add vertical margin and horizontal margin to avoid overflow */
   border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border-radius: 5vh;
   box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+}
+.mb-2 {
+  width: 20vw;
 }
 .studentCard {
   width: 20vw; /* Adjust width of cards */
@@ -87,8 +96,18 @@ html {
 img {
   height: 10vh;
   width: 10vh;
-  margin: auto;
-  margin-bottom: 2vh;
+
+  margin-bottom: 4vh;
+}
+.rowEX {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+h1 {
+  background-color: antiquewhite;
+  width: 100vw;
 }
 h3 {
   height: 8vh;
@@ -142,11 +161,11 @@ h3 {
 .instructor h3,
 .Students h3 {
   padding-top: 5vh;
-
   padding-bottom: 5vh;
 }
 .row {
   justify-content: center;
+  align-items: center;
 }
 .Students {
   display: flex;
@@ -190,29 +209,6 @@ h3 {
   padding-top: 5vh;
   padding-bottom: 5vh;
 }
-
-@media (max-width: 767px) {
-  .row-container {
-    width: 100%;
-    padding-left: 2vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center items vertically */
-  }
-  .card {
-    width: 50vw !important;
-  }
-}
-
-@media (max-width: 767px) {
-  .sol,
-  .ex {
-    width: 40vw;
-    margin: 2vh;
-    border-radius: 1.5vh;
-  }
-}
-
 /* Sidebar visibility on small screens */
 @media (max-width: 1000px) {
   .navbar-collapse {
@@ -233,11 +229,58 @@ h3 {
     transform: translateX(0); /* Slide in */
     opacity: 1;
   }
+  /*button on examsscreen*/
+  .mb-2 {
+    width: 20vw;
+  }
 }
 
 /* Hide the sidebar on larger screens */
 @media (min-width: 1001px) {
   .sidebar {
     display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .card {
+    background-color: palevioletred;
+    width: 40vw;
+    padding-right: 3vw;
+    padding-left: 3vw;
+  }
+  .rowEX {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .mb-2 {
+    width: 40vw;
+  }
+}
+
+@media (max-width: 767px) {
+  .row-container {
+    width: 100%;
+    padding-left: 2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items vertically */
+  }
+  .card {
+    width: 60vw;
+    padding: 2vh;
+    background-color: antiquewhite;
+  }
+  .rowEX {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .sol,
+  .ex {
+    width: 40vw;
+    margin: 2vh;
+    border-radius: 1.5vh;
   }
 }
