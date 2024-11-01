@@ -7,10 +7,10 @@ const terms = [
   { name: "شتاء", suffix: "" },
 ];
 
-const exams801 = {};
+const exams803 = {};
 
 for (let year of years) {
-  exams801[year] = {};
+  exams803[year] = {};
   for (let term of terms) {
     const fileSuffix = term.suffix
       ? `${year % 100}${term.suffix}`
@@ -18,11 +18,11 @@ for (let year of years) {
     const encodedFileName = encodeURIComponent(`${fileSuffix}.pdf`);
     const encodedSolutionFileName = encodeURIComponent(`${fileSuffix}_sol.pdf`);
 
-    exams801[year][term.name] = {
+    exams803[year][term.name] = {
       ex: `${baseUrl}${encodedFileName}?alt=media`,
       sol: `${baseUrl}${encodedSolutionFileName}?alt=media`,
     };
   }
 }
 
-export default exams801;
+export default exams803;

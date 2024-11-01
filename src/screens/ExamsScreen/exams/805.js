@@ -1,81 +1,28 @@
-const exams805 = {
-  2023: {
-    "صيف موعد ب": {
-      ex: "link_to_2023b_exam.pdf",
-      sol: "link_to_2023b_solution.pdf",
-    },
-    "صيف موعد أ": {
-      ex: "link_to_2023a_exam.pdf",
-      sol: "link_to_2023a_solution.pdf",
-    },
-    شتاء: { ex: "link_to_2023_exam.pdf", sol: "link_to_2023_solution.pdf" },
-  },
-  2022: {
-    "صيف موعد ب": {
-      ex: "link_to_2022b_exam.pdf",
-      sol: "link_to_2022b_solution.pdf",
-    },
-    "صيف موعد أ": {
-      ex: "link_to_2022a_exam.pdf",
-      sol: "link_to_2022a_solution.pdf",
-    },
-    شتاء: { ex: "link_to_2022_exam.pdf", sol: "link_to_2022_solution.pdf" },
-  },
-  2021: {
-    "صيف موعد ب": {
-      ex: "link_to_2021b_exam.pdf",
-      sol: "link_to_2021b_solution.pdf",
-    },
-    "صيف موعد أ": {
-      ex: "link_to_2021a_exam.pdf",
-      sol: "link_to_2021a_solution.pdf",
-    },
-    شتاء: { ex: "link_to_2021_exam.pdf", sol: "link_to_2021_solution.pdf" },
-  },
-  2020: {
-    "صيف موعد ب": {
-      ex: "link_to_2021b_exam.pdf",
-      sol: "link_to_2021b_solution.pdf",
-    },
-    "صيف موعد أ": {
-      ex: "link_to_2021a_exam.pdf",
-      sol: "link_to_2021a_solution.pdf",
-    },
-    شتاء: { ex: "link_to_2021_exam.pdf", sol: "link_to_2021_solution.pdf" },
-  },
-  2019: {
-    "صيف موعد ب": {
-      ex: "link_to_2021b_exam.pdf",
-      sol: "link_to_2021b_solution.pdf",
-    },
-    "صيف موعد أ": {
-      ex: "link_to_2021a_exam.pdf",
-      sol: "link_to_2021a_solution.pdf",
-    },
-    شتاء: { ex: "link_to_2021_exam.pdf", sol: "link_to_2021_solution.pdf" },
-  },
-  2018: {
-    "صيف موعد ب": {
-      ex: "link_to_2021b_exam.pdf",
-      sol: "link_to_2021b_solution.pdf",
-    },
-    "صيف موعد أ": {
-      ex: "link_to_2021a_exam.pdf",
-      sol: "link_to_2021a_solution.pdf",
-    },
-    شتاء: { ex: "link_to_2021_exam.pdf", sol: "link_to_2021_solution.pdf" },
-  },
-  2017: {
-    "صيف موعد ب": {
-      ex: "link_to_2021b_exam.pdf",
-      sol: "link_to_2021b_solution.pdf",
-    },
-    "صيف موعد أ": {
-      ex: "link_to_2021a_exam.pdf",
-      sol: "link_to_2021a_solution.pdf",
-    },
-    شتاء: { ex: "link_to_2021_exam.pdf", sol: "link_to_2021_solution.pdf" },
-  },
-  // Add other years as needed
-};
+const baseUrl =
+  "https://firebasestorage.googleapis.com/v0/b/sparkbagrut.appspot.com/o/805%2F";
+const years = [2023, 2022, 2021, 2020, 2019, 2018];
+const terms = [
+  { name: "صيف موعد ب", suffix: "b" },
+  { name: "صيف موعد أ", suffix: "a" },
+  { name: "شتاء", suffix: "" },
+];
+
+const exams805 = {};
+
+for (let year of years) {
+  exams805[year] = {};
+  for (let term of terms) {
+    const fileSuffix = term.suffix
+      ? `${year % 100}${term.suffix}`
+      : `${year % 100}`;
+    const encodedFileName = encodeURIComponent(`${fileSuffix}.pdf`);
+    const encodedSolutionFileName = encodeURIComponent(`${fileSuffix}_sol.pdf`);
+
+    exams805[year][term.name] = {
+      ex: `${baseUrl}${encodedFileName}?alt=media`,
+      sol: `${baseUrl}${encodedSolutionFileName}?alt=media`,
+    };
+  }
+}
+
 export default exams805;
