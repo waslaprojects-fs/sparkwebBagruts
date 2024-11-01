@@ -12,10 +12,7 @@ html {
 .navbar {
   margin: 0;
   padding: 0;
-}
-.main {
-  position: relative;
-  /* Ensure .main is a positioned element */
+  background-color: #f0582e !important;
 }
 
 .main::before {
@@ -34,24 +31,23 @@ html {
 }
 
 .logo {
-  width: 50vw;
   height: 50vh;
-  background-size: cover;
-  padding: 0;
-  margin: 0;
-  opacity: 0;
-  animation: fadeIn 2s ease-in forwards; /* Longer duration and ease-in effect */
+  width: 50vw;
+  animation-duration: 3s;
+  animation-name: slide-in;
 }
 
-@keyframes fadeIn {
+@keyframes slide-in {
   from {
-    opacity: 0;
+    translate: 150vw 0;
+    scale: 200% 1;
   }
+
   to {
-    opacity: 1;
+    translate: 0 0;
+    scale: 100% 1;
   }
 }
-
 /* Full-width navbar */
 .navbar {
   direction: rtl;

@@ -19,7 +19,7 @@ function MainSection() {
 
   return (
     <section class="px-4 py-5 my-5 text-center main">
-      <img class="d-block mx-auto mb-4 logo" src="assets/logo512.png" alt="" />
+      <img class="d-block mx-auto mb-4 logo" src="assets/2.png" alt="" />
       <section class="col-lg-6 mx-auto">
         <p class="lead mb-4">
           Quickly design and customize responsive mobile-first sites with

@@ -48,7 +48,7 @@ function Header() {
 
   return (
     <section className="container">
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className=" navbar-expand-lg navbar-light bg-light navbar">
         <section className="container-fluid" ref={navbarRef}>
           <Link className="navbar-brand" to="/">
             Spark
