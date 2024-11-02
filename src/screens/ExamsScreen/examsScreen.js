@@ -17,7 +17,7 @@ export default function ExamsScreen() {
   };
 
   return (
-    <section className="container text-center">
+    <section className="container text-center exams">
       <h1>قسم التمرّن</h1>
       <section className="rowEX">
         <section className="col-6 card">

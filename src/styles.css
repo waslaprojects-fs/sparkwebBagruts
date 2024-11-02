@@ -193,6 +193,7 @@ img {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
 }
 h1 {
   width: 100vw;
@@ -233,6 +234,9 @@ h3 {
   justify-content: center;
   align-items: center;
   min-height: 10vh; /* Ensure the container has enough height to center items */
+}
+.exams {
+  background-color: whitesmoke !important;
 }
 /* Add some space between the SVG and the heading */
 /* .bd-placeholder-img {
