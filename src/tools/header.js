@@ -47,7 +47,7 @@ function Header() {
   }, [isSidebarVisible]); // Include isSidebarVisible as a dependency
 
   return (
-    <section className="container">
+    <section className="container head">
       <nav className=" navbar-expand-lg navbar-light bg-light navbar">
         <section className="container-fluid" ref={navbarRef}>
           <Link className="navbar-brand" to="/">

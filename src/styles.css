@@ -12,6 +12,7 @@ html {
 .navbar {
   margin: 0;
   padding: 0;
+  /*f0582e*/
   background-color: #f0582e !important;
 }
 
@@ -31,12 +32,66 @@ html {
 }
 
 .logo {
-  height: 50vh;
+  height: 40vh;
   width: 50vw;
   animation-duration: 3s;
   animation-name: slide-in;
 }
+.main h1 {
+  font-family: "El Messiri", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
+  width: 100vw;
+  animation-duration: 4s;
+  animation-name: slide-in1;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+}
 
+.button-24 {
+  background: #19875484;
+  border: 1px solid #19875484;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.button-24:hover,
+.button-24:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #19875484;
+}
+
+.button-24:active {
+  opacity: 0.5;
+}
+@keyframes slide-in1 {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
 @keyframes slide-in {
   from {
     translate: 150vw 0;
@@ -48,12 +103,13 @@ html {
     scale: 100% 1;
   }
 }
+
 /* Full-width navbar */
 .navbar {
   direction: rtl;
   width: 100vw; /* Full viewport width */
   height: 10vh;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.1) 10px 4px 4px !important;
 }
 
 /* Sidebar styles */
@@ -139,7 +195,6 @@ img {
   justify-content: center;
 }
 h1 {
-  background-color: antiquewhite;
   width: 100vw;
 }
 h3 {
@@ -179,10 +234,10 @@ h3 {
   align-items: center;
   min-height: 10vh; /* Ensure the container has enough height to center items */
 }
-
-.bd-placeholder-img {
-  margin-right: 10px; /* Add some space between the SVG and the heading */
-}
+/* Add some space between the SVG and the heading */
+/* .bd-placeholder-img {
+  margin-right: 10px; 
+} */
 
 .instructor h3,
 .Students h3 {
@@ -273,7 +328,6 @@ h3 {
 
 @media (max-width: 900px) {
   .card {
-    background-color: palevioletred;
     width: 40vw;
     padding-right: 3vw;
     padding-left: 3vw;
