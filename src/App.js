@@ -28,6 +28,56 @@ import NotFound from "./screens/NotFound.js"; // Create a NotFound component
 
 // Initialize Firebase
 // const app = initializeApp(firebaseConfig);
+// Prevent zoom on double-tap
+document.addEventListener(
+  "dblclick",
+  function (event) {
+    event.preventDefault();
+  },
+  { passive: false }
+);
+
+// Prevent zoom on pinch gesture (for mobile devices)
+document.addEventListener(
+  "touchstart",
+  function (event) {
+    if (event.touches.length > 1) {
+      event.preventDefault(); // Prevents pinch-zoom
+    }
+  },
+  { passive: false }
+);
+
+document.addEventListener(
+  "touchmove",
+  function (event) {
+    if (event.scale && event.scale !== 1) {
+      event.preventDefault(); // Prevents zooming during touchmove
+    }
+  },
+  { passive: false }
+);
+
+// Prevent zoom with keyboard shortcuts (for desktop browsers)
+document.addEventListener(
+  "wheel",
+  function (event) {
+    if (event.ctrlKey) {
+      event.preventDefault(); // Prevents zooming with Ctrl + scroll
+    }
+  },
+  { passive: false }
+);
+
+document.addEventListener("keydown", function (event) {
+  if (
+    (event.ctrlKey || event.metaKey) &&
+    (event.key === "+" || event.key === "-" || event.key === "0")
+  ) {
+    event.preventDefault(); // Prevents zooming with Ctrl/Cmd + (+, -, 0)
+  }
+});
+
 function App() {
   return (
     <Router>
