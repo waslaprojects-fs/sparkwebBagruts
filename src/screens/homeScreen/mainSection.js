@@ -18,13 +18,17 @@ function MainSection() {
   }, []);
 
   return (
-    <section class="px-4 py-5 my-5 text-center main">
+    <section class="px-4 py-5 my-5 text-center main mainsec">
       <img class="d-block mx-auto mb-4 logo" src="assets/2.png" alt="" />
       <h1>للرياضيات والفيزياء</h1>
-      {/* <button class="button-24" role="button">
-        Button 24
-      </button> */}
-      {/* <button>hi</button> */}
+      <section class="mainbuttons">
+        <button class="button-24" role="button">
+          تواصل معنا
+        </button>
+        <button class="button-24" role="button">
+          تمرّن
+        </button>
+      </section>
     </section>
   );
 }
