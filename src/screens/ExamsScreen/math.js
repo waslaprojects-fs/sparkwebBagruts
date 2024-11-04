@@ -15,7 +15,12 @@ export default function MathPage() {
           .map((year) => {
             const examSessions = examsData[year];
             return (
-              <section key={year}>
+              //  style={{
+              //   backgroundColor: "pink",
+              //   display: "flex",
+              //   flexDirection: "column",
+              // }}
+              <section className="mathexams" key={year}>
                 <h2>{year}</h2>
                 {Object.keys(examSessions).map((sessionName) => (
                   <section key={sessionName}>

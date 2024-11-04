@@ -346,6 +346,24 @@ h3 {
   font-weight: bold;
   padding-bottom: 5vh;
 }
+.mathexams {
+  background-color: #e5e5f7;
+  width: 80vw;
+  margin: auto;
+  background-image: linear-gradient(#b3b3b3 1px, transparent 1px),
+    linear-gradient(to right, #b3b3b3 1px, #e5e5f7 1px);
+  background-size: 20px 20px;
+  background-color: #ffffff;
+  opacity: 1;
+  /* background-image: linear-gradient(rgba(250, 235, 215, 1) 1px, transparent 1px),
+    linear-gradient(to right, rgba(250, 235, 215, 1) 1px, #ffffff 1px);
+  background-size: 20px 20px; */
+  /* background-color: #e6e3e3;
+  opacity: 1;
+  background-image: linear-gradient(rgba(250, 235, 215, 1) 1px, transparent 1px),
+    linear-gradient(to right, rgba(250, 235, 215, 1) 1px, #e6e3e3 1px);
+  background-size: 20px 20px; */
+}
 /* Sidebar visibility on small screens */
 @media (max-width: 1000px) {
   .navbar-collapse {
