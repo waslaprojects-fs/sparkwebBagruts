@@ -16,26 +16,19 @@ function MainSection() {
       console.error("Bootstrap is not loaded correctly.");
     }
   }, []);
-  const sendMessage = () => {
-    const phoneNumber = "+972586610098"; // Replace with the target phone number
-    const message =
-      "مرحبًا، وصلت اليكم عن طريق الموقع، أريد أن أطرح بعض الأسئلة حول المعهد والدورات."; // Customize the message
-
-    // Format the WhatsApp URL
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-      message
-    )}`;
-
-    // Open the WhatsApp URL in a new tab
-    window.open(whatsappURL, "_blank");
+  const fillforom = () => {
+    window.open(
+      "https://sparkpsy.smartedu.me/lead/form/insg?logo=1&style=1&fbclid=IwY2xjawGW7qJleHRuA2FlbQIxMAABHVvmElswdaUkTK7BpsX2qT1W9FWJjz_cin-ua4Kr01Qfil7VDbwsZN_Lww_aem_HocCR9vWiM-ZbI-HGXh6Vw",
+      "_blank"
+    );
   };
   return (
     <section class="px-4 py-5 my-5 text-center main mainsec">
       <img class="d-block mx-auto mb-4 logo" src="assets/2.png" alt="" />
       <h1>للرياضيات والفيزياء</h1>
       <section class="mainbuttons">
-        <button class="button-24" role="button" onClick={sendMessage}>
-          تواصل معنا
+        <button class="button-24" role="button" onClick={fillforom}>
+          سجّل معنا
         </button>
         <button class="button-24" role="button">
           تمرّن
