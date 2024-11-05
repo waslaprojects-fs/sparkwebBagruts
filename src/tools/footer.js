@@ -24,7 +24,7 @@ export default function Footer() {
           <li class="ms-3">
             <a
               class="text-body-secondary"
-              href="https://drive.google.com/drive/u/0/home"
+              href="https://www.instagram.com/sparkpsy800?igsh=MWp5Z2IzdmVmbjEwZg=="
             >
               <img
                 class="bi"
@@ -36,7 +36,7 @@ export default function Footer() {
             </a>
           </li>
           <li class="ms-3">
-            <a class="text-body-secondary" href="#">
+            <a class="text-body-secondary" href="https://wa.me/+972586610098">
               <img
                 class="bi"
                 width="30"
@@ -47,7 +47,10 @@ export default function Footer() {
             </a>
           </li>
           <li class="ms-3">
-            <a class="text-body-secondary" href="#">
+            <a
+              class="text-body-secondary"
+              href="https://www.facebook.com/profile.php?id=100063890084338"
+            >
               <img
                 class="bi"
                 width="30"

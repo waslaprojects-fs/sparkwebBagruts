@@ -285,6 +285,11 @@ h3 {
 /* .bd-placeholder-img {
   margin-right: 10px; 
 } */
+.instructor {
+  background: linear-gradient(transparent, #f0582e);
+  border-radius: 3vh;
+  overflow: hidden;
+}
 
 .instructor h3,
 .Students h3 {
