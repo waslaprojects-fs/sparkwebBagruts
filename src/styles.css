@@ -173,6 +173,7 @@ html {
 
 /* Navbar Items */
 .navbar-nav .nav-link {
+  font-family: "El Messiri", sans-serif;
   margin: 0 10px; /* Margin between links */
   color: rgb(0, 0, 0); /* White text color */
 }
@@ -346,7 +347,7 @@ h3 {
   text-align: center;
   margin-bottom: 20px;
   padding-top: 5vh;
-  color: #fcea04;
+  color: palegoldenrod;
   padding-top: 7vh;
   font-weight: bold;
   padding-bottom: 5vh;
@@ -375,6 +376,7 @@ h3 {
   flex-direction: row;
   width: 100vw;
   justify-content: space-between;
+  font-family: "El Messiri", sans-serif;
 }
 .footercontainer ul {
   display: flex;
@@ -396,6 +398,19 @@ footer {
 }
 /* Sidebar visibility on small screens */
 @media (max-width: 1000px) {
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+
+    background-size: contain;
+    background-repeat: repeat-y;
+    background-position: center;
+    overflow-x: hidden; /* Prevent any horizontal scroll */
+  }
   .navbar-collapse {
     position: fixed;
     top: 0;
@@ -425,12 +440,32 @@ footer {
 
 /* Hide the sidebar on larger screens */
 @media (min-width: 1001px) {
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+
+    background-size: contain;
+    background-repeat: repeat-y;
+    background-position: center;
+    overflow-x: hidden; /* Prevent any horizontal scroll */
+  }
   .sidebar {
     display: none;
   }
 }
 
 @media (max-width: 900px) {
+  .mainsec {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 80vh;
+  }
   .card {
     width: 40vw;
     padding-right: 3vw;
@@ -444,6 +479,16 @@ footer {
   .mb-2 {
     width: 40vw;
   }
+  .mainbuttons {
+    justify-content: space-around;
+    button {
+      width: 90%;
+    }
+  }
+  .logo {
+    width: 100%;
+    height: 30vh;
+  }
 }
 
 @media (max-width: 767px) {
@@ -454,7 +499,7 @@ footer {
     width: 100vw;
     align-items: center;
     justify-content: center;
-    background-image: url("../public/assets/background.png");
+
     background-size: contain;
     background-repeat: repeat-y;
     background-position: center;
@@ -482,5 +527,14 @@ footer {
     width: 40vw;
     margin: 2vh;
     border-radius: 1.5vh;
+  }
+  .mainbuttons {
+    button {
+      width: 90%;
+    }
+  }
+  .logo {
+    width: 100%;
+    height: 30vh;
   }
 }
