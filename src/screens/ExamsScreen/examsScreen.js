@@ -17,57 +17,57 @@ export default function ExamsScreen() {
   };
 
   return (
-    <section className="container text-center exams">
+    <section className="container exams">
       <h1>قسم التمرّن</h1>
       <section className="rowEX">
-        <section className="col-6 card">
+        <section className=" card">
           <img src="assets/math.png" alt="Math" />
           <h3>رياضيات</h3>
-          <section className="row col-12 d-flex flex-column align-items-center">
+          <section className="row">
             <button
-              className="btn btn-warning rounded-pill px-3 mb-2"
+              className=""
               type="button"
               onClick={() => handleClick(801, "نماذج 801", exams801)}
             >
               801
             </button>
             <button
-              className="btn btn-warning rounded-pill px-3 mb-2"
+              className=""
               type="button"
               onClick={() => handleClick(802, "نماذج 802", exams802)}
             >
               802
             </button>
             <button
-              className="btn btn-warning rounded-pill px-3 mb-2"
+              className=""
               type="button"
               onClick={() => handleClick(803, "نماذج 803", exams803)}
             >
               803
             </button>
             <button
-              className="btn btn-warning rounded-pill px-3 mb-2"
+              className=""
               type="button"
               onClick={() => handleClick(804, "نماذج 804", exams804)}
             >
               804
             </button>
             <button
-              className="btn btn-warning rounded-pill px-3 mb-2"
+              className=""
               type="button"
               onClick={() => handleClick(805, "نماذج 805", exams805)}
             >
               805
             </button>
             <button
-              className="btn btn-warning rounded-pill px-3 mb-2"
+              className=""
               type="button"
               onClick={() => handleClick(806, "نماذج 806", exams806)}
             >
               806
             </button>
             <button
-              className="btn btn-warning rounded-pill px-3 mb-2"
+              className=""
               type="button"
               onClick={() => handleClick(807, "نماذج 807", exams807)}
             >
@@ -76,20 +76,20 @@ export default function ExamsScreen() {
           </section>
         </section>
 
-        <section className="col-6 card">
+        <section className=" card">
           <img src="assets/physics.png" alt="Physics" />
           <h3>فيزياء</h3>
-          <section className="row col-12 d-flex flex-column align-items-center">
+          <section className="row ">
             <p>ميكانيكا</p>
             <p>كهرباء</p>
           </section>
         </section>
       </section>
-      <section className=" mt-4 rowEX">
-        <section className="col-6 card">
+      <section className="rowEX">
+        <section className="card">
           <img src="assets/cs.png" alt="Computer Science" />
           <h3>علم الحاسوب</h3>
-          <section className="row col-12 d-flex flex-column align-items-center">
+          <section className="row ">
             <p>جميع النماذج</p>
           </section>
         </section>
@@ -97,7 +97,7 @@ export default function ExamsScreen() {
         <section className="col-6 card">
           <img src="assets/electronics.png" alt="Electronics" />
           <h3>إلكترونيات</h3>
-          <section className="row col-12 d-flex flex-column align-items-center">
+          <section className="row">
             <p>جميع النماذج</p>
           </section>
         </section>

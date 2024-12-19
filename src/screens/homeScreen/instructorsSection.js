@@ -4,9 +4,9 @@ export default function Instructors() {
     <section className="instructor">
       <h3>مُرشدينا</h3>
       <section class="row">
-        <section class="col-lg-4">
+        <section class="">
           <svg
-            class="bd-placeholder-img rounded-circle"
+            class=""
             width="140"
             height="140"
             xmlns="http://www.w3.org/2000/svg"
@@ -22,15 +22,15 @@ export default function Instructors() {
               fill="var(--bs-secondary-color)"
             ></rect>
           </svg>
-          <h2 class="fw-normal">Heading</h2>
+          <h2 class="">Heading</h2>
           <p>
             Some representative placeholder content for the three columns of
             text below the carousel. This is the first column.
           </p>
         </section>
-        <section class="col-lg-4">
+        <section class="">
           <svg
-            class="bd-placeholder-img rounded-circle"
+            class=""
             width="140"
             height="140"
             xmlns="http://www.w3.org/2000/svg"
@@ -46,15 +46,15 @@ export default function Instructors() {
               fill="var(--bs-secondary-color)"
             ></rect>
           </svg>
-          <h2 class="fw-normal">Heading</h2>
+          <h2 class="">Heading</h2>
           <p>
             Another exciting bit of representative placeholder content. This
             time, we've moved on to the second column.
           </p>
         </section>
-        <section class="col-lg-4">
+        <section class="">
           <svg
-            class="bd-placeholder-img rounded-circle"
+            class=""
             width="140"
             height="140"
             xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +70,7 @@ export default function Instructors() {
               fill="var(--bs-secondary-color)"
             ></rect>
           </svg>
-          <h2 class="fw-normal">Heading</h2>
+          <h2 class="">Heading</h2>
           <p>
             And lastly this, the third column of representative placeholder
             content.

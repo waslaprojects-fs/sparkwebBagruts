@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.css";
+
 import "../../styles.css";
 function MainSection() {
   useEffect(() => {
@@ -23,14 +23,14 @@ function MainSection() {
     );
   };
   return (
-    <section class="px-4 py-5 my-5 text-center main mainsec">
-      <img class="d-block mx-auto mb-4 logo" src="assets/2.png" alt="" />
+    <section class="main mainsec">
+      <img class="logo" src="assets/2.png" alt="" />
       <h1>للرياضيات والفيزياء</h1>
       <section class="mainbuttons">
-        <button class="button-24" role="button" onClick={fillforom}>
+        <button class="" role="button" onClick={fillforom}>
           سجّل معنا
         </button>
-        <button class="button-24" role="button">
+        <button class="" role="button">
           تمرّن
         </button>
       </section>

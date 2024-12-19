@@ -45,10 +45,10 @@ export default function Students() {
         {/* Main content */}
         <section className="row" ref={rowRef}>
           {/* First student */}
-          <section className="col-lg-2 studentCard">
+          <section className="studentCard">
             <section className="row-container">
               <svg
-                className="bd-placeholder-img rounded-circle"
+                className=""
                 width="60"
                 height="60"
                 xmlns="http://www.w3.org/2000/svg"
@@ -64,16 +64,16 @@ export default function Students() {
                   fill="var(--bs-secondary-color)"
                 />
               </svg>
-              <h2 className="fw-normal">Heading</h2>
+              <h2 className="">Heading</h2>
             </section>
             <p>Some representative placeholder content for the first column.</p>
           </section>
 
           {/* Second student */}
-          <section className="col-lg-2 studentCard">
-            <section className="row-container">
+          <section className=" studentCard">
+            <section className="">
               <svg
-                className="bd-placeholder-img rounded-circle"
+                className=""
                 width="60"
                 height="60"
                 xmlns="http://www.w3.org/2000/svg"
@@ -89,7 +89,7 @@ export default function Students() {
                   fill="var(--bs-secondary-color)"
                 />
               </svg>
-              <h2 className="fw-normal">Heading</h2>
+              <h2 className="">Heading</h2>
             </section>
             <p>
               Some representative placeholder content for the second column.
@@ -97,10 +97,10 @@ export default function Students() {
           </section>
 
           {/* Third student */}
-          <section className="col-lg-2 studentCard">
-            <section className="row-container">
+          <section className="studentCard">
+            <section className="">
               <svg
-                className="bd-placeholder-img rounded-circle"
+                className=""
                 width="60"
                 height="60"
                 xmlns="http://www.w3.org/2000/svg"
@@ -116,17 +116,17 @@ export default function Students() {
                   fill="var(--bs-secondary-color)"
                 />
               </svg>
-              <h2 className="fw-normal">Heading</h2>
+              <h2 className="">Heading</h2>
             </section>
             <p>Some representative placeholder content for the third column.</p>
           </section>
 
           {/* Add more students here */}
           {/* First student */}
-          <section className="col-lg-2 studentCard">
-            <section className="row-container">
+          <section className="studentCard">
+            <section className="">
               <svg
-                className="bd-placeholder-img rounded-circle"
+                className=""
                 width="60"
                 height="60"
                 xmlns="http://www.w3.org/2000/svg"
@@ -142,16 +142,16 @@ export default function Students() {
                   fill="var(--bs-secondary-color)"
                 />
               </svg>
-              <h2 className="fw-normal">Heading</h2>
+              <h2 className="">Heading</h2>
             </section>
             <p>Some representative placeholder content for the first column.</p>
           </section>
 
           {/* Second student */}
-          <section className="col-lg-2 studentCard">
-            <section className="row-container">
+          <section className="studentCard">
+            <section className="">
               <svg
-                className="bd-placeholder-img rounded-circle"
+                className=""
                 width="60"
                 height="60"
                 xmlns="http://www.w3.org/2000/svg"
@@ -167,7 +167,7 @@ export default function Students() {
                   fill="var(--bs-secondary-color)"
                 />
               </svg>
-              <h2 className="fw-normal">Heading</h2>
+              <h2 className="">Heading</h2>
             </section>
             <p>
               Some representative placeholder content for the second column.
@@ -175,10 +175,10 @@ export default function Students() {
           </section>
 
           {/* Third student */}
-          <section className="col-lg-2 studentCard">
-            <section className="row-container">
+          <section className="studentCard">
+            <section className="">
               <svg
-                className="bd-placeholder-img rounded-circle"
+                className=""
                 width="60"
                 height="60"
                 xmlns="http://www.w3.org/2000/svg"
@@ -194,15 +194,15 @@ export default function Students() {
                   fill="var(--bs-secondary-color)"
                 />
               </svg>
-              <h2 className="fw-normal">Heading</h2>
+              <h2 className="">Heading</h2>
             </section>
             <p>Some representative placeholder content for the third column.</p>
           </section>
 
-          <section className="col-lg-2 studentCard">
-            <section className="row-container">
+          <section className=" studentCard">
+            <section className="">
               <svg
-                className="bd-placeholder-img rounded-circle"
+                className=""
                 width="60"
                 height="60"
                 xmlns="http://www.w3.org/2000/svg"
@@ -218,7 +218,7 @@ export default function Students() {
                   fill="var(--bs-secondary-color)"
                 />
               </svg>
-              <h2 className="fw-normal">Heading</h2>
+              <h2 className="">Heading</h2>
             </section>
             <p>Some representative placeholder content for the third column.</p>
           </section>

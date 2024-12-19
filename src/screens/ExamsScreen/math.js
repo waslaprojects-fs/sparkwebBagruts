@@ -25,7 +25,7 @@ export default function MathPage() {
                 {Object.keys(examSessions).map((sessionName) => (
                   <section key={sessionName}>
                     <button
-                      className="btn btn-success rounded-pill px-3 sol"
+                      className=""
                       onClick={() =>
                         window.open(
                           examSessions[sessionName].sol || "#",
@@ -36,7 +36,7 @@ export default function MathPage() {
                       {`${sessionName} - حل`} {/* Solutions Button */}
                     </button>
                     <button
-                      className="btn btn-success rounded-pill px-3 ex"
+                      className=""
                       onClick={() =>
                         window.open(
                           examSessions[sessionName].ex || "#",

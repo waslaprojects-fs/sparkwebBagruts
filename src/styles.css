@@ -5,7 +5,7 @@ html {
   width: 100vw;
   align-items: center;
   justify-content: center;
-  background-image: url("../public/assets/background.png");
+  /* background-image: url("../public/assets/background.png"); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -338,7 +338,7 @@ h3 {
   }
 }
 .allStudents {
-  background: linear-gradient(#f0582e, transparent);
+  /* background: linear-gradient(#f0582ea2, transparent); */
   border-radius: 3vh;
   overflow: hidden;
 }
