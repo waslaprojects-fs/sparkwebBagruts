@@ -1,4 +1,4 @@
-import "../../styles.css";
+import "../../styles/tailwind.css";
 export default function Instructors() {
   return (
     <section className="instructor">

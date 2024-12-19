@@ -1,3 +1,4 @@
+import "../../styles/tailwind.css";
 export default function Interested() {
   return (
     <section>

@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.css";
-import "../styles.css";
-
+import "../styles/tailwind.css";
 function Header() {
   const location = useLocation();
   const navbarRef = useRef(null);

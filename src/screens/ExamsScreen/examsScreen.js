@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import "../../styles.css";
 import exams801 from "./exams/801";
 import exams802 from "./exams/802";
 import exams803 from "./exams/803";
@@ -7,7 +6,7 @@ import exams804 from "./exams/804";
 import exams805 from "./exams/805";
 import exams806 from "./exams/806";
 import exams807 from "./exams/807";
-
+import "../../styles/tailwind.css";
 export default function ExamsScreen() {
   const navigate = useNavigate();
 

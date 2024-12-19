@@ -1,6 +1,5 @@
-import "../../styles.css";
 import { useRef } from "react";
-
+import "../../styles/tailwind.css";
 export default function Students() {
   const rowRef = useRef(null);
 

@@ -1,3 +1,4 @@
+import "../styles/tailwind.css";
 export default function Footer() {
   return (
     <section class="footercontainer">
