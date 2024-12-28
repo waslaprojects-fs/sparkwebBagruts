@@ -87,7 +87,11 @@ export default function Header() {
                   <Link
                     key={item.label}
                     to={item.href} // Use `Link` and `to` for navigation
-                    className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50`}
+                    className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 ${
+                      active === item.href
+                        ? "shadow-lg w-auto px-6 py-2"
+                        : "px-4 py-2"
+                    }`}
                     onClick={() => setActive(item.href)} // Update active state
                   >
                     {item.label}
