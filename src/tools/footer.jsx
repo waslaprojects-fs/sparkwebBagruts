@@ -2,7 +2,7 @@ import "../styles/tailwind.css";
 
 export default function Footer() {
   return (
-    <section className="text-white py-8">
+    <section className="py-8 static bottom-0 left-0 w-full h-32">
       <hr></hr>
       <footer className="max-w-screen-xl mx-auto px-6 flex flex-row justify-between">
         <div className="flex items-center justify-end pt-8 mb-6">

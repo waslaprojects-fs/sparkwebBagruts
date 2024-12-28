@@ -70,13 +70,12 @@ export default function Students() {
   ];
 
   return (
-    <section className="px-6 py-8 h-[60vh]">
-      <h3 className="text-3xl font-semibold text-center mb-6 ">
+    <section className="px-6 pt-8 h-auto">
+      <h3 className="text-3xl font-semibold text-center mb-8">
         طُلّابنا و إنجازاتهم
       </h3>
       <section className="relative">
         <section className="absolute top-1/2 left-0 transform -translate-y-1/2 z-10">
-          {/* Left arrow */}
           <button
             className="bg-orange-700 text-white p-2 rounded-full hover:bg-orange-600 "
             onClick={scrollLeft}
@@ -86,7 +85,6 @@ export default function Students() {
         </section>
 
         <section className="absolute top-1/2 right-0 transform -translate-y-1/2 z-10">
-          {/* Right arrow */}
           <button
             className="bg-orange-700 text-white p-2 rounded-full hover:bg-orange-600"
             onClick={scrollRight}
@@ -95,9 +93,8 @@ export default function Students() {
           </button>
         </section>
 
-        {/* Main content */}
         <section
-          className="flex overflow-x-auto space-x-4 snap-x snap-mandatory h-64 px-4 py-4 scrollbar-hide"
+          className="flex overflow-x-auto space-x-4 snap-x snap-mandatory h-64 px-4 scrollbar-hide pb-8"
           ref={rowRef}
         >
           {students.map((student) => (
@@ -105,7 +102,7 @@ export default function Students() {
               key={student.id}
               className="studentCard flex-shrink-0 snap-center bg-white p-6 rounded-lg shadow-lg w-64"
             >
-              <section className="flex items-center mb-4">
+              <section className="flex items-center ">
                 <img
                   className="rounded-full w-16 h-16"
                   src="./assets/dafult.png"
@@ -119,15 +116,15 @@ export default function Students() {
           ))}
         </section>
       </section>
-      <div className="text-center">
-        <h2 className="mt-8 text-3xl sm:text-xl md:text-2xl lg:text-4xl font-semibold flex justify-center items-center bg-gradient-to-r from-orange-500 via-yellow-500 to-orange-500 bg-clip-text text-transparent text-center select-auto animate-pulse-twice">
+      <section className="text-center mt-4 h-auto py-4 mb-8 sm:mb-32">
+        <h2 className="mt-8 text-3xl sm:text-xl md:text-2xl lg:text-4xl font-semibold flex justify-center items-center bg-gradient-to-r from-orange-500 via-yellow-500 to-orange-500 bg-clip-text text-transparent text-center select-auto animate-pulse">
           حابب تكون واحد منهن ؟
         </h2>
 
         <div className="mt-10 flex items-center justify-center gap-x-6">
           <a
             href=" https://sparkpsy.smartedu.me/lead/form/insg?logo=1&style=1&fbclid=IwY2xjawGW7qJleHRuA2FlbQIxMAABHVvmElswdaUkTK7BpsX2qT1W9FWJjz_cin-ua4Kr01Qfil7VDbwsZN_Lww_aem_HocCR9vWiM-ZbI-HGXh6Vw"
-            className="rounded-md bg-orange-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
+            className="rounded-md bg-orange-600 px-3.5  text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
           >
             سجّل معنا
           </a>
@@ -136,7 +133,7 @@ export default function Students() {
             تمرّن <span aria-hidden="true">→</span>
           </a>
         </div>
-      </div>
+      </section>
     </section>
   );
 }

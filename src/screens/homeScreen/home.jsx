@@ -6,7 +6,7 @@ import Students from "./students.jsx";
 import "../../styles/tailwind.css";
 function Home() {
   return (
-    <section className="main h-[160vh]">
+    <section className="main h-auto">
       <MainSection />
       <section className="SeconedSection">
         <Students />
