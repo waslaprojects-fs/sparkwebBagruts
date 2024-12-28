@@ -1,6 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.header {
+  ul {
+    background-color: transparent;
+    z-index: 2;
+  }
+}
 /* 
 body,
 html {
