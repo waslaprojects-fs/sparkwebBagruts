@@ -4,7 +4,11 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}", // Ensure your JS, JSX, TS, and TSX files are included
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        "pulse-twice": "pulse 1s ease-out 2",
+      },
+    },
   },
 
   plugins: [require("tailwind-scrollbar-hide")],

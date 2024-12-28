@@ -2,16 +2,16 @@ import React from "react";
 import MainSection from "./mainSection.jsx";
 import Instructors from "./instructorsSection.jsx";
 import Students from "./students.jsx";
-import Interested from "./interested.jsx";
+
 import "../../styles/tailwind.css";
 function Home() {
   return (
-    <section className="main">
+    <section className="main h-[160vh]">
       <MainSection />
       <section className="SeconedSection">
         <Students />
-        <Interested />
-        <Instructors />
+
+        {/* <Instructors /> */}
       </section>
     </section>
   );

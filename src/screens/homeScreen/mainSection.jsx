@@ -1,8 +1,14 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
 import "../../styles/tailwind.css";
 
 function MainSection() {
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    // Trigger animation after the component has mounted
+    setInView(true);
+  }, []);
+
   return (
     <>
       <div className="bg-white">
@@ -19,19 +25,16 @@ function MainSection() {
               className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#FFA500] to-[#ffdb99] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
             />
           </div>
-          <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-            {/* <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-              <div className="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                Announcing our next round of funding.{" "}
-                <a href="/" className="font-semibold text-indigo-600">
-                  <span aria-hidden="true" className="absolute inset-0" />
-                  Read more <span aria-hidden="true">&rarr;</span>
-                </a>
-              </div>
-            </div> */}
+          <div
+            className={`mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 transform transition-transform duration-[700ms] ease-in-out ${
+              inView
+                ? "translate-y-0 opacity-100"
+                : "translate-y-full opacity-0"
+            }`}
+          >
             <div className="text-center">
               <img
-                className="font-semibold tracking-tight text-gray-900 sm:text-7xl"
+                className="font-semibold tracking-tight text-gray-900 sm:text-7xl "
                 src="assets/2.png"
                 alt="Logo"
               />

@@ -70,7 +70,7 @@ export default function Students() {
   ];
 
   return (
-    <section className="px-6 py-8 ">
+    <section className="px-6 py-8 h-[60vh]">
       <h3 className="text-3xl font-semibold text-center mb-6 ">
         طُلّابنا و إنجازاتهم
       </h3>
@@ -119,6 +119,24 @@ export default function Students() {
           ))}
         </section>
       </section>
+      <div className="text-center">
+        <h2 className="mt-8 text-3xl sm:text-xl md:text-2xl lg:text-4xl font-semibold flex justify-center items-center bg-gradient-to-r from-orange-500 via-yellow-500 to-orange-500 bg-clip-text text-transparent text-center select-auto animate-pulse-twice">
+          حابب تكون واحد منهن ؟
+        </h2>
+
+        <div className="mt-10 flex items-center justify-center gap-x-6">
+          <a
+            href=" https://sparkpsy.smartedu.me/lead/form/insg?logo=1&style=1&fbclid=IwY2xjawGW7qJleHRuA2FlbQIxMAABHVvmElswdaUkTK7BpsX2qT1W9FWJjz_cin-ua4Kr01Qfil7VDbwsZN_Lww_aem_HocCR9vWiM-ZbI-HGXh6Vw"
+            className="rounded-md bg-orange-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
+          >
+            سجّل معنا
+          </a>
+
+          <a href="/" className="text-sm/6 font-semibold text-gray-900">
+            تمرّن <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
     </section>
   );
 }
