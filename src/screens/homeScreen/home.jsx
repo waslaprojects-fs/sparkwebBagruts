@@ -1,8 +1,8 @@
 import React from "react";
-import MainSection from "./mainSection.js";
-import Instructors from "./instructorsSection.js";
-import Students from "./students.js";
-import Interested from "./interested.js";
+import MainSection from "./mainSection.jsx";
+import Instructors from "./instructorsSection.jsx";
+import Students from "./students.jsx";
+import Interested from "./interested.jsx";
 import "../../styles/tailwind.css";
 function Home() {
   return (

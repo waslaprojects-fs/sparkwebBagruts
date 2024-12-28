@@ -1,5 +1,8 @@
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"], // Updated key
+  content: [
+    "./index.html",
+    "./src/**/*.{js,jsx,ts,tsx}", // Ensure your JS, JSX, TS, and TSX files are included
+  ],
   theme: {
     extend: {},
   },
