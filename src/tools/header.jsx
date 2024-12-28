@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import "../styles/tailwind.css";
-
 import { Dialog, DialogPanel, PopoverGroup } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState("Home");
 
   const navItems = [
     { label: "Home", href: "/" },
     { label: "Features", href: "/examsScreen" },
-    { label: "Marketplace", href: "/about" },
+    { label: "Marketplace", href: "/dawrat" },
     { label: "Company", href: "/contact" },
   ];
+  const [active, setActive] = useState("/");
 
   return (
     <header className="bg-white">
@@ -22,10 +22,10 @@ export default function Header() {
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
       >
         <div className="flex lg:flex-1">
-          <a href="/" className="-m-1.5 p-1.5">
+          <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Spark</span>
             <img src="./assets/logo512.png" className="h-20" alt="Spark Logo" />
-          </a>
+          </Link>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -39,20 +39,18 @@ export default function Header() {
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.label}
-              href={item.href}
+              to={item.href} // Use `Link` and `to` for navigation
               className={`text-lg font-semibold text-gray-900 ${
-                activeItem === item.label
+                active === item.href
                   ? "shadow-lg w-auto px-6 py-2"
                   : "px-4 py-2"
               }`}
-              onClick={() => {
-                setActiveItem(item.label); // Set the clicked item as active
-              }}
+              onClick={() => setActive(item.href)} // Update active state
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -69,10 +67,10 @@ export default function Header() {
         <div className="fixed inset-0 z-10" />
         <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 ">
           <div className="flex items-center justify-between">
-            <a href="/" className="-m-1.5 p-1.5">
+            <Link to="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img alt="" src="./assets/logo512.png" className="h-8 w-auto" />
-            </a>
+            </Link>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(false)}
@@ -86,16 +84,14 @@ export default function Header() {
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
                 {navItems.map((item) => (
-                  <a
+                  <Link
                     key={item.label}
-                    href={item.href}
-                    className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 ${
-                      activeItem === item.label ? "shadow-lg" : ""
-                    }`}
-                    onClick={() => setActiveItem(item.label)} // Set active item on click
+                    to={item.href} // Use `Link` and `to` for navigation
+                    className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50`}
+                    onClick={() => setActive(item.href)} // Update active state
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 ))}
               </div>
               <div className="py-6">
