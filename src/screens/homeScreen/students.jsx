@@ -100,7 +100,7 @@ export default function Students() {
           {students.map((student) => (
             <section
               key={student.id}
-              className="studentCard flex-shrink-0 snap-center bg-white p-6 rounded-lg shadow-lg w-64"
+              className="flex-shrink-0 snap-center bg-white p-6 rounded-lg shadow-lg w-64"
             >
               <section className="flex items-center ">
                 <img
