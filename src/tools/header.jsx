@@ -3,6 +3,7 @@ import "../styles/tailwind.css";
 import { Dialog, DialogPanel, PopoverGroup } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { useEffect } from "react";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -13,8 +14,11 @@ export default function Header() {
     { label: "Marketplace", href: "/dawrat" },
     { label: "Company", href: "/contact" },
   ];
-  const [active, setActive] = useState("/");
 
+  const [active, setActive] = useState(window.location.pathnames);
+  useEffect(() => {
+    setActive(window.location.pathname);
+  }, []);
   return (
     <header className="bg-white">
       <nav
