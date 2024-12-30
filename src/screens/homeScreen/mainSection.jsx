@@ -46,7 +46,10 @@ function MainSection() {
               >
                 سجّل معنا
               </a>
-              <a href="/" className="text-sm/6 font-semibold text-gray-900">
+              <a
+                href="/examsScreen"
+                className="text-sm/6 font-semibold text-gray-900"
+              >
                 تمرّن <span aria-hidden="true">→</span>
               </a>
             </div>

@@ -121,17 +121,21 @@ export default function Students() {
           حابب تكون واحد منهن ؟
         </h2>
 
-        <div className="mt-10 flex items-center justify-center gap-x-6">
-          <a
-            href=" https://sparkpsy.smartedu.me/lead/form/insg?logo=1&style=1&fbclid=IwY2xjawGW7qJleHRuA2FlbQIxMAABHVvmElswdaUkTK7BpsX2qT1W9FWJjz_cin-ua4Kr01Qfil7VDbwsZN_Lww_aem_HocCR9vWiM-ZbI-HGXh6Vw"
-            className="rounded-md bg-orange-600 px-3.5  text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
-          >
-            سجّل معنا
-          </a>
-
-          <a href="/" className="text-sm/6 font-semibold text-gray-900">
-            تمرّن <span aria-hidden="true">→</span>
-          </a>
+        <div className="text-center">
+          <div className="mt-10 flex items-center justify-center gap-x-6">
+            <a
+              href=" https://sparkpsy.smartedu.me/lead/form/insg?logo=1&style=1&fbclid=IwY2xjawGW7qJleHRuA2FlbQIxMAABHVvmElswdaUkTK7BpsX2qT1W9FWJjz_cin-ua4Kr01Qfil7VDbwsZN_Lww_aem_HocCR9vWiM-ZbI-HGXh6Vw"
+              className="rounded-md bg-orange-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
+            >
+              سجّل معنا
+            </a>
+            <a
+              href="/examsScreen"
+              className="text-sm/6 font-semibold text-gray-900"
+            >
+              تمرّن <span aria-hidden="true">→</span>
+            </a>
+          </div>
         </div>
       </section>
     </section>
