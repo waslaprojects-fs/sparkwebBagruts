@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function HeroSection({ title }) {
   const GradientBlob = ({ positionStyles }) => (
     <div
@@ -22,9 +20,10 @@ export default function HeroSection({ title }) {
         {/* Top Gradient Blob */}
         <GradientBlob positionStyles="-top-40 sm:-top-80 left-[calc(50%-11rem)] sm:left-[calc(50%-30rem)] rotate-[30deg] animate-flyIn" />
 
-        <h2 className="mt-8 text-3xl sm:text-xl md:text-2xl lg:text-4xl font-semibold flex justify-center items-center bg-gradient-to-r from-orange-500 via-yellow-500 to-orange-500 bg-clip-text text-transparent text-center select-auto font-messiri">
+        <h2 className="mt-4 text-3xl sm:text-xl md:text-2xl lg:text-4xl font-semibold flex justify-center items-center bg-gradient-to-r from-orange-500 via-yellow-500 to-orange-500 bg-clip-text text-transparent text-center select-auto font-messiri mb-8">
           {title}
         </h2>
+
         {/* Bottom Gradient Blob */}
         <GradientBlob positionStyles="-top-40 sm:-top-80 left-[calc(50%-11rem)] sm:left-[calc(50%-30rem)] rotate-[30deg] animate-flyIn" />
       </div>

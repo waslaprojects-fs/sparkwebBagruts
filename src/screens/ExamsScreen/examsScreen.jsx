@@ -6,7 +6,7 @@ export default function ExamsScreen() {
   return (
     <>
       <HeroSection title={"قسم التمرن"} />
-      <section className="flex flex-col xl:flex-row sm:flex-col lg:flex-col w-[80vw] xl:w-auto mx-auto justify-center">
+      <section className="flex flex-row flex-wrap w-[90vw]  mx-auto justify-center">
         <Card
           title="Math Card"
           img="/assets/math.png"
