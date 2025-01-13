@@ -1,16 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import exams801 from "./exams/801";
 import exams802 from "./exams/802";
 import exams803 from "./exams/803";
 import exams804 from "./exams/804";
-import exams805 from "./exams/805";
+import exams801 from "./exams/801";
 import exams806 from "./exams/806";
 import exams807 from "./exams/807";
+import exams805 from "./exams/805";
+
 export default function Card({ title, img, buttons }) {
   const navigate = useNavigate();
 
   const handleClick = (num, title, examsData) => {
-    console.log(examsData);
     navigate(`/exams${num}`, { state: { examsData, title } });
   };
 
@@ -34,8 +34,31 @@ export default function Card({ title, img, buttons }) {
               key={index}
               className="bg-orange-300 mb-2 h-10 w-5/6 rounded-lg hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-400 hover:shadow-lg"
               onClick={() => {
-                console.log("hi");
-                handleClick(802, "نماذج 802", exams802);
+                let data;
+
+                if (btn == 801) {
+                  data = exams801;
+                }
+                if (btn == 802) {
+                  data = exams802;
+                }
+                if (btn == 803) {
+                  data = exams801;
+                }
+                if (btn == 804) {
+                  data = exams804;
+                }
+                if (btn == 805) {
+                  data = exams805;
+                }
+                if (btn == 806) {
+                  data = exams806;
+                }
+                if (btn == 807) {
+                  data = exams807;
+                }
+
+                handleClick(btn, `نموذج - ${btn}`, data);
               }}
             >
               {btn}

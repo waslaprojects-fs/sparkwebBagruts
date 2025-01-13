@@ -5,7 +5,7 @@ import HeroSection from "../../styles/GradientBlob";
 export default function MathPage() {
   const location = useLocation();
   const { examsData, title } = location.state || {};
-
+  console.log(examsData);
   return (
     <section className="p-4">
       <HeroSection title={title} />
