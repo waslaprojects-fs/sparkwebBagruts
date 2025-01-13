@@ -4,7 +4,7 @@ import "../../styles/tailwind.css";
 import HeroSection from "../../styles/GradientBlob";
 export default function MathPage() {
   const location = useLocation();
-  const { examsData, title } = location.state || {}; // Dynamically get exams data and title
+  const { examsData, title } = location.state || {};
 
   return (
     <section className="p-4">
@@ -26,10 +26,10 @@ export default function MathPage() {
                   {Object.keys(examSessions).map((sessionName) => (
                     <section
                       key={sessionName}
-                      className="flex-shrink-0 snap-center bg-white p-6 rounded-lg shadow-lg w-96 ml-4 mb-4 z-20 relative h-180 flex flex-col justify-start items-center"
+                      className="flex-shrink-0 snap-center bg-white p-6 rounded-lg shadow-lg w-96 mb-4 z-20 relative h-180 flex flex-col justify-start items-center  ml-4"
                     >
                       <button
-                        className="btn-solution bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        className="btn-solution bg-orange-500 text-white py-2 px-4 rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-blue-400 mb-2 w-4/6"
                         onClick={() =>
                           window.open(
                             examSessions[sessionName].sol || "#",
@@ -40,7 +40,7 @@ export default function MathPage() {
                         {`${sessionName} - حل`} {/* Solutions Button */}
                       </button>
                       <button
-                        className="btn-exam bg-green-500 text-white py-2 px-4 ml-2 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400"
+                        className="btn-exam bg-green-500 text-white py-2 px-4  rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 w-4/6"
                         onClick={() =>
                           window.open(
                             examSessions[sessionName].ex || "#",

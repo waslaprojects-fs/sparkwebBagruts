@@ -9,10 +9,10 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { label: "Home", href: "/" },
-    { label: "Features", href: "/examsScreen" },
-    { label: "Marketplace", href: "/dawrat" },
-    { label: "Company", href: "/contact" },
+    { label: "تواصل معنا", href: "/contact" },
+    { label: "عن المعهد", href: "/dawrat" },
+    { label: "تمرّن", href: "/examsScreen" },
+    { label: "الرئيسية", href: "/" },
   ];
 
   const [active, setActive] = useState(window.location.pathnames);
