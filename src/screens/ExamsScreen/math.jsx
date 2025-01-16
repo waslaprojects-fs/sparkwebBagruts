@@ -77,15 +77,31 @@ export default function MathPage() {
 
       {/* Popup Component */}
       {isPopupOpen && (
-        <Popup open={isPopupOpen} onClose={closePopup} position="right center">
-          <div>
-            <h3 className="text-lg font-bold">Popup Content</h3>
-            <p>{popupContent}</p>
+        <Popup
+          open={isPopupOpen}
+          onClose={closePopup}
+          position="right center"
+          contentStyle={{
+            backgroundColor: "white",
+            borderRadius: "0.5rem",
+            padding: "1rem", // Equivalent to p-4
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Equivalent to shadow-lg
+          }}
+        >
+          <div className="flex flex-col justify-center items-center ">
+            <h3 className="flex flex-row justify-center items-center text-lg font-bold w-full">
+              {" "}
+              عذرًا
+            </h3>
+            {/* {popupContent}  */}
+            <p className="flex flex-row justify-center items-center text-lg  w-full">
+              الحل غير متوفر الان - قيد التجهيز
+            </p>
             <button
-              className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+              className="flex flex-row justify-center items-center  w-100 mt-4 bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600"
               onClick={closePopup}
             >
-              Close
+              اغلاق
             </button>
           </div>
         </Popup>
