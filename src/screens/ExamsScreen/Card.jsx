@@ -10,12 +10,17 @@ import exams805 from "./exams/805";
 export default function Card({ title, img, buttons }) {
   const navigate = useNavigate();
 
-  const handleClick = (num, title, examsData) => {
-    navigate(`/exams${num}`, { state: { examsData, title } });
+  const handleClick = async (num, title, examsPromise) => {
+    try {
+      const examsData = await examsPromise; // Wait for the Promise to resolve
+      navigate(`/exams${num}`, { state: { examsData, title } });
+    } catch (error) {
+      console.error("Error resolving exam data:", error);
+    }
   };
 
   return (
-    <div className="flex-shrink-0 snap-center bg-white p-6 rounded-lg shadow-lg w-96 ml-4 mb-4 z-20 relative h-180 flex flex-col justify-start items-center ">
+    <div className="flex-shrink-0 snap-center bg-white p-6 rounded-lg shadow-lg w-96 ml-4 mb-4 z-20 relative h-180 flex flex-col justify-start items-center">
       <img
         className="rounded-t-lg object-contain w-full h-48"
         src={img}
@@ -34,31 +39,27 @@ export default function Card({ title, img, buttons }) {
               key={index}
               className="bg-orange-300 mb-2 h-10 w-5/6 rounded-lg hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-400 hover:shadow-lg"
               onClick={() => {
-                let data;
+                let dataPromise;
 
-                if (btn == 801) {
-                  data = exams801;
-                }
-                if (btn == 802) {
-                  data = exams802;
-                }
-                if (btn == 803) {
-                  data = exams801;
-                }
-                if (btn == 804) {
-                  data = exams804;
-                }
-                if (btn == 805) {
-                  data = exams805;
-                }
-                if (btn == 806) {
-                  data = exams806;
-                }
-                if (btn == 807) {
-                  data = exams807;
+                // Assign the correct Promise based on the button clicked
+                if (btn === 801) {
+                  dataPromise = exams801;
+                } else if (btn === 802) {
+                  dataPromise = exams802;
+                } else if (btn === 803) {
+                  dataPromise = exams803;
+                } else if (btn === 804) {
+                  dataPromise = exams804;
+                } else if (btn === 805) {
+                  dataPromise = exams805;
+                } else if (btn === 806) {
+                  dataPromise = exams806;
+                } else if (btn === 807) {
+                  dataPromise = exams807;
                 }
 
-                handleClick(btn, `نموذج - ${btn}`, data);
+                // Call handleClick with the resolved Promise
+                handleClick(btn, `نموذج - ${btn}`, dataPromise);
               }}
             >
               {btn}

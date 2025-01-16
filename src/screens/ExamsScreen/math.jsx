@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "../../styles/tailwind.css";
 import HeroSection from "../../styles/GradientBlob";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+
 export default function MathPage() {
   const location = useLocation();
   const { examsData, title } = location.state || {};
-  console.log(examsData);
+  const [isPopupOpen, setIsPopupOpen] = useState(false); // State to manage popup visibility
+  const [popupContent, setPopupContent] = useState(""); // State to manage popup content
+
+  const handleTriggerClick = (content) => {
+    setPopupContent(content);
+    setIsPopupOpen(true); // Open the popup
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false); // Close the popup
+  };
+
   return (
     <section className="p-4">
       <HeroSection title={title} />
@@ -16,31 +30,32 @@ export default function MathPage() {
           .map((year) => {
             const examSessions = examsData[year];
             return (
-              <section className="flex flex-col  ">
+              <section className="flex flex-col" key={year}>
                 <h2 className="text-2xl font-semibold mb-2">{year}</h2>
 
-                <section
-                  className="mathexams  p-4 rounded-lg mb-4 flex flex-row flex-wrap justify-center"
-                  key={year}
-                >
+                <section className="mathexams p-4 rounded-lg mb-4 flex flex-row flex-wrap justify-center">
                   {Object.keys(examSessions).map((sessionName) => (
                     <section
                       key={sessionName}
-                      className="flex-shrink-0 snap-center bg-white p-6 rounded-lg shadow-lg w-96 mb-4 z-20 relative h-180 flex flex-col justify-start items-center  ml-4"
+                      className="flex-shrink-0 snap-center bg-white p-6 rounded-lg shadow-lg w-96 mb-4 z-20 relative h-180 flex flex-col justify-start items-center ml-4"
                     >
                       <button
                         className="btn-solution bg-orange-500 text-white py-2 px-4 rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-blue-400 mb-2 w-4/6"
-                        onClick={() =>
-                          window.open(
-                            examSessions[sessionName].sol || "#",
-                            "_blank"
-                          )
-                        }
+                        onClick={() => {
+                          if (examSessions[sessionName]?.sol) {
+                            window.open(
+                              examSessions[sessionName].sol,
+                              "_blank"
+                            );
+                          } else {
+                            handleTriggerClick(`${sessionName} Exam Details`);
+                          }
+                        }}
                       >
-                        {`${sessionName} - حل`} {/* Solutions Button */}
+                        {`${sessionName} - حل`}
                       </button>
                       <button
-                        className="btn-exam bg-green-500 text-white py-2 px-4  rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 w-4/6"
+                        className="btn-exam bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 w-4/6"
                         onClick={() =>
                           window.open(
                             examSessions[sessionName].ex || "#",
@@ -48,7 +63,7 @@ export default function MathPage() {
                           )
                         }
                       >
-                        {`${sessionName} - نموذج`} {/* Exams Button */}
+                        {`${sessionName} - نموذج`}
                       </button>
                     </section>
                   ))}
@@ -59,6 +74,23 @@ export default function MathPage() {
       ) : (
         <p className="text-red-500">No exams available for this year.</p>
       )}
+
+      {/* Popup Component */}
+      {isPopupOpen && (
+        <Popup open={isPopupOpen} onClose={closePopup} position="right center">
+          <div>
+            <h3 className="text-lg font-bold">Popup Content</h3>
+            <p>{popupContent}</p>
+            <button
+              className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+              onClick={closePopup}
+            >
+              Close
+            </button>
+          </div>
+        </Popup>
+      )}
+
       <HeroSection title={""} />
     </section>
   );
