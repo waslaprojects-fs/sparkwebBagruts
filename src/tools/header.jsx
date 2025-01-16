@@ -9,7 +9,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { label: "تواصل معنا", href: "/contact" },
+    // { label: "تواصل معنا", href: "/contact" },
     { label: "عن المعهد", href: "/dawrat" },
     { label: "تمرّن", href: "/examsScreen" },
     { label: "الرئيسية", href: "/" },
