@@ -10,38 +10,43 @@ import exams805 from "./exams/805";
 export default function Card({ title, img, buttons }) {
   const navigate = useNavigate();
 
-  const handleClick = async (num, title, examsPromise) => {
+  const handleClick = async (num, label, examsPromise) => {
     try {
-      const examsData = await examsPromise; // Wait for the Promise to resolve
-      navigate(`/exams${num}`, { state: { examsData, title } });
+      const examsData = await examsPromise;
+      navigate(`/exams${num}`, { state: { examsData, title: label } });
     } catch (error) {
       console.error("Error resolving exam data:", error);
     }
   };
 
   return (
-    <div className="flex-shrink-0 snap-center bg-white p-6 rounded-lg shadow-lg w-96 ml-4 mb-4 z-20 relative h-180 flex flex-col justify-start items-center">
-      <img
-        className="rounded-t-lg object-contain w-full h-48"
-        src={img}
-        alt={title}
-      />
+    <article className="group relative flex w-full max-w-sm flex-shrink-0 snap-center flex-col items-center overflow-hidden rounded-3xl border border-orange-100 bg-white shadow-lg shadow-orange-100 transition hover:-translate-y-1 hover:shadow-xl">
+      <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-white to-amber-50 opacity-0 transition group-hover:opacity-100" />
+      <div className="relative flex h-44 w-full items-center justify-center bg-orange-50">
+        <img
+          className="h-28 w-28 object-contain"
+          src={img}
+          alt={title}
+        />
+      </div>
 
-      <div className="p-5 flex-grow w-full font-bold">
-        <a href="#">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 font-messiri">
-            {title}
-          </h5>
-        </a>
-        <section className="flex flex-col items-center w-full font-semibold">
-          {buttons.map((btn, index) => (
+      <div className="relative flex w-full flex-grow flex-col gap-4 px-6 py-8">
+        <h5 className="text-2xl font-bold text-gray-900 font-messiri text-right">
+          {title}
+        </h5>
+        <section className="flex flex-col items-stretch gap-3">
+          {buttons.map((btn) => (
             <button
-              key={index}
-              className="bg-orange-300 mb-2 h-10 w-5/6 rounded-lg hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-400 hover:shadow-lg"
+              key={btn}
+              className="rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-6 py-2 text-sm font-semibold text-white shadow hover:shadow-md"
               onClick={() => {
+                if (typeof btn !== "number") {
+                  navigate("/examsScreen", { state: { category: title } });
+                  return;
+                }
+
                 let dataPromise;
 
-                // Assign the correct Promise based on the button clicked
                 if (btn === 801) {
                   dataPromise = exams801;
                 } else if (btn === 802) {
@@ -58,7 +63,6 @@ export default function Card({ title, img, buttons }) {
                   dataPromise = exams807;
                 }
 
-                // Call handleClick with the resolved Promise
                 handleClick(btn, `نموذج - ${btn}`, dataPromise);
               }}
             >
@@ -67,6 +71,6 @@ export default function Card({ title, img, buttons }) {
           ))}
         </section>
       </div>
-    </div>
+    </article>
   );
 }

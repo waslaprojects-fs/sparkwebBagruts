@@ -1,74 +1,91 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/tailwind.css";
 
+const registrationLink =
+  "https://sparkpsy.smartedu.me/lead/form/insg?logo=1&style=1&fbclid=IwY2xjawGW7qJleHRuA2FlbQIxMAABHVvmElswdaUkTK7BpsX2qT1W9FWJjz_cin-ua4Kr01Qfil7VDbwsZN_Lww_aem_HocCR9vWiM-ZbI-HGXh6Vw";
+
 function MainSection() {
-  const [inView, setInView] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // Trigger animation after the component has mounted
-    setInView(true);
+    setIsLoaded(true);
   }, []);
 
   return (
-    <div className="bg-white">
-      <div className="relative isolate px-6 pt-14 lg:px-8">
+    <section className="relative overflow-hidden bg-gradient-to-br from-orange-100 via-white to-amber-50">
+      <div className="absolute left-10 top-10 hidden h-56 w-56 rounded-full bg-orange-200/40 blur-3xl lg:block" />
+      <div className="absolute -bottom-20 right-0 h-72 w-72 rounded-full bg-orange-300/30 blur-3xl" />
+      <div className="mx-auto flex max-w-6xl flex-col-reverse items-center gap-12 px-6 py-20 text-right md:py-28 lg:flex-row lg:px-8">
         <div
-          aria-hidden="true"
-          className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-        >
-          <div
-            style={{
-              clipPath:
-                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-            }}
-            className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#FFA500] to-[#ffdb99] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-          />
-        </div>
-        <div
-          className={`mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 transform transition-transform duration-[700ms] ease-in-out ${
-            inView ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+          className={`w-full transition duration-700 ${
+            isLoaded
+              ? "translate-y-0 opacity-100"
+              : "translate-y-8 opacity-0"
           }`}
         >
-          <div className="text-center">
-            <img
-              className="font-semibold tracking-tight text-gray-900 sm:text-7xl "
-              src="assets/2.png"
-              alt="Logo"
-            />
-
-            <p className="mt-8 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">
-              معهد سبارك للرياضيات والفيزياء ، نجاحك يبدأ معنا
-            </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
-                href=" https://sparkpsy.smartedu.me/lead/form/insg?logo=1&style=1&fbclid=IwY2xjawGW7qJleHRuA2FlbQIxMAABHVvmElswdaUkTK7BpsX2qT1W9FWJjz_cin-ua4Kr01Qfil7VDbwsZN_Lww_aem_HocCR9vWiM-ZbI-HGXh6Vw"
-                className="rounded-md bg-orange-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
-              >
-                سجّل معنا
-              </a>
-              <a
-                href="/examsScreen"
-                className="text-sm/6 font-semibold text-gray-900"
-              >
-                تمرّن <span aria-hidden="true">→</span>
-              </a>
-            </div>
+          <div className="inline-flex items-center rounded-full bg-white/70 px-4 py-2 text-sm font-semibold text-orange-600 shadow-sm shadow-orange-200">
+            نجاحك في بجروت الرياضيات والفيزياء يبدأ هنا
           </div>
+          <h1 className="mt-6 text-4xl font-bold text-gray-900 sm:text-5xl lg:text-6xl">
+            معهد سبارك الأكاديمي
+          </h1>
+          <p className="mt-4 max-w-xl text-lg leading-8 text-gray-600 lg:ml-auto">
+            نعّلم، ندرّب، ونرافقك حتى لحظة الامتحان. جلسات مركّزة، دعم فردي،
+            ومنصّة تمرن رقمية تغطي كل ما تحتاجه لتتفوق بثقة.
+          </p>
+          <div className="mt-10 flex flex-col items-end gap-4 sm:flex-row sm:justify-end">
+            <a
+              href={registrationLink}
+              className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-8 py-3 text-base font-semibold text-white shadow-lg shadow-orange-200 transition hover:-translate-y-0.5 hover:shadow-orange-300"
+            >
+              سجّل معنا الآن
+            </a>
+            <a
+              href="/examsScreen"
+              className="inline-flex items-center justify-center rounded-full border border-orange-200 px-8 py-3 text-base font-semibold text-orange-600 hover:bg-orange-50"
+            >
+              استكشف التمرن ↗
+            </a>
+          </div>
+          <dl className="mt-12 grid w-full gap-6 text-center sm:grid-cols-3">
+            <div className="rounded-3xl bg-white/80 p-6 shadow-sm">
+              <dt className="text-xs font-semibold text-orange-500">
+                طلابنا المتفوقون
+              </dt>
+              <dd className="mt-2 text-3xl font-bold text-gray-900">+850</dd>
+            </div>
+            <div className="rounded-3xl bg-white/80 p-6 shadow-sm">
+              <dt className="text-xs font-semibold text-orange-500">
+                جلسات تدريب سنوية
+              </dt>
+              <dd className="mt-2 text-3xl font-bold text-gray-900">+120</dd>
+            </div>
+            <div className="rounded-3xl bg-white/80 p-6 shadow-sm">
+              <dt className="text-xs font-semibold text-orange-500">
+                نسبة النجاح في 5 وحدات
+              </dt>
+              <dd className="mt-2 text-3xl font-bold text-gray-900">94%</dd>
+            </div>
+          </dl>
         </div>
         <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+          className={`relative flex w-full justify-center transition duration-700 lg:justify-end ${
+            isLoaded
+              ? "translate-y-0 opacity-100"
+              : "translate-y-8 opacity-0"
+          }`}
         >
-          <div
-            style={{
-              clipPath:
-                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-            }}
-            className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#FFA500] to-[#ffdb99] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-          />
+          <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl shadow-orange-200">
+            <img
+              src="./assets/main.jpg"
+              alt="Spark students during a session"
+              className="h-full w-full max-w-xl object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-orange-900/30 via-transparent" />
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

@@ -1,29 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/tailwind.css";
 import { Dialog, DialogPanel, PopoverGroup } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
-import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const registrationLink =
+    "https://sparkpsy.smartedu.me/lead/form/insg?logo=1&style=1&fbclid=IwY2xjawGW7qJleHRuA2FlbQIxMAABHVvmElswdaUkTK7BpsX2qT1W9FWJjz_cin-ua4Kr01Qfil7VDbwsZN_Lww_aem_HocCR9vWiM-ZbI-HGXh6Vw";
 
   const navItems = [
-    // { label: "تواصل معنا", href: "/contact" },
     { label: "عن المعهد", href: "/dawrat" },
     { label: "تمرّن", href: "/examsScreen" },
     { label: "الرئيسية", href: "/" },
   ];
 
-  const [active, setActive] = useState(window.location.pathnames);
+  const [active, setActive] = useState(
+    typeof window !== "undefined" ? window.location.pathname : "/"
+  );
   useEffect(() => {
     setActive(window.location.pathname);
   }, []);
   return (
-    <header className="bg-white">
+    <header className="bg-white/80 backdrop-blur border-b border-orange-100 sticky top-0 z-40">
       <nav
         aria-label="Global"
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-8"
       >
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5">
@@ -45,21 +47,27 @@ export default function Header() {
           {navItems.map((item) => (
             <Link
               key={item.label}
-              to={item.href} // Use `Link` and `to` for navigation
-              className={`text-lg font-semibold text-gray-900 ${
+              to={item.href}
+              className={`relative text-lg font-semibold transition ${
                 active === item.href
-                  ? "shadow-lg w-auto px-6 py-2"
-                  : "px-4 py-2"
+                  ? "text-orange-600"
+                  : "text-gray-800 hover:text-orange-600"
               }`}
-              onClick={() => setActive(item.href)} // Update active state
+              onClick={() => setActive(item.href)}
             >
               {item.label}
+              {active === item.href && (
+                <span className="absolute inset-x-0 -bottom-2 h-1 rounded-full bg-gradient-to-r from-orange-500 to-amber-400" />
+              )}
             </Link>
           ))}
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm/6 font-semibold text-gray-900">
-            {/*Log in <span aria-hidden="true">&rarr;</span>*/}
+          <a
+            href={registrationLink}
+            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-orange-200 transition hover:shadow-orange-300 hover:scale-105"
+          >
+            سجّل الآن
           </a>
         </div>
       </nav>
@@ -90,26 +98,29 @@ export default function Header() {
                 {navItems.map((item) => (
                   <Link
                     key={item.label}
-                    to={item.href} // Use `Link` and `to` for navigation
-                    className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 ${
+                    to={item.href}
+                    className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold ${
                       active === item.href
-                        ? "shadow-lg w-auto px-6 py-2"
-                        : "px-4 py-2"
+                        ? "bg-orange-100 text-orange-700"
+                        : "text-gray-900 hover:bg-gray-50"
                     }`}
-                    onClick={() => setActive(item.href)} // Update active state
+                    onClick={() => {
+                      setActive(item.href);
+                      setMobileMenuOpen(false);
+                    }}
                   >
                     {item.label}
                   </Link>
                 ))}
               </div>
-              {/* <div className="py-6">
+              <div className="py-6">
                 <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                  href={registrationLink}
+                  className="flex w-full items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-4 py-2 text-base font-semibold text-white shadow"
                 >
-                  Log in
+                  سجّل الآن
                 </a>
-              </div> */}
+              </div>
             </div>
           </div>
         </DialogPanel>
