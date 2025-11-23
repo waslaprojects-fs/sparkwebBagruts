@@ -1,5 +1,6 @@
 import "../../styles/tailwind.css";
 import HeroSection from "../../styles/GradientBlob";
+import SEO from "../../components/SEO.jsx";
 
 const values = [
   {
@@ -63,6 +64,11 @@ const team = [
 export default function Dawrat() {
   return (
     <section className="bg-white font-messiri">
+      <SEO
+        title="عن المعهد"
+        description="تعرف على معهد سبارك الأكاديمي - رؤيتنا، قيمنا، فريقنا الأكاديمي، ومحطاتنا منذ التأسيس عام 2020. مركز متخصص في تحضير بجروت الرياضيات والفيزياء."
+        keywords="بجروت، سبارك، معهد سبارك، عن المعهد، بجروت، بجاريت، تحضير بجروت، رياضيات، فيزياء"
+      />
       <HeroSection title={"عن Spark"} />
 
       <section className="mx-auto mt-16 flex max-w-6xl flex-col items-center gap-12 px-6 text-right lg:flex-row lg:items-start lg:px-8">

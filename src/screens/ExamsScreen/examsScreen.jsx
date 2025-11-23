@@ -1,9 +1,16 @@
 import "../../styles/tailwind.css";
 import Card from "./Card";
 import HeroSection from "../../styles/GradientBlob";
+import SEO from "../../components/SEO.jsx";
+
 export default function ExamsScreen() {
   return (
     <>
+      <SEO
+        title="قسم التمرن"
+        description="تمرن على نماذج بجروت الرياضيات والفيزياء وعلم الحاسوب والإلكترونيكا. حلول وتمارين شاملة لجميع النماذج مع إمكانية التحميل المباشر."
+        keywords="بجروت، بجاريت، تمرن، نماذج بجروت، حلول بجروت، تمارين بجروت، رياضيات، فيزياء، علم حاسوب، إلكترونيكا، حلول رياضيات، حلول فيزياء"
+      />
       <HeroSection title={"قسم التمرن"} />
       <section className="mx-auto mt-16 flex max-w-6xl flex-wrap justify-center gap-6 px-6 pb-24 lg:px-8">
       <Card

@@ -1,11 +1,34 @@
 import { useNavigate } from "react-router-dom";
+import exams801 from "./exams/801";
 import exams802 from "./exams/802";
 import exams803 from "./exams/803";
 import exams804 from "./exams/804";
-import exams801 from "./exams/801";
+import exams805 from "./exams/805";
 import exams806 from "./exams/806";
 import exams807 from "./exams/807";
-import exams805 from "./exams/805";
+
+const EXAM_MODULES = {
+  801: exams801,
+  802: exams802,
+  803: exams803,
+  804: exams804,
+  805: exams805,
+  806: exams806,
+  807: exams807,
+};
+
+const NAVIGATION_ROUTES = {
+  "فيزياء": {
+    "ميكانيكا": "/physics/mechanics",
+    "كهرباء": "/physics/electricity",
+  },
+  "علم الحاسوب": {
+    "جميع النماذج": "/cs/all",
+  },
+  "إلكترونيكا": {
+    "جميع النماذج": "/electronics/all",
+  },
+};
 
 export default function Card({ title, img, buttons }) {
   const navigate = useNavigate();
@@ -41,43 +64,21 @@ export default function Card({ title, img, buttons }) {
               className="rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-6 py-2 text-sm font-semibold text-white shadow hover:shadow-md"
               onClick={() => {
                 if (typeof btn !== "number") {
-                  if (title === "فيزياء") {
-                    if (btn === "ميكانيكا") {
-                      navigate("/physics/mechanics");
-                    } else if (btn === "كهرباء") {
-                      navigate("/physics/electricity");
-                    } else {
-                      navigate("/examsScreen", { state: { category: title } });
-                    }
-                  } else if (title === "علم الحاسوب" && btn === "جميع النماذج") {
-                    navigate("/cs/all");
-                  } else if (title === "إلكترونيكا" && btn === "جميع النماذج") {
-                    navigate("/electronics/all");
+                  const routeMap = NAVIGATION_ROUTES[title];
+                  const route = routeMap?.[btn];
+                  
+                  if (route) {
+                    navigate(route);
                   } else {
                     navigate("/examsScreen", { state: { category: title } });
                   }
                   return;
                 }
 
-                let dataPromise;
-
-                if (btn === 801) {
-                  dataPromise = exams801;
-                } else if (btn === 802) {
-                  dataPromise = exams802;
-                } else if (btn === 803) {
-                  dataPromise = exams803;
-                } else if (btn === 804) {
-                  dataPromise = exams804;
-                } else if (btn === 805) {
-                  dataPromise = exams805;
-                } else if (btn === 806) {
-                  dataPromise = exams806;
-                } else if (btn === 807) {
-                  dataPromise = exams807;
+                const dataPromise = EXAM_MODULES[btn];
+                if (dataPromise) {
+                  handleClick(btn, `نموذج - ${btn}`, dataPromise);
                 }
-
-                handleClick(btn, `نموذج - ${btn}`, dataPromise);
               }}
             >
               {btn}
