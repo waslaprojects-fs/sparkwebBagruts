@@ -41,7 +41,21 @@ export default function Card({ title, img, buttons }) {
               className="rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-6 py-2 text-sm font-semibold text-white shadow hover:shadow-md"
               onClick={() => {
                 if (typeof btn !== "number") {
-                  navigate("/examsScreen", { state: { category: title } });
+                  if (title === "فيزياء") {
+                    if (btn === "ميكانيكا") {
+                      navigate("/physics/mechanics");
+                    } else if (btn === "كهرباء") {
+                      navigate("/physics/electricity");
+                    } else {
+                      navigate("/examsScreen", { state: { category: title } });
+                    }
+                  } else if (title === "علم الحاسوب" && btn === "جميع النماذج") {
+                    navigate("/cs/all");
+                  } else if (title === "إلكترونيكا" && btn === "جميع النماذج") {
+                    navigate("/electronics/all");
+                  } else {
+                    navigate("/examsScreen", { state: { category: title } });
+                  }
                   return;
                 }
 

@@ -8,7 +8,8 @@ import Dawrat from "./screens/dawrat/dawrat.jsx";
 import ExamsScreen from "./screens/ExamsScreen/examsScreen.jsx";
 import MathPage from "./screens/ExamsScreen/math.jsx";
 import Footer from "./tools/footer.jsx";
-import NotFound from "./screens/NotFound.jsx"; // Create a NotFound component
+import NotFound from "./screens/NotFound.jsx";
+import UnderConstruction from "./screens/UnderConstruction.jsx";
 // Import the functions you need from the SDKs you need
 // import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
@@ -96,7 +97,11 @@ function App() {
           <Route path="/exams805" element={<MathPage />} />
           <Route path="/exams806" element={<MathPage />} />
           <Route path="/exams807" element={<MathPage />} />
-          <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
+          <Route path="/physics/mechanics" element={<UnderConstruction />} />
+          <Route path="/physics/electricity" element={<UnderConstruction />} />
+          <Route path="/cs/all" element={<UnderConstruction />} />
+          <Route path="/electronics/all" element={<UnderConstruction />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </section>
