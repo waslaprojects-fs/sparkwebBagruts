@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/tailwind.css";
 
-const registrationLink =
-  "https://sparkpsy.smartedu.me/lead/form/insg?logo=1&style=1&fbclid=IwY2xjawGW7qJleHRuA2FlbQIxMAABHVvmElswdaUkTK7BpsX2qT1W9FWJjz_cin-ua4Kr01Qfil7VDbwsZN_Lww_aem_HocCR9vWiM-ZbI-HGXh6Vw";
+const registrationLink = "https://spark-manager-web.web.app/register";
 
 function MainSection() {
   const [isLoaded, setIsLoaded] = useState(false);

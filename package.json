@@ -23,7 +23,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "deploy": "pnpm run build && firebase deploy --only hosting",
+    "firebase:login": "firebase login",
+    "firebase:deploy": "firebase deploy --only hosting",
+    "upload:exam": "node scripts/uploadExam.js"
   },
   "eslintConfig": {
     "extends": [
@@ -48,6 +52,8 @@
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
     "eslint-config-google": "^0.14.0",
+    "firebase-admin": "^13.0.1",
+    "firebase-tools": "^14.24.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
     "vite": "^6.0.6"
