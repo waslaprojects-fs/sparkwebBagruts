@@ -9,9 +9,9 @@ export default function Header() {
   const registrationLink = "https://spark-manager-web.web.app/register";
 
   const navItems = [
-    { label: "عن المعهد", href: "/dawrat" },
-    { label: "تمرّن", href: "/examsScreen" },
     { label: "الرئيسية", href: "/" },
+    { label: "تمرّن", href: "/examsScreen" },
+    { label: "عن المعهد", href: "/dawrat" },
   ];
 
   const [active, setActive] = useState(
