@@ -12,7 +12,7 @@ export default function ExamsScreen() {
         keywords="بجروت، بجاريت، تمرن، نماذج بجروت، حلول بجروت، تمارين بجروت، رياضيات، فيزياء، علم حاسوب، إلكترونيكا، حلول رياضيات، حلول فيزياء"
       />
       <HeroSection title={"قسم التمرن"} />
-      <section className="mx-auto mt-16 flex max-w-6xl flex-wrap justify-center gap-6 px-6 pb-24 lg:px-8">
+      <section className="mx-auto mt-4 flex max-w-6xl flex-wrap justify-center gap-6 px-6 pb-24 lg:px-8">
       <Card
           title="فيزياء"
           img="/assets/physics.png"

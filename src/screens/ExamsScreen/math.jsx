@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "../../styles/tailwind.css";
 import HeroSection from "../../styles/GradientBlob";
@@ -11,6 +11,7 @@ const statusBadge = (hasSolution) =>
 export default function MathPage() {
   const location = useLocation();
   const { examsData, title } = location.state || {};
+  const [yearQuery, setYearQuery] = useState("");
 
   const years = useMemo(() => {
     if (!examsData) return [];
@@ -20,11 +21,18 @@ export default function MathPage() {
       .sort((a, b) => b - a);
   }, [examsData]);
 
+  const filteredYears = useMemo(() => {
+    if (!years.length) return [];
+    const query = yearQuery.trim();
+    if (!query) return years;
+    return years.filter((year) => year.toString().includes(query));
+  }, [years, yearQuery]);
+
   return (
     <section className="bg-white font-messiri">
       <HeroSection title={title || "نماذج التمرّن"} />
 
-      <div className="mx-auto max-w-6xl px-6 py-12 lg:px-8">
+      <div className="mx-auto max-w-6xl px-6 mt-4 py-12 lg:px-8">
         <header className="flex flex-col items-end gap-4 text-right">
           <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">
             اختر السنة والجلسة لبدء التحميل
@@ -34,6 +42,32 @@ export default function MathPage() {
             Cloud الخاصة بمعهد Spark. بإمكانك فتح نموذج الامتحان أو الحل من خلال
             الأزرار المخصّصة لكل جلسة.
           </p>
+          <div className="mt-4 flex w-full flex-col items-end gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <label className="text-sm font-semibold text-gray-700">
+              ابحث حسب السنة
+            </label>
+            <div className="flex w-full max-w-xs items-center gap-3">
+              <input
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                value={yearQuery}
+                onChange={(e) => setYearQuery(e.target.value)}
+                placeholder="مثال: 2024"
+                aria-label="بحث عن سنة الامتحان"
+                className="relative z-10 w-full rounded-full border border-orange-100 bg-white px-4 py-2 text-right text-sm shadow-sm focus:border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-200"
+              />
+              {yearQuery && (
+                <button
+                  type="button"
+                  onClick={() => setYearQuery("")}
+                  className="whitespace-nowrap rounded-full border border-orange-200 px-4 py-2 text-xs font-semibold text-orange-700 transition hover:bg-orange-50"
+                >
+                  إعادة الضبط
+                </button>
+              )}
+            </div>
+          </div>
         </header>
 
         {years.length === 0 && (
@@ -43,10 +77,17 @@ export default function MathPage() {
           </div>
         )}
 
-        <div className="mt-12 space-y-10">
-          {years.map((year) => {
-            const sessions = examsData?.[year] ?? {};
-            const sessionEntries = Object.entries(sessions);
+        {filteredYears.length === 0 && years.length > 0 && (
+          <div className="mt-12 rounded-3xl border border-orange-100 bg-orange-50 p-8 text-right text-sm text-orange-700">
+            لا توجد سنوات مطابقة لبحثك. جرّب رقم سنة مختلف.
+          </div>
+        )}
+
+        {filteredYears.length > 0 && (
+          <div className="mt-12 space-y-10">
+            {filteredYears.map((year) => {
+              const sessions = examsData?.[year] ?? {};
+              const sessionEntries = Object.entries(sessions);
 
             return (
               <section
@@ -115,9 +156,10 @@ export default function MathPage() {
                   })}
                 </div>
               </section>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
   );

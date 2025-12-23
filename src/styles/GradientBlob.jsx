@@ -15,12 +15,12 @@ export default function HeroSection({ title }) {
   );
 
   return (
-    <div className="bg-white">
+    <div className="bg-white pb-0">
       <div className="relative isolate px-6 pt-14 lg:px-8">
         {/* Top Gradient Blob */}
         <GradientBlob positionStyles="-top-40 sm:-top-80 left-[calc(50%-11rem)] sm:left-[calc(50%-30rem)] rotate-[30deg] animate-flyIn" />
 
-        <h2 className="mt-4 text-3xl sm:text-xl md:text-2xl lg:text-4xl font-semibold flex justify-center items-center bg-gradient-to-r from-orange-500 via-yellow-500 to-orange-500 bg-clip-text text-transparent text-center select-auto font-messiri mb-8 h-auto">
+        <h2 className="relative z-10 mt-4 text-3xl sm:text-xl md:text-2xl lg:text-4xl font-semibold flex justify-center items-center bg-gradient-to-r from-orange-500 via-yellow-500 to-orange-500 bg-clip-text text-transparent text-center select-auto font-messiri mb-4 h-auto">
           {title}
         </h2>
 
