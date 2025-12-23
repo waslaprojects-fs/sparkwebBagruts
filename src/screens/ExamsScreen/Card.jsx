@@ -43,25 +43,27 @@ export default function Card({ title, img, buttons }) {
   };
 
   return (
-    <article className="group relative flex w-full max-w-sm flex-shrink-0 snap-center flex-col items-center overflow-hidden rounded-3xl border border-orange-100 bg-white shadow-lg shadow-orange-100 transition hover:-translate-y-1 hover:shadow-xl">
-      <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-white to-amber-50 opacity-0 transition group-hover:opacity-100" />
-      <div className="relative flex h-44 w-full items-center justify-center bg-orange-50">
+    <article className="group relative flex w-full max-w-sm flex-col overflow-hidden rounded-2xl bg-white shadow-lg shadow-orange-100/50 ring-1 ring-orange-100 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-orange-200/50 hover:ring-orange-200">
+      <div className="absolute inset-0 bg-gradient-to-br from-orange-50/50 via-transparent to-amber-50/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      
+      <div className="relative flex h-48 items-center justify-center bg-gradient-to-br from-orange-100 via-orange-50 to-amber-50 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,165,0,0.1),transparent)]" />
         <img
-          className="h-28 w-28 object-contain"
+          className="relative z-10 h-32 w-32 object-contain transition-transform duration-300 group-hover:scale-110"
           src={img}
           alt={title}
         />
       </div>
 
-      <div className="relative flex w-full flex-grow flex-col gap-4 px-6 py-8">
-        <h5 className="text-2xl font-bold text-gray-900 font-messiri text-right">
+      <div className="relative flex flex-grow flex-col gap-5 px-6 py-6">
+        <h5 className="text-2xl font-bold text-gray-900 font-messiri text-center">
           {title}
         </h5>
-        <section className="flex flex-col items-stretch gap-3">
+        <section className="flex flex-col items-stretch gap-2.5">
           {buttons.map((btn) => (
             <button
               key={btn}
-              className="rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-6 py-2 text-sm font-semibold text-white shadow hover:shadow-md"
+              className="group/btn relative overflow-hidden rounded-xl bg-gradient-to-r from-orange-500 to-amber-400 px-5 py-3 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:from-orange-600 hover:to-amber-500 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
               onClick={() => {
                 if (typeof btn !== "number") {
                   const routeMap = NAVIGATION_ROUTES[title];
@@ -81,7 +83,8 @@ export default function Card({ title, img, buttons }) {
                 }
               }}
             >
-              {btn}
+              <span className="relative z-10">{btn}</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700" />
             </button>
           ))}
         </section>
