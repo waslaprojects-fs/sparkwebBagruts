@@ -91,11 +91,17 @@ function App() {
           <Route path="/dawrat" element={<Dawrat />} />
           <Route path="/examsScreen" element={<ExamsScreen />} />
           <Route path="/exams/exams801" element={<MathPage />} />
+          <Route path="/exams371" element={<MathPage />} />
           <Route path="/exams802" element={<MathPage />} />
+          <Route path="/exams372" element={<MathPage />} />
           <Route path="/exams803" element={<MathPage />} />
+          <Route path="/exams471" element={<MathPage />} />
           <Route path="/exams804" element={<MathPage />} />
+          <Route path="/exams472" element={<MathPage />} />
           <Route path="/exams805" element={<MathPage />} />
+          <Route path="/exams571" element={<MathPage />} />
           <Route path="/exams806" element={<MathPage />} />
+          <Route path="/exams572" element={<MathPage />} />
           <Route path="/exams807" element={<MathPage />} />
           <Route path="/physics/mechanics" element={<UnderConstruction />} />
           <Route path="/physics/electricity" element={<UnderConstruction />} />

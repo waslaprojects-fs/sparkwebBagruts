@@ -34,14 +34,6 @@ export default function MathPage() {
 
       <div className="mx-auto max-w-6xl px-6 mt-4 py-12 lg:px-8">
         <header className="flex flex-col items-end gap-4 text-right">
-          <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-            اختر السنة والجلسة لبدء التحميل
-          </h1>
-          <p className="max-w-2xl text-sm leading-7 text-gray-600">
-            جميع الروابط أدناه هي نفس روابط PDF الأصلية المخزّنة على Google
-            Cloud الخاصة بمعهد Spark. بإمكانك فتح نموذج الامتحان أو الحل من خلال
-            الأزرار المخصّصة لكل جلسة.
-          </p>
           <div className="mt-4 flex w-full flex-col items-end gap-3 sm:flex-row sm:items-center sm:justify-between">
             <label className="text-sm font-semibold text-gray-700">
               ابحث حسب السنة

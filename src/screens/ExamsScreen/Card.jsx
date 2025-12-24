@@ -9,11 +9,17 @@ import exams807 from "./exams/807";
 
 const EXAM_MODULES = {
   801: exams801,
+  371: exams802,
   802: exams802,
+  372: exams803,
   803: exams803,
+  471: exams804,
   804: exams804,
+  472: exams805,
   805: exams805,
+  571: exams806,
   806: exams806,
+  572: exams807,
   807: exams807,
 };
 

@@ -11,12 +11,12 @@ const resourceConfig = [
   },
   {
     module: () => import("../ExamsScreen/exams/802"),
-    title: "رياضيات 802",
+    title: "رياضيات 371",
     term: "صيف موعد ب",
   },
   {
     module: () => import("../ExamsScreen/exams/803"),
-    title: "رياضيات 803",
+    title: "رياضيات 372",
     term: "شتاء",
   },
 ];

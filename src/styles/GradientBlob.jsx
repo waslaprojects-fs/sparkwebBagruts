@@ -27,7 +27,7 @@ export default function HeroSection({ title }) {
             </span>
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-600 max-w-2xl mx-auto font-messiri">
-            اختر المادة التي تريد التمرن عليها وابدأ رحلتك نحو النجاح
+            اختر الامتحان الذي تريد التمرن عليه وابدأ رحلتك نحو النجاح
           </p>
         </div>
       </div>
