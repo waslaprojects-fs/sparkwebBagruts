@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../styles/tailwind.css";
 import { Dialog, DialogPanel, PopoverGroup } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -14,12 +14,22 @@ export default function Header() {
     { label: "عن المعهد", href: "/dawrat" },
   ];
 
-  const [active, setActive] = useState(
-    typeof window !== "undefined" ? window.location.pathname : "/"
-  );
-  useEffect(() => {
-    setActive(window.location.pathname);
-  }, []);
+  const location = useLocation();
+
+  const isExamRoute = (pathname) => {
+    return (
+      pathname === "/examsScreen" ||
+      pathname.startsWith("/exams") ||
+      pathname.startsWith("/physics")
+    );
+  };
+
+  const isActive = (item) => {
+    if (item.href === "/examsScreen") {
+      return isExamRoute(location.pathname);
+    }
+    return location.pathname === item.href || location.pathname === item.href + "/";
+  };
   return (
     <header className="bg-white/80 backdrop-blur border-b border-orange-100 sticky top-0 z-40">
       <nav
@@ -43,23 +53,25 @@ export default function Header() {
           </button>
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-          {navItems.map((item) => (
-            <Link
-              key={item.label}
-              to={item.href}
-              className={`relative text-lg font-semibold transition ${
-                active === item.href
-                  ? "text-orange-600"
-                  : "text-gray-800 hover:text-orange-600"
-              }`}
-              onClick={() => setActive(item.href)}
-            >
-              {item.label}
-              {active === item.href && (
-                <span className="absolute inset-x-0 -bottom-2 h-1 rounded-full bg-gradient-to-r from-orange-500 to-amber-400" />
-              )}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const active = isActive(item);
+            return (
+              <Link
+                key={item.label}
+                to={item.href}
+                className={`relative text-lg font-semibold transition ${
+                  active
+                    ? "text-orange-600"
+                    : "text-gray-800 hover:text-orange-600"
+                }`}
+              >
+                {item.label}
+                {active && (
+                  <span className="absolute inset-x-0 -bottom-2 h-1 rounded-full bg-gradient-to-r from-orange-500 to-amber-400" />
+                )}
+              </Link>
+            );
+          })}
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <a
@@ -94,23 +106,25 @@ export default function Header() {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.label}
-                    to={item.href}
-                    className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold ${
-                      active === item.href
-                        ? "bg-orange-100 text-orange-700"
-                        : "text-gray-900 hover:bg-gray-50"
-                    }`}
-                    onClick={() => {
-                      setActive(item.href);
-                      setMobileMenuOpen(false);
-                    }}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+                {navItems.map((item) => {
+                  const active = isActive(item);
+                  return (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold ${
+                        active
+                          ? "bg-orange-100 text-orange-700"
+                          : "text-gray-900 hover:bg-gray-50"
+                      }`}
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                      }}
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                })}
               </div>
               <div className="py-6">
                 <a
