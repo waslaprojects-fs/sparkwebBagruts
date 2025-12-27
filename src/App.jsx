@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import "./styles/tailwind.css";
 import Header from "./tools/header.jsx";
@@ -10,6 +10,16 @@ import MathPage from "./screens/ExamsScreen/math.jsx";
 import Footer from "./tools/footer.jsx";
 import NotFound from "./screens/NotFound.jsx";
 import UnderConstruction from "./screens/UnderConstruction.jsx";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 // Import the functions you need from the SDKs you need
 // import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
@@ -83,6 +93,7 @@ document.addEventListener("keydown", function (event) {
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <section className="App">
         <Header />
         <Routes>

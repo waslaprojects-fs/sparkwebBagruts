@@ -88,8 +88,8 @@ export default function Header() {
         className="lg:hidden"
       >
         <div className="fixed inset-0 z-10" />
-        <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 ">
-          <div className="flex items-center justify-between">
+        <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          <div className="flex items-center justify-between pt-4 pb-4">
             <Link to="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img alt="" src="./assets/logo512.png" className="h-8 w-auto" />
@@ -103,37 +103,35 @@ export default function Header() {
               <XMarkIcon aria-hidden="true" className="size-6" />
             </button>
           </div>
-          <div className="mt-6 flow-root">
-            <div className="-my-6 divide-y divide-gray-500/10">
-              <div className="space-y-2 py-6">
-                {navItems.map((item) => {
-                  const active = isActive(item);
-                  return (
-                    <Link
-                      key={item.label}
-                      to={item.href}
-                      className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold ${
-                        active
-                          ? "bg-orange-100 text-orange-700"
-                          : "text-gray-900 hover:bg-gray-50"
-                      }`}
-                      onClick={() => {
-                        setMobileMenuOpen(false);
-                      }}
-                    >
-                      {item.label}
-                    </Link>
-                  );
-                })}
-              </div>
-              <div className="py-6">
-                <a
-                  href={registrationLink}
-                  className="flex w-full items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-4 py-2 text-base font-semibold text-white shadow"
-                >
-                  سجّل الآن
-                </a>
-              </div>
+          <div className="pt-28 pb-6">
+            <div className="space-y-2">
+              {navItems.map((item) => {
+                const active = isActive(item);
+                return (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    className={`block w-full rounded-lg px-4 py-3 text-base font-semibold text-right ${
+                      active
+                        ? "bg-orange-100 text-orange-700"
+                        : "text-gray-900 hover:bg-gray-50"
+                    }`}
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                    }}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </div>
+            <div className="mt-6 pt-6 border-t border-gray-200">
+              <a
+                href={registrationLink}
+                className="flex w-full items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-4 py-2 text-base font-semibold text-white shadow"
+              >
+                سجّل الآن
+              </a>
             </div>
           </div>
         </DialogPanel>
