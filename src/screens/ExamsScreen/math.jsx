@@ -34,8 +34,8 @@ export default function MathPage() {
 
       <div className="mx-auto max-w-6xl px-6 mt-4 py-12 lg:px-8">
         <header className="flex flex-col items-end gap-4 text-right">
-          <div className="mt-4 flex w-full flex-col items-end gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <label className="text-sm font-semibold text-gray-700">
+          <div className="mt-4 flex w-full flex-col items-end gap-2 sm:flex-row sm:items-center sm:gap-4">
+            <label className="text-sm font-semibold text-gray-700 whitespace-nowrap">
               ابحث حسب السنة
             </label>
             <div className="flex w-full max-w-xs items-center gap-3">
@@ -86,16 +86,10 @@ export default function MathPage() {
                 key={year}
                 className="rounded-3xl border border-orange-100 bg-white shadow-lg shadow-orange-50"
               >
-                <div className="flex flex-col items-end gap-4 border-b border-orange-50 px-6 py-8 text-right sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex flex-col items-end gap-2 border-b border-orange-50 px-6 py-4 text-right sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900">{year}</h2>
-                    <p className="mt-2 text-sm text-gray-500">
-                      {`نماذج ${title || ""} - ${year}`}{" "}
-                    </p>
+                    <h2 className="text-xl font-bold text-gray-900">{year}</h2>
                   </div>
-                  <span className="inline-flex items-center rounded-full bg-orange-100 px-5 py-2 text-sm font-semibold text-orange-600">
-                    {`${sessionEntries.length} جلسات متاحة`}
-                  </span>
                 </div>
                 <div className="grid gap-6 px-6 py-8 text-right sm:grid-cols-2 lg:grid-cols-3">
                   {sessionEntries.map(([sessionName, sessionData]) => {
