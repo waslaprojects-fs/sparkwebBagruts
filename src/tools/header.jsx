@@ -10,7 +10,7 @@ export default function Header() {
 
   const navItems = [
     { label: "الرئيسية", href: "/" },
-    { label: "تمرّن", href: "/examsScreen" },
+    { label: "بچاريت", href: "/examsScreen" },
     { label: "عن المعهد", href: "/dawrat" },
   ];
 

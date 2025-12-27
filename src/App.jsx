@@ -103,7 +103,7 @@ function App() {
           <Route path="/exams806" element={<MathPage />} />
           <Route path="/exams572" element={<MathPage />} />
           <Route path="/exams807" element={<MathPage />} />
-          <Route path="/physics/mechanics" element={<UnderConstruction />} />
+          <Route path="/physics/mechanics" element={<MathPage />} />
           <Route path="/physics/electricity" element={<UnderConstruction />} />
           <Route path="/cs/all" element={<UnderConstruction />} />
           <Route path="/electronics/all" element={<UnderConstruction />} />

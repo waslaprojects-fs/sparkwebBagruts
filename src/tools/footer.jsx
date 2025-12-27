@@ -53,7 +53,7 @@ export default function Footer() {
               </li>
               <li>
                 <a href="/examsScreen" className="hover:text-orange-600">
-                  نماذج التمرن
+                  نماذج البچاريت
                 </a>
               </li>
             </ul>

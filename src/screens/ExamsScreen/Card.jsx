@@ -6,6 +6,7 @@ import exams804 from "./exams/804";
 import exams805 from "./exams/805";
 import exams806 from "./exams/806";
 import exams807 from "./exams/807";
+import mechanicsExams from "./exams/mechanics";
 
 const EXAM_MODULES = {
   801: exams801,
@@ -70,8 +71,22 @@ export default function Card({ title, img, buttons }) {
             <button
               key={btn}
               className="group/btn relative overflow-hidden rounded-xl bg-gradient-to-r from-orange-500 to-amber-400 px-5 py-3 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:from-orange-600 hover:to-amber-500 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
-              onClick={() => {
+              onClick={async () => {
                 if (typeof btn !== "number") {
+                  if (title === "فيزياء" && btn === "ميكانيكا") {
+                    try {
+                      const examsData = await mechanicsExams;
+                      if (examsData && Object.keys(examsData).length > 0) {
+                        navigate("/physics/mechanics", { state: { examsData, title: "ميكانيكا" } });
+                      } else {
+                        console.error("Mechanics exams data is empty");
+                      }
+                    } catch (error) {
+                      console.error("Error loading mechanics exams:", error);
+                    }
+                    return;
+                  }
+                  
                   const routeMap = NAVIGATION_ROUTES[title];
                   const route = routeMap?.[btn];
                   

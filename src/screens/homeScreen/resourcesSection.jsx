@@ -75,7 +75,7 @@ export default function ResourcesSection() {
       <div className="flex flex-col items-end gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-            أحدث مصادر التمرن
+            أحدث مصادر البچاريت
           </h2>
           <p className="mt-2 max-w-xl text-sm text-gray-600">
             جميع الروابط تقودك مباشرةً إلى ملفات PDF على Google Cloud الخاصة

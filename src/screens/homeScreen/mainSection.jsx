@@ -30,7 +30,7 @@ function MainSection() {
           </h1>
           <p className="mt-4 max-w-xl text-lg leading-8 text-gray-600 lg:ml-auto">
             نعّلم، ندرّب، ونرافقك حتى لحظة الامتحان. جلسات مركّزة، دعم فردي،
-            ومنصّة تمرن رقمية تغطي كل ما تحتاجه لتتفوق بثقة.
+            ومنصّة بچاريت رقمية تغطي كل ما تحتاجه لتتفوق بثقة.
           </p>
           <div className="mt-10 flex flex-col items-end gap-4 sm:flex-row sm:justify-end">
             <a
@@ -43,7 +43,7 @@ function MainSection() {
               href="/examsScreen"
               className="inline-flex items-center justify-center rounded-full border border-orange-200 px-8 py-3 text-base font-semibold text-orange-600 hover:bg-orange-50"
             >
-              استكشف التمرن ↗
+              استكشف البچاريت ↗
             </a>
           </div>
           <dl className="mt-12 grid w-full gap-6 text-center sm:grid-cols-3">
