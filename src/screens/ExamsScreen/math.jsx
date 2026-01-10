@@ -141,6 +141,13 @@ export default function MathPage() {
                         >
                           {hasSolution ? "فتح الحل ↗" : "الحل غير متوفر حالياً"}
                         </button>
+                        <button
+                          type="button"
+                          className="inline-flex items-center justify-center rounded-full px-5 py-2 font-semibold transition cursor-not-allowed bg-gray-100 text-gray-400"
+                          disabled
+                        >
+                          الحل الكامل - غير متوفر الآن
+                        </button>
                       </div>
                     </article>
                   );
@@ -210,6 +217,13 @@ export default function MathPage() {
                                   }}
                                 >
                                   {hasSolution ? "فتح الحل ↗" : "الحل غير متوفر حالياً"}
+                                </button>
+                                <button
+                                  type="button"
+                                  className="inline-flex items-center justify-center rounded-full px-5 py-2 font-semibold transition cursor-not-allowed bg-gray-100 text-gray-400"
+                                  disabled
+                                >
+                                  الحل الكامل - غير متوفر الآن
                                 </button>
                               </div>
                             </article>

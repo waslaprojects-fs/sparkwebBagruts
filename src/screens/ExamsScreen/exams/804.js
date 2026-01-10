@@ -1,4 +1,4 @@
-import { generateExamData } from "./utils.js";
+import { generateExamDataWithSolFolder } from "./utils.js";
 
-const exams804 = generateExamData(804, true).then((data) => data);
+const exams804 = generateExamDataWithSolFolder(804, false);
 export default exams804;

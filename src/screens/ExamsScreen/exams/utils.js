@@ -40,7 +40,7 @@ export function generateExamData(examNumber, checkSolutions = false) {
   return examData;
 }
 
-async function buildExamDataWithCheck(examData, examNumber) {
+async function buildExamDataWithCheck(examData, examNumber, solutionsInSeparateFolder = false) {
   const tasks = YEARS.flatMap((year) =>
     TERMS.map(async (term) => {
       const solutionUrl = examData[year][term.name].sol;
@@ -59,5 +59,35 @@ async function buildExamDataWithCheck(examData, examNumber) {
 
   await Promise.all(tasks);
   return examData;
+}
+
+export function generateExamDataWithSolFolder(examNumber, checkSolutions = false) {
+  const baseUrl = `${STORAGE_BASE_URL}/${examNumber}%2F`;
+  const solBaseUrl = `${STORAGE_BASE_URL}/${examNumber}%2Fsol%2F`;
+  const examData = {};
+
+  for (const year of YEARS) {
+    examData[year] = {};
+    for (const term of TERMS) {
+      const fileSuffix = term.suffix
+        ? `${year % 100}${term.suffix}`
+        : `${year % 100}`;
+      const encodedFileName = encodeURIComponent(`${fileSuffix}.pdf`);
+
+      const examUrl = `${baseUrl}${encodedFileName}?alt=media`;
+      const solutionUrl = `${solBaseUrl}${encodedFileName}?alt=media`;
+
+      examData[year][term.name] = {
+        ex: examUrl,
+        sol: solutionUrl,
+      };
+    }
+  }
+
+  if (checkSolutions) {
+    return buildExamDataWithCheck(examData, examNumber, true);
+  }
+
+  return Promise.resolve(examData);
 }
 
