@@ -7,6 +7,7 @@ import exams805 from "./exams/805";
 import exams806 from "./exams/806";
 import exams807 from "./exams/807";
 import mechanicsExams from "./exams/mechanics";
+import electricityExams from "./exams/electricity";
 
 const EXAM_MODULES = {
   801: exams801,
@@ -83,6 +84,20 @@ export default function Card({ title, img, buttons }) {
                       }
                     } catch (error) {
                       console.error("Error loading mechanics exams:", error);
+                    }
+                    return;
+                  }
+
+                  if (title === "فيزياء" && btn === "كهرباء") {
+                    try {
+                      const examsData = await electricityExams;
+                      if (examsData && Object.keys(examsData).length > 0) {
+                        navigate("/physics/electricity", { state: { examsData, title: "كهرباء" } });
+                      } else {
+                        console.error("Electricity exams data is empty");
+                      }
+                    } catch (error) {
+                      console.error("Error loading electricity exams:", error);
                     }
                     return;
                   }

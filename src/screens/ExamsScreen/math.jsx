@@ -28,7 +28,7 @@ export default function MathPage() {
     return years.filter((year) => year.toString().includes(query));
   }, [years, yearQuery]);
 
-  const isMechanics = title === "ميكانيكا";
+  const isMechanics = title === "ميكانيكا" || title === "كهرباء";
 
   const allCards = useMemo(() => {
     if (!isMechanics || !examsData) return [];
@@ -104,9 +104,7 @@ export default function MathPage() {
                         <h3 className="text-lg font-semibold text-gray-900">
                           {sessionName === "عادي"
                             ? year
-                            : sessionName === "موعد خاص" || sessionName === "موعد خاصّ"
-                            ? `${year} ${sessionName}`
-                            : sessionName}
+                            : `${year} ${sessionName}`}
                         </h3>
                         <span
                           className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${statusBadge(
@@ -181,9 +179,7 @@ export default function MathPage() {
                                 <h3 className="text-lg font-semibold text-gray-900">
                                   {sessionName === "عادي"
                                     ? year
-                                    : sessionName === "موعد خاص" || sessionName === "موعد خاصّ"
-                                    ? `${year} ${sessionName}`
-                                    : sessionName}
+                                    : `${year} ${sessionName}`}
                                 </h3>
                                 <span
                                   className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${statusBadge(
