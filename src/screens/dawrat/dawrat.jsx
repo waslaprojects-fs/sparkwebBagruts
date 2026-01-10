@@ -100,11 +100,18 @@ export default function Dawrat() {
           </div>
         </div>
         <div className="w-full lg:w-1/2">
-          <img
-            src="./assets/location.png"
-            alt="Spark center location"
-            className="w-full rounded-3xl border border-orange-100 bg-orange-50 p-4 shadow-lg shadow-orange-100"
-          />
+          <a
+            href="https://maps.app.goo.gl/dP2qpQxUqfixjvk3A"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block cursor-pointer transition-opacity hover:opacity-90"
+          >
+            <img
+              src="./assets/location.png"
+              alt="Spark center location"
+              className="w-full rounded-3xl border border-orange-100 bg-orange-50 p-4 shadow-lg shadow-orange-100"
+            />
+          </a>
         </div>
       </section>
 

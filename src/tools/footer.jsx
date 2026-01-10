@@ -75,7 +75,14 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <span>شارع صلاح الدين، الناصرة</span>
+                <a
+                  href="https://maps.app.goo.gl/dP2qpQxUqfixjvk3A"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-orange-600"
+                >
+                  شارع يوم الارض الناصرة
+                </a>
               </li>
             </ul>
           </div>
