@@ -56,20 +56,20 @@ export default function Header() {
           {navItems.map((item) => {
             const active = isActive(item);
             return (
-              <Link
-                key={item.label}
-                to={item.href}
-                className={`relative text-lg font-semibold transition ${
+            <Link
+              key={item.label}
+              to={item.href}
+              className={`relative text-lg font-semibold transition ${
                   active
-                    ? "text-orange-600"
-                    : "text-gray-800 hover:text-orange-600"
-                }`}
-              >
-                {item.label}
+                  ? "text-orange-600"
+                  : "text-gray-800 hover:text-orange-600"
+              }`}
+            >
+              {item.label}
                 {active && (
-                  <span className="absolute inset-x-0 -bottom-2 h-1 rounded-full bg-gradient-to-r from-orange-500 to-amber-400" />
-                )}
-              </Link>
+                <span className="absolute inset-x-0 -bottom-2 h-1 rounded-full bg-gradient-to-r from-orange-500 to-amber-400" />
+              )}
+            </Link>
             );
           })}
         </PopoverGroup>
@@ -124,14 +124,14 @@ export default function Header() {
                   </Link>
                 );
               })}
-            </div>
+              </div>
             <div className="mt-6 pt-6 border-t border-gray-200">
-              <a
-                href={registrationLink}
-                className="flex w-full items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-4 py-2 text-base font-semibold text-white shadow"
-              >
-                سجّل الآن
-              </a>
+                <a
+                  href={registrationLink}
+                  className="flex w-full items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-4 py-2 text-base font-semibold text-white shadow"
+                >
+                  سجّل الآن
+                </a>
             </div>
           </div>
         </DialogPanel>

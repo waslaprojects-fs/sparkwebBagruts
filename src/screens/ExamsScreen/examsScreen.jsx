@@ -29,21 +29,21 @@ export default function ExamsScreen() {
               img="/assets/math.png"
               buttons={[801, 371, 372, 471, 472, 571, 572]}
             />
-            <Card
-              title="فيزياء"
-              img="/assets/physics.png"
-              buttons={["ميكانيكا", "كهرباء"]}
-            />
-            <Card
-              title="علم الحاسوب"
-              img="/assets/cs.png"
-              buttons={["جميع النماذج"]}
-            />
-            <Card
-              title="إلكترونيكا"
-              img="/assets/electronics.png"
-              buttons={["جميع النماذج"]}
-            />
+      <Card
+          title="فيزياء"
+          img="/assets/physics.png"
+          buttons={["ميكانيكا", "كهرباء"]}
+        />
+        <Card
+          title="علم الحاسوب"
+          img="/assets/cs.png"
+          buttons={["جميع النماذج"]}
+        />
+        <Card
+          title="إلكترونيكا"
+          img="/assets/electronics.png"
+          buttons={["جميع النماذج"]}
+        />
           </div>
         </div>
       </section>

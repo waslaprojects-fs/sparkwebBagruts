@@ -28,6 +28,20 @@ export default function MathPage() {
     return years.filter((year) => year.toString().includes(query));
   }, [years, yearQuery]);
 
+  const isMechanics = title === "ميكانيكا";
+
+  const allCards = useMemo(() => {
+    if (!isMechanics || !examsData) return [];
+    const cards = [];
+    filteredYears.forEach((year) => {
+      const sessions = examsData[year] ?? {};
+      Object.entries(sessions).forEach(([sessionName, sessionData]) => {
+        cards.push({ year, sessionName, sessionData });
+      });
+    });
+    return cards;
+  }, [isMechanics, examsData, filteredYears]);
+
   return (
     <section className="bg-white font-messiri">
       <HeroSection title={title || "نماذج التمرّن"} />
@@ -76,75 +90,138 @@ export default function MathPage() {
         )}
 
         {filteredYears.length > 0 && (
-          <div className="mt-12 space-y-10">
-            {filteredYears.map((year) => {
-              const sessions = examsData?.[year] ?? {};
-              const sessionEntries = Object.entries(sessions);
-
-            return (
-              <section
-                key={year}
-                className="rounded-3xl border border-orange-100 bg-white shadow-lg shadow-orange-50"
-              >
-                <div className="flex flex-col items-end gap-2 border-b border-orange-50 px-6 py-4 text-right sm:flex-row sm:items-center sm:justify-between">
-                  <div>
-                    <h2 className="text-xl font-bold text-gray-900">{year}</h2>
-                  </div>
-                </div>
-                <div className="grid gap-6 px-6 py-8 text-right sm:grid-cols-2 lg:grid-cols-3">
-                  {sessionEntries.map(([sessionName, sessionData]) => {
-                    const hasSolution = Boolean(sessionData?.sol);
-                    return (
-                      <article
-                        key={sessionName}
-                        className="flex h-full flex-col justify-between rounded-2xl border border-orange-100 bg-gradient-to-br from-orange-50 via-white to-white p-6 shadow-sm shadow-orange-100"
-                      >
-                        <div className="space-y-3">
-                          <h3 className="text-lg font-semibold text-gray-900">
-                            {sessionName}
-                          </h3>
-                          <span
-                            className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${statusBadge(
-                              hasSolution
-                            )}`}
-                          >
-                            {hasSolution ? "يتضمّن حلًا كاملًا" : "الحل قيد التحضير"}
-                          </span>
-                        </div>
-                        <div className="mt-6 flex flex-col gap-3 text-sm">
-                          <button
-                            type="button"
-                            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-5 py-2 font-semibold text-white shadow hover:-translate-y-0.5 hover:shadow-md transition"
-                            onClick={() =>
-                              window.open(sessionData?.ex || "#", "_blank")
+          <>
+            {isMechanics ? (
+              <div className="mt-12 grid gap-6 text-right sm:grid-cols-2 lg:grid-cols-3">
+                {allCards.map(({ year, sessionName, sessionData }) => {
+                  const hasSolution = Boolean(sessionData?.sol);
+                  return (
+                    <article
+                      key={`${year}-${sessionName}`}
+                      className="flex h-full flex-col justify-between rounded-2xl border border-orange-100 bg-gradient-to-br from-orange-50 via-white to-white p-6 shadow-sm shadow-orange-100"
+                    >
+                      <div className="space-y-3">
+                        <h3 className="text-lg font-semibold text-gray-900">
+                          {sessionName === "عادي"
+                            ? year
+                            : sessionName === "موعد خاص" || sessionName === "موعد خاصّ"
+                            ? `${year} ${sessionName}`
+                            : sessionName}
+                        </h3>
+                        <span
+                          className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${statusBadge(
+                            hasSolution
+                          )}`}
+                        >
+                          {hasSolution ? "يتضمّن حلًا كاملًا" : "الحل قيد التحضير"}
+                        </span>
+                      </div>
+                      <div className="mt-6 flex flex-col gap-3 text-sm">
+                        <button
+                          type="button"
+                          className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-5 py-2 font-semibold text-white shadow hover:-translate-y-0.5 hover:shadow-md transition"
+                          onClick={() =>
+                            window.open(sessionData?.ex || "#", "_blank")
+                          }
+                        >
+                          فتح نموذج الامتحان ↗
+                        </button>
+                        <button
+                          type="button"
+                          className={`inline-flex items-center justify-center rounded-full px-5 py-2 font-semibold transition ${
+                            hasSolution
+                              ? "bg-orange-100 text-orange-700 hover:bg-orange-200"
+                              : "cursor-not-allowed bg-gray-100 text-gray-400"
+                          }`}
+                          onClick={() => {
+                            if (hasSolution) {
+                              window.open(sessionData.sol, "_blank");
                             }
-                          >
-                            فتح نموذج الامتحان ↗
-                          </button>
-                          <button
-                            type="button"
-                            className={`inline-flex items-center justify-center rounded-full px-5 py-2 font-semibold transition ${
-                              hasSolution
-                                ? "bg-orange-100 text-orange-700 hover:bg-orange-200"
-                                : "cursor-not-allowed bg-gray-100 text-gray-400"
-                            }`}
-                            onClick={() => {
-                              if (hasSolution) {
-                                window.open(sessionData.sol, "_blank");
-                              }
-                            }}
-                          >
-                            {hasSolution ? "فتح الحل ↗" : "الحل غير متوفر حالياً"}
-                          </button>
+                          }}
+                        >
+                          {hasSolution ? "فتح الحل ↗" : "الحل غير متوفر حالياً"}
+                        </button>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="mt-12 space-y-10">
+                {filteredYears.map((year) => {
+                  const sessions = examsData?.[year] ?? {};
+                  const sessionEntries = Object.entries(sessions);
+
+                  return (
+                    <section
+                      key={year}
+                      className="rounded-3xl border border-orange-100 bg-white shadow-lg shadow-orange-50"
+                    >
+                      <div className="flex flex-col items-end gap-2 border-b border-orange-50 px-6 py-4 text-right sm:flex-row sm:items-center sm:justify-between">
+                        <div>
+                          <h2 className="text-xl font-bold text-gray-900">{year}</h2>
                         </div>
-                      </article>
-                    );
-                  })}
-                </div>
-              </section>
-              );
-            })}
-          </div>
+                      </div>
+                      <div className="grid gap-6 px-6 py-8 text-right sm:grid-cols-2 lg:grid-cols-3">
+                        {sessionEntries.map(([sessionName, sessionData]) => {
+                          const hasSolution = Boolean(sessionData?.sol);
+                          return (
+                            <article
+                              key={sessionName}
+                              className="flex h-full flex-col justify-between rounded-2xl border border-orange-100 bg-gradient-to-br from-orange-50 via-white to-white p-6 shadow-sm shadow-orange-100"
+                            >
+                              <div className="space-y-3">
+                                <h3 className="text-lg font-semibold text-gray-900">
+                                  {sessionName === "عادي"
+                                    ? year
+                                    : sessionName === "موعد خاص" || sessionName === "موعد خاصّ"
+                                    ? `${year} ${sessionName}`
+                                    : sessionName}
+                                </h3>
+                                <span
+                                  className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${statusBadge(
+                                    hasSolution
+                                  )}`}
+                                >
+                                  {hasSolution ? "يتضمّن حلًا كاملًا" : "الحل قيد التحضير"}
+                                </span>
+                              </div>
+                              <div className="mt-6 flex flex-col gap-3 text-sm">
+                                <button
+                                  type="button"
+                                  className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-5 py-2 font-semibold text-white shadow hover:-translate-y-0.5 hover:shadow-md transition"
+                                  onClick={() =>
+                                    window.open(sessionData?.ex || "#", "_blank")
+                                  }
+                                >
+                                  فتح نموذج الامتحان ↗
+                                </button>
+                                <button
+                                  type="button"
+                                  className={`inline-flex items-center justify-center rounded-full px-5 py-2 font-semibold transition ${
+                                    hasSolution
+                                      ? "bg-orange-100 text-orange-700 hover:bg-orange-200"
+                                      : "cursor-not-allowed bg-gray-100 text-gray-400"
+                                  }`}
+                                  onClick={() => {
+                                    if (hasSolution) {
+                                      window.open(sessionData.sol, "_blank");
+                                    }
+                                  }}
+                                >
+                                  {hasSolution ? "فتح الحل ↗" : "الحل غير متوفر حالياً"}
+                                </button>
+                              </div>
+                            </article>
+                          );
+                        })}
+                      </div>
+                    </section>
+                  );
+                })}
+              </div>
+            )}
+          </>
         )}
       </div>
     </section>
