@@ -62,7 +62,7 @@ export default function Footer() {
             <h4 className="text-lg font-semibold text-gray-900">تواصل معنا</h4>
             <ul className="mt-3 space-y-2 text-sm text-gray-600">
               <li>
-                <a href="tel:+972586610098" className="hover:text-orange-600">
+                <a href="tel:+972586610098" className="hover:text-orange-600" dir="ltr">
                   +972 58-661-0098
                 </a>
               </li>

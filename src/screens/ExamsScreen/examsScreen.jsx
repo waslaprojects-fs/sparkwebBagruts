@@ -20,7 +20,7 @@ export default function ExamsScreen() {
               </span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600 max-w-2xl mx-auto font-messiri">
-              اختر الامتحان الذي تريد البچاريت عليه وابدأ رحلتك نحو النجاح
+              اختر الامتحان الذي تريد التمرن عليه وابدأ رحلتك نحو النجاح
             </p>
           </div>
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 justify-items-center">
