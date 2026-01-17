@@ -79,3 +79,4 @@ function generateElectricityExamData() {
 const electricityExams = generateElectricityExamData();
 export default electricityExams;
 
+
