@@ -11,10 +11,24 @@ function MainSection() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-orange-100 via-white to-amber-50">
-      <div className="absolute left-10 top-10 hidden h-56 w-56 rounded-full bg-orange-200/40 blur-3xl lg:block" />
-      <div className="absolute -bottom-20 right-0 h-72 w-72 rounded-full bg-orange-300/30 blur-3xl" />
-      <div className="mx-auto flex max-w-6xl flex-col-reverse items-center gap-12 px-6 py-20 text-right md:py-28 lg:flex-row lg:px-8">
+    <section className="relative min-h-screen overflow-hidden">
+      {/* Video Background */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover"
+      >
+        <source
+          src="./assets/Make_a_mysterious_202601201712_r2k74.mp4"
+          type="video/mp4"
+        />
+      </video>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/40" />
+      {/* Content */}
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col-reverse items-center justify-center gap-12 px-6 py-20 text-right md:py-28 lg:flex-row lg:px-8">
         <div
           className={`w-full transition duration-700 ${
             isLoaded
@@ -25,10 +39,10 @@ function MainSection() {
           <div className="inline-flex items-center rounded-full bg-white/70 px-4 py-2 text-sm font-semibold text-orange-600 shadow-sm shadow-orange-200">
             نجاحك في بجروت الرياضيات والفيزياء يبدأ هنا
           </div>
-          <h1 className="mt-6 text-4xl font-bold text-gray-900 sm:text-5xl lg:text-6xl">
+          <h1 className="mt-6 text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
             معهد سبارك الأكاديمي
           </h1>
-          <p className="mt-4 max-w-xl text-lg leading-8 text-gray-600 lg:ml-auto">
+          <p className="mt-4 max-w-xl text-lg leading-8 text-gray-200 lg:ml-auto">
             نعّلم، ندرّب، ونرافقك حتى لحظة الامتحان. جلسات مركّزة، دعم فردي،
             ومنصّة بچاريت رقمية تغطي كل ما تحتاجه لتتفوق بثقة.
           </p>
@@ -41,7 +55,7 @@ function MainSection() {
             </a>
             <a
               href="/examsScreen"
-              className="inline-flex items-center justify-center rounded-full border border-orange-200 px-8 py-3 text-base font-semibold text-orange-600 hover:bg-orange-50"
+              className="inline-flex items-center justify-center rounded-full border border-white/50 bg-white/10 px-8 py-3 text-base font-semibold text-white backdrop-blur-sm hover:bg-white/20"
             >
               استكشف البچاريت ↗
             </a>
@@ -66,22 +80,6 @@ function MainSection() {
               <dd className="mt-2 text-3xl font-bold text-gray-900">94%</dd>
             </div>
           </dl>
-        </div>
-        <div
-          className={`relative flex w-full justify-center transition duration-700 lg:justify-end ${
-            isLoaded
-              ? "translate-y-0 opacity-100"
-              : "translate-y-8 opacity-0"
-          }`}
-        >
-          <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl shadow-orange-200">
-            <img
-              src="./assets/main.jpg"
-              alt="Spark students during a session"
-              className="h-full w-full max-w-xl object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-orange-900/30 via-transparent" />
-          </div>
         </div>
       </div>
     </section>
