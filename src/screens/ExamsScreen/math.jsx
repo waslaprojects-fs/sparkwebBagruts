@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "../../styles/tailwind.css";
 import HeroSection from "../../styles/GradientBlob";
@@ -12,6 +12,26 @@ export default function MathPage() {
   const location = useLocation();
   const { examsData, title } = location.state || {};
   const [yearQuery, setYearQuery] = useState("");
+  const [showStickyHeader, setShowStickyHeader] = useState(false);
+  const heroTitleRef = useRef(null);
+
+  // Extract exam number from URL or title
+  const examNumber = useMemo(() => {
+    // Try to get from URL pathname (e.g., /exams571 -> 571)
+    const pathMatch = location.pathname.match(/exams(\d+)/);
+    if (pathMatch) {
+      return pathMatch[1];
+    }
+    // Fallback: extract from title (e.g., "نموذج - 571" -> "571")
+    if (title) {
+      const titleMatch = title.match(/(\d+)/);
+      if (titleMatch) {
+        return titleMatch[1];
+      }
+      return title;
+    }
+    return "نماذج التمرّن";
+  }, [location.pathname, title]);
 
   const years = useMemo(() => {
     if (!examsData) return [];
@@ -42,9 +62,49 @@ export default function MathPage() {
     return cards;
   }, [isMechanics, examsData, filteredYears]);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Show sticky header when title is not visible (not intersecting)
+        setShowStickyHeader(!entry.isIntersecting);
+      },
+      {
+        threshold: 0.1, // Trigger when 10% of the element is visible
+        rootMargin: "-20px 0px 0px 0px", // Add some margin for better UX
+      }
+    );
+
+    if (heroTitleRef.current) {
+      observer.observe(heroTitleRef.current);
+    }
+
+    return () => {
+      if (heroTitleRef.current) {
+        observer.unobserve(heroTitleRef.current);
+      }
+    };
+  }, []);
+
   return (
     <section className="bg-white font-messiri">
-      <HeroSection title={title || "نماذج التمرّن"} />
+      {/* Sticky Header */}
+      <div
+        className={`fixed top-28 left-0 right-0 z-30 flex items-center justify-center py-3 transition-all duration-300 ${
+          showStickyHeader ? "translate-y-0" : "-translate-y-full"
+        }`}
+      >
+        <p className={`text-base font-semibold font-messiri text-center transition-all duration-300 px-6 py-2 rounded-full shadow-md ${
+          showStickyHeader 
+            ? "text-white bg-gradient-to-r from-orange-500 to-amber-400" 
+            : "text-gray-700 bg-white/95 backdrop-blur-sm border border-orange-100"
+        }`}>
+          {title || `نموذج - ${examNumber}`}
+        </p>
+      </div>
+
+      <div ref={heroTitleRef}>
+        <HeroSection title={title || "نماذج التمرّن"} />
+      </div>
 
       <div className="mx-auto max-w-6xl px-6 mt-4 py-12 lg:px-8">
         <header className="flex flex-col items-end gap-4 text-right">
