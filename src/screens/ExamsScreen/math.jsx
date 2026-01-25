@@ -2,36 +2,97 @@ import { useMemo, useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "../../styles/tailwind.css";
 import HeroSection from "../../styles/GradientBlob";
+import exams801 from "./exams/801";
+import exams802 from "./exams/802";
+import exams803 from "./exams/803";
+import exams804 from "./exams/804";
+import exams805 from "./exams/805";
+import exams806 from "./exams/806";
+import exams807 from "./exams/807";
+import mechanicsExams from "./exams/mechanics";
+import electricityExams from "./exams/electricity";
 
 const statusBadge = (hasSolution) =>
   hasSolution
     ? "bg-green-100 text-green-700 border border-green-200"
     : "bg-gray-100 text-gray-500 border border-gray-200";
 
+const EXAM_MODULES = {
+  801: exams801,
+  371: exams802,
+  802: exams802,
+  372: exams803,
+  803: exams803,
+  471: exams804,
+  804: exams804,
+  472: exams805,
+  805: exams805,
+  571: exams806,
+  806: exams806,
+  572: exams807,
+  807: exams807,
+};
+
 export default function MathPage() {
   const location = useLocation();
-  const { examsData, title } = location.state || {};
+  const { examsData: stateExamsData, title: stateTitle } = location.state || {};
   const [yearQuery, setYearQuery] = useState("");
   const [showStickyHeader, setShowStickyHeader] = useState(false);
   const heroTitleRef = useRef(null);
+  const [examsData, setExamsData] = useState(stateExamsData);
+  const [title, setTitle] = useState(stateTitle);
 
-  // Extract exam number from URL or title
+  // Extract exam number from URL
   const examNumber = useMemo(() => {
     // Try to get from URL pathname (e.g., /exams571 -> 571)
     const pathMatch = location.pathname.match(/exams(\d+)/);
     if (pathMatch) {
       return pathMatch[1];
     }
-    // Fallback: extract from title (e.g., "نموذج - 571" -> "571")
-    if (title) {
-      const titleMatch = title.match(/(\d+)/);
-      if (titleMatch) {
-        return titleMatch[1];
-      }
-      return title;
+    // Check for physics routes
+    if (location.pathname.includes("/physics/mechanics")) {
+      return "mechanics";
     }
-    return "نماذج التمرّن";
-  }, [location.pathname, title]);
+    if (location.pathname.includes("/physics/electricity")) {
+      return "electricity";
+    }
+    return null;
+  }, [location.pathname]);
+
+  // Load exam data from URL if state is not available
+  useEffect(() => {
+    if (stateExamsData) {
+      // Data already provided via state, use it
+      setExamsData(stateExamsData);
+      setTitle(stateTitle || `نموذج - ${examNumber}`);
+      return;
+    }
+
+    // Load data based on URL
+    if (examNumber === "mechanics") {
+      mechanicsExams.then((data) => {
+        if (data && Object.keys(data).length > 0) {
+          setExamsData(data);
+          setTitle("ميكانيكا");
+        }
+      });
+    } else if (examNumber === "electricity") {
+      electricityExams.then((data) => {
+        if (data && Object.keys(data).length > 0) {
+          setExamsData(data);
+          setTitle("كهرباء");
+        }
+      });
+    } else if (examNumber && EXAM_MODULES[examNumber]) {
+      const examModule = EXAM_MODULES[examNumber];
+      examModule.then((data) => {
+        if (data && Object.keys(data).length > 0) {
+          setExamsData(data);
+          setTitle(`نموذج - ${examNumber}`);
+        }
+      });
+    }
+  }, [examNumber, stateExamsData, stateTitle]);
 
   const years = useMemo(() => {
     if (!examsData) return [];
