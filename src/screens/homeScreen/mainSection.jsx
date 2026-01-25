@@ -58,7 +58,7 @@ function MainSection() {
         />
       </video>
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-black/5" />
       {/* Content */}
       <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col-reverse items-center justify-center gap-12 px-6 py-20 text-right md:py-28 lg:flex-row lg:px-8">
         <div
