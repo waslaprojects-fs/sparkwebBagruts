@@ -1,22 +1,54 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../../styles/tailwind.css";
 
 const registrationLink = "https://spark-manager-web.web.app/register";
 
 function MainSection() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const videoRef = useRef(null);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
+    
+    // Check if screen is small (mobile/tablet)
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth < 1024); // lg breakpoint
+    };
+    
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    
+    return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const stopAtSecond = 1; // Change this to your desired second
+    
+    const handleTimeUpdate = () => {
+      if (isSmallScreen && video.currentTime >= stopAtSecond) {
+        video.pause();
+      }
+    };
+
+    video.addEventListener("timeupdate", handleTimeUpdate);
+    
+    return () => {
+      video.removeEventListener("timeupdate", handleTimeUpdate);
+    };
+  }, [isSmallScreen]);
 
   return (
     <section className="relative min-h-screen overflow-hidden">
       {/* Video Background */}
       <video
+        ref={videoRef}
         autoPlay
         muted
-        loop
+        loop={false}
         playsInline
         className="absolute inset-0 h-full w-full object-cover"
       >

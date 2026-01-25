@@ -48,31 +48,45 @@ export default function MathPage() {
 
       <div className="mx-auto max-w-6xl px-6 mt-4 py-12 lg:px-8">
         <header className="flex flex-col items-end gap-4 text-right">
-          <div className="mt-4 flex w-full flex-col items-end gap-2 sm:flex-row sm:items-center sm:gap-4">
-            <label className="text-sm font-semibold text-gray-700 whitespace-nowrap">
-              ابحث حسب السنة
-            </label>
-            <div className="flex w-full max-w-xs items-center gap-3">
-              <input
-                type="text"
-                inputMode="numeric"
-                pattern="[0-9]*"
-                value={yearQuery}
-                onChange={(e) => setYearQuery(e.target.value)}
-                placeholder="مثال: 2024"
-                aria-label="بحث عن سنة الامتحان"
-                className="relative z-10 w-full rounded-full border border-orange-100 bg-white px-4 py-2 text-right text-sm shadow-sm focus:border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-200"
-              />
-              {yearQuery && (
-                <button
-                  type="button"
-                  onClick={() => setYearQuery("")}
-                  className="whitespace-nowrap rounded-full border border-orange-200 px-4 py-2 text-xs font-semibold text-orange-700 transition hover:bg-orange-50"
-                >
-                  إعادة الضبط
-                </button>
-              )}
+          <div className="mt-4 flex w-full flex-col items-end gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex w-full max-w-xs flex-col items-end gap-2 sm:flex-row sm:items-center sm:gap-4">
+              <label className="text-sm font-semibold text-gray-700 whitespace-nowrap">
+                ابحث حسب السنة
+              </label>
+              <div className="flex w-full items-center gap-3">
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  value={yearQuery}
+                  onChange={(e) => setYearQuery(e.target.value)}
+                  placeholder="مثال: 2024"
+                  aria-label="بحث عن سنة الامتحان"
+                  className="relative z-10 w-full rounded-full border border-orange-100 bg-white px-4 py-2 text-right text-sm shadow-sm focus:border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-200"
+                />
+                {yearQuery && (
+                  <button
+                    type="button"
+                    onClick={() => setYearQuery("")}
+                    className="whitespace-nowrap rounded-full border border-orange-200 px-4 py-2 text-xs font-semibold text-orange-700 transition hover:bg-orange-50"
+                  >
+                    إعادة الضبط
+                  </button>
+                )}
+              </div>
             </div>
+            <button
+              type="button"
+              onClick={() =>
+                window.open(
+                  "https://firebasestorage.googleapis.com/v0/b/sparkbagrut.appspot.com/o/diverse%2FAR-5-MATH-Formula_NEW.pdf?alt=media&token=b36e3379-9427-471d-a7cb-497c897a28e2",
+                  "_blank"
+                )
+              }
+              className="whitespace-nowrap rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-6 py-2 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg"
+            >
+              ورقة القوانين
+            </button>
           </div>
         </header>
 
