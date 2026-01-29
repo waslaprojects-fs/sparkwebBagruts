@@ -1,4 +1,5 @@
-import { generateExamData } from "./utils.js";
+import { generateExamDataWithSolFolder } from "./utils.js";
 
-const exams805 = generateExamData(805, true).then((data) => data);
+// Same as 571 (806): solutions in 805/sol/ (e.g. 805/sol/26.pdf for 2026 winter)
+const exams805 = generateExamDataWithSolFolder(805, false).then((data) => data);
 export default exams805;

@@ -4,7 +4,6 @@ import HighlightsSection from "./highlightsSection.jsx";
 import ProgramsSection from "./programsSection.jsx";
 import JourneySection from "./journeySection.jsx";
 import Students from "./students.jsx";
-import ResourcesSection from "./resourcesSection.jsx";
 import CtaSection from "./ctaSection.jsx";
 import SEO from "../../components/SEO.jsx";
 import "../../styles/tailwind.css";
@@ -22,7 +21,6 @@ function Home() {
       <ProgramsSection />
       <JourneySection />
       <Students />
-      <ResourcesSection />
       <CtaSection />
     </section>
   );

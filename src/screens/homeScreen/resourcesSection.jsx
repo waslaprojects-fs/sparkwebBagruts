@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../../styles/tailwind.css";
 
 const registrationLink = "https://spark-manager-web.web.app/register";
@@ -18,6 +19,7 @@ const resourceConfig = [
     module: () => import("../ExamsScreen/exams/803"),
     title: "رياضيات 372",
     term: "شتاء",
+    solutionRoute: "/exams472",
   },
 ];
 
@@ -51,7 +53,7 @@ export default function ResourcesSection() {
               title: item.title,
               year: latestYear,
               exam: latestTerm?.ex ?? "#",
-              solution: latestTerm?.sol ?? null,
+              solution: item.solutionRoute ?? latestTerm?.sol ?? null,
             };
           })
         );
@@ -113,16 +115,27 @@ export default function ResourcesSection() {
               >
                 تحميل الامتحان
               </a>
-              <a
-                href={resource.solution || "#"}
-                className={`inline-flex items-center justify-center rounded-full px-4 py-2 font-semibold transition ${
-                  resource.solution
-                    ? "bg-orange-100 text-orange-700 hover:bg-orange-200"
-                    : "pointer-events-none bg-gray-100 text-gray-400"
-                }`}
-              >
-                {resource.solution ? "تحميل الحل" : "الحل متوفر قريبًا"}
-              </a>
+              {resource.solution ? (
+                resource.solution.startsWith("/") ? (
+                  <Link
+                    to={resource.solution}
+                    className="inline-flex items-center justify-center rounded-full bg-orange-100 px-4 py-2 font-semibold text-orange-700 transition hover:bg-orange-200"
+                  >
+                    عرض الحل
+                  </Link>
+                ) : (
+                  <a
+                    href={resource.solution}
+                    className="inline-flex items-center justify-center rounded-full bg-orange-100 px-4 py-2 font-semibold text-orange-700 transition hover:bg-orange-200"
+                  >
+                    تحميل الحل
+                  </a>
+                )
+              ) : (
+                <span className="inline-flex items-center justify-center rounded-full bg-gray-100 px-4 py-2 font-semibold text-gray-400 pointer-events-none">
+                  الحل متوفر قريبًا
+                </span>
+              )}
             </div>
           </div>
         ))}
