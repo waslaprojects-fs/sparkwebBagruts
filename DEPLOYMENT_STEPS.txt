@@ -1,0 +1,57 @@
+SparkWeb (sparkwebBagruts) — Deployment Process (Firebase Hosting)
+
+What this repo deploys to
+- Hosting target: Firebase Hosting project "sparkbagrut" (from .firebaserc)
+- What gets deployed: the "dist/" folder (from firebase.json -> hosting.public)
+- SPA routing: all routes rewrite to /index.html (from firebase.json rewrites)
+
+1) Prerequisites (one-time)
+- Install Node.js (LTS recommended).
+- Install project dependencies (choose ONE):
+  - Using npm:
+    npm ci
+  - Or using pnpm:
+    pnpm install
+
+Note: This repo includes firebase-tools in devDependencies, so you can use it via npx firebase ...
+
+2) Login to Firebase (one-time per machine/user)
+- Run:
+  npm run firebase:login
+- This opens a browser to authenticate.
+
+3) Confirm you are deploying to the correct project
+- Default Firebase project: sparkbagrut (in .firebaserc)
+- Optional verification:
+  npx firebase projects:list
+  npx firebase use
+
+4) Build the website (every deploy)
+- Run:
+  npm run build
+- This generates a fresh production build into dist/.
+
+5) (Recommended) Test locally before deploying
+- Preview the production build:
+  npm run serve
+- Or run Firebase Hosting emulator:
+  npx firebase emulators:start --only hosting
+- Then open:
+  http://localhost:5000
+
+6) Deploy to Firebase Hosting
+Option A (single command via project script):
+  npm run deploy
+
+Option B (explicit commands):
+  npm run build
+  npx firebase deploy --only hosting
+
+7) Verify after deploy
+- Open your Firebase Hosting URL (from the deploy output).
+- Check key pages/routes (SPA rewrite should make direct URL refresh work).
+
+8) Common issues & fixes
+- Deploy shows old content: rebuild first (npm run build), then deploy again.
+- Wrong project: run `npx firebase use sparkbagrut` then deploy.
+- Routing 404 on refresh: this repo already has SPA rewrite to /index.html in firebase.json.
