@@ -18,9 +18,9 @@ function Home() {
       />
       <MainSection />
       <HighlightsSection />
+      <Students />
       <ProgramsSection />
       <JourneySection />
-      <Students />
       <CtaSection />
     </section>
   );
