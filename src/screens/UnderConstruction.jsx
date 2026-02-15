@@ -1,10 +1,16 @@
 import "../styles/tailwind.css";
 import HeroSection from "../styles/GradientBlob";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 
 export default function UnderConstruction() {
   return (
     <section className="bg-white font-messiri">
+      <SEO
+        title="قيد الإنشاء"
+        description="هذه الصفحة قيد الإنشاء. نحن نعمل بجد لإضافة المحتوى قريبًا."
+        robots="noindex, nofollow"
+      />
       <HeroSection title={"قيد الإنشاء"} />
       <div className="mx-auto mt-16 flex max-w-4xl flex-col items-center justify-center px-6 pb-24 text-center lg:px-8">
         <div className="rounded-3xl border border-orange-100 bg-gradient-to-br from-orange-50 via-white to-amber-50 p-12 shadow-lg shadow-orange-100">

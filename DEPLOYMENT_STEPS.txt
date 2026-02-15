@@ -47,8 +47,7 @@ Note: This repo includes firebase-tools in devDependencies, so you can use it vi
 - Then build and deploy (see step 6 below).
 
 6) Deploy to Firebase Hosting
-Option A (single command via project script):
-  npm run deploy
+
 
 Option B (explicit commands):
   npm run build

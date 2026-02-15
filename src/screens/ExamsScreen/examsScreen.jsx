@@ -9,6 +9,10 @@ export default function ExamsScreen() {
         title="قسم البچاريت"
         description="بچاريت على نماذج بجروت الرياضيات والفيزياء وعلم الحاسوب والإلكترونيكا. حلول وتمارين شاملة لجميع النماذج مع إمكانية التحميل المباشر."
         keywords="بجروت، بجاريت، بچاريت، نماذج بجروت، حلول بجروت، تمارين بجروت، رياضيات، فيزياء، علم حاسوب، إلكترونيكا، حلول رياضيات، حلول فيزياء"
+        breadcrumbs={[
+          { name: "الرئيسية", url: "/" },
+          { name: "قسم البجروت", url: "/examsScreen" },
+        ]}
       />
       <section className="relative overflow-hidden bg-white">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,165,0,0.05),transparent)]" />
