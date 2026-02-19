@@ -2,11 +2,13 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import "./styles/tailwind.css";
+import { AuthProvider } from "./context/AuthContext";
 import Header from "./tools/header.jsx";
 import Home from "./screens/homeScreen/home.jsx";
 import Dawrat from "./screens/dawrat/dawrat.jsx";
 import ExamsScreen from "./screens/ExamsScreen/examsScreen.jsx";
 import MathPage from "./screens/ExamsScreen/math.jsx";
+import MemberArea from "./screens/MemberArea.jsx";
 import Footer from "./tools/footer.jsx";
 import NotFound from "./screens/NotFound.jsx";
 import UnderConstruction from "./screens/UnderConstruction.jsx";
@@ -93,14 +95,16 @@ document.addEventListener("keydown", function (event) {
 function App() {
   return (
     <Router>
-      <ScrollToTop />
-      <section className="App">
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/dawrat" element={<Dawrat />} />
-          <Route path="/examsScreen" element={<ExamsScreen />} />
+      <AuthProvider>
+        <ScrollToTop />
+        <section className="App">
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/dawrat" element={<Dawrat />} />
+            <Route path="/member" element={<MemberArea />} />
+            <Route path="/examsScreen" element={<ExamsScreen />} />
           <Route path="/exams/exams801" element={<MathPage />} />
           <Route path="/exams371" element={<MathPage />} />
           <Route path="/exams802" element={<MathPage />} />
@@ -122,6 +126,7 @@ function App() {
         </Routes>
         <Footer />
       </section>
+      </AuthProvider>
     </Router>
   );
 }
