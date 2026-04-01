@@ -5,7 +5,7 @@ admin.initializeApp();
 
 const bucket = admin.storage().bucket("sparkbagrut.appspot.com");
 
-exports.pdfProxy = onRequest(async (request, response) => {
+exports.pdfProxy = onRequest({invoker: "public"}, async (request, response) => {
   try {
     if (request.method !== "GET" && request.method !== "HEAD") {
       response.set("Allow", "GET, HEAD");
