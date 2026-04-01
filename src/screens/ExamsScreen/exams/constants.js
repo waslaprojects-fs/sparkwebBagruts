@@ -6,5 +6,9 @@ export const TERMS = [
   { name: "شتاء", suffix: "" },
 ];
 
-export const STORAGE_BASE_URL = "https://firebasestorage.googleapis.com/v0/b/sparkbagrut.appspot.com/o";
+export const PDF_PROXY_BASE_URL = "/pdfs";
+
+export function buildPdfProxyUrl(folder, fileName) {
+  return `${PDF_PROXY_BASE_URL}/${encodeURIComponent(folder)}/${encodeURIComponent(fileName)}`;
+}
 

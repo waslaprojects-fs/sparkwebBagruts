@@ -52,6 +52,11 @@ export default function MathPage() {
     setPdfViewerAnchor(null);
   };
 
+  const openPdfInNewTab = (url) => {
+    if (!url || url === "#") return;
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   const pdfViewerBlock = (
     <div className="mb-6 rounded-2xl border border-orange-200 bg-white shadow-lg shadow-orange-100 overflow-hidden">
       <div className="flex items-center justify-between gap-4 border-b border-orange-100 bg-orange-50 px-4 py-3 text-right">
@@ -332,12 +337,7 @@ export default function MathPage() {
                             type="button"
                             className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-5 py-2 font-semibold text-white shadow hover:-translate-y-0.5 hover:shadow-md transition"
                             onClick={() => {
-                              const url = sessionData?.ex || "#";
-                              if (url !== "#") {
-                                setPdfViewerLabel(`${year} ${sessionName === "عادي" ? "" : sessionName} - نموذج الامتحان`);
-                                setPdfViewerAnchor({ year, sessionName });
-                                setPdfViewerUrl(url);
-                              }
+                              openPdfInNewTab(sessionData?.ex);
                             }}
                           >
                             فتح نموذج الامتحان
@@ -351,9 +351,7 @@ export default function MathPage() {
                             }`}
                             onClick={() => {
                               if (hasSolution) {
-                                setPdfViewerLabel(`${year} ${sessionName === "عادي" ? "" : sessionName} - الحل`);
-                                setPdfViewerAnchor({ year, sessionName });
-                                setPdfViewerUrl(sessionData.sol);
+                                openPdfInNewTab(sessionData?.sol);
                               }
                             }}
                           >
@@ -417,12 +415,7 @@ export default function MathPage() {
                                     type="button"
                                     className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-5 py-2 font-semibold text-white shadow hover:-translate-y-0.5 hover:shadow-md transition"
                                     onClick={() => {
-                                      const url = sessionData?.ex || "#";
-                                      if (url !== "#") {
-                                        setPdfViewerLabel(`${year} ${sessionName === "عادي" ? "" : sessionName} - نموذج الامتحان`);
-                                        setPdfViewerAnchor({ year, sessionName });
-                                        setPdfViewerUrl(url);
-                                      }
+                                      openPdfInNewTab(sessionData?.ex);
                                     }}
                                   >
                                     فتح نموذج الامتحان
@@ -436,9 +429,7 @@ export default function MathPage() {
                                     }`}
                                     onClick={() => {
                                       if (hasSolution) {
-                                        setPdfViewerLabel(`${year} ${sessionName === "عادي" ? "" : sessionName} - الحل`);
-                                        setPdfViewerAnchor({ year, sessionName });
-                                        setPdfViewerUrl(sessionData.sol);
+                                        openPdfInNewTab(sessionData?.sol);
                                       }
                                     }}
                                   >

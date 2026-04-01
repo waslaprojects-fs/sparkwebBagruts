@@ -1,4 +1,4 @@
-import { YEARS, TERMS, STORAGE_BASE_URL } from "./constants.js";
+import { YEARS, TERMS, buildPdfProxyUrl } from "./constants.js";
 
 async function checkFileExists(url) {
   try {
@@ -11,7 +11,6 @@ async function checkFileExists(url) {
 }
 
 export function generateExamData(examNumber, checkSolutions = false) {
-  const baseUrl = `${STORAGE_BASE_URL}/${examNumber}%2F`;
   const examData = {};
 
   for (const year of YEARS) {
@@ -23,11 +22,11 @@ export function generateExamData(examNumber, checkSolutions = false) {
       const fileSuffix = term.suffix
         ? `${year % 100}${term.suffix}`
         : `${year % 100}`;
-      const encodedFileName = encodeURIComponent(`${fileSuffix}.pdf`);
-      const encodedSolutionFileName = encodeURIComponent(`${fileSuffix}_sol.pdf`);
+      const examFileName = `${fileSuffix}.pdf`;
+      const solutionFileName = `${fileSuffix}_sol.pdf`;
 
-      const examUrl = `${baseUrl}${encodedFileName}?alt=media`;
-      const solutionUrl = `${baseUrl}${encodedSolutionFileName}?alt=media`;
+      const examUrl = buildPdfProxyUrl(examNumber, examFileName);
+      const solutionUrl = buildPdfProxyUrl(examNumber, solutionFileName);
 
       examData[year][term.name] = {
         ex: examUrl,
@@ -64,8 +63,6 @@ async function buildExamDataWithCheck(examData, examNumber, solutionsInSeparateF
 }
 
 export function generateExamDataWithSolFolder(examNumber, checkSolutions = false) {
-  const baseUrl = `${STORAGE_BASE_URL}/${examNumber}%2F`;
-  const solBaseUrl = `${STORAGE_BASE_URL}/${examNumber}%2Fsol%2F`;
   const examData = {};
 
   for (const year of YEARS) {
@@ -77,10 +74,10 @@ export function generateExamDataWithSolFolder(examNumber, checkSolutions = false
       const fileSuffix = term.suffix
         ? `${year % 100}${term.suffix}`
         : `${year % 100}`;
-      const encodedFileName = encodeURIComponent(`${fileSuffix}.pdf`);
+      const fileName = `${fileSuffix}.pdf`;
 
-      const examUrl = `${baseUrl}${encodedFileName}?alt=media`;
-      const solutionUrl = `${solBaseUrl}${encodedFileName}?alt=media`;
+      const examUrl = buildPdfProxyUrl(examNumber, fileName);
+      const solutionUrl = buildPdfProxyUrl(`${examNumber}/sol`, fileName);
 
       examData[year][term.name] = {
         ex: examUrl,

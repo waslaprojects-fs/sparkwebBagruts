@@ -8,6 +8,10 @@
     ],
     "rewrites": [
       {
+        "source": "/pdfs/**",
+        "function": "pdfProxy"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
