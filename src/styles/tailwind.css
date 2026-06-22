@@ -15,3 +15,40 @@ button {
 .scrollbar-hide::-webkit-scrollbar {
   display: none; /* Chrome, Safari, and Opera */
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: radial-gradient(circle at top, #fff4e6 0%, #fffaf4 45%, #ffffff 100%);
+  color: #1f2937;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  box-shadow: 0 10px 30px rgba(251, 146, 60, 0.12);
+}
+
+.student-card {
+  transition: transform 260ms ease, box-shadow 260ms ease;
+}
+
+.student-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(251, 146, 60, 0.18);
+}
+
+.fade-in-up {
+  animation: fadeSlideUp 700ms ease-out both;
+}
+
+.slide-in-right {
+  animation: slideInRight 850ms ease-out both;
+}
+
+.slide-in-left {
+  animation: slideInLeft 850ms ease-out both;
+}

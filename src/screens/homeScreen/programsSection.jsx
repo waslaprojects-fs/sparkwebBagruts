@@ -36,27 +36,29 @@ export default function ProgramsSection() {
     <section className="mx-auto mt-24 max-w-6xl px-6 text-right lg:px-8">
       <div className="flex flex-col items-end gap-4 sm:flex-row sm:items-center sm:justify-between">
         <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-          برامج التدريب في سبارك
+          ما نقدمه
         </h2>
         <a
           href="/examsScreen"
           className="inline-flex items-center justify-center rounded-full border border-orange-200 px-6 py-2 text-sm font-semibold text-orange-600 hover:bg-orange-50"
         >
-          تصفّح جميع النماذج ↗
+          استكشف خدماتنا ↗
         </a>
       </div>
       <div className="mt-12 grid gap-6 md:grid-cols-2">
-        {programs.map((program) => (
+        {programs.map((program, index) => (
           <article
             key={program.title}
-            className="group relative overflow-hidden rounded-3xl border border-orange-100 bg-white shadow-lg shadow-orange-100 transition hover:-translate-y-1 hover:shadow-xl"
+            className="group relative overflow-hidden rounded-3xl border border-orange-100 bg-white/90 shadow-lg shadow-orange-100 transition duration-300 hover:-translate-y-2 hover:shadow-xl animate-fadeSlideUp"
+            style={{ animationDelay: `${index * 110}ms` }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-orange-100/60 via-white/40 to-white/80 opacity-0 transition group-hover:opacity-100" />
+            <div className="absolute -left-10 -top-10 h-24 w-24 rounded-full bg-orange-200/40 blur-2xl opacity-0 transition group-hover:opacity-100" />
             <div className="relative flex h-full flex-col gap-6 p-8">
               <img
                 src={program.image}
                 alt={program.title}
-                className="h-20 w-20 self-end object-contain"
+                className="h-20 w-20 self-end object-contain transition duration-300 group-hover:scale-110"
               />
               <div>
                 <h3 className="text-2xl font-bold text-gray-900">
@@ -71,7 +73,7 @@ export default function ProgramsSection() {
                   href={program.href}
                   className="inline-flex items-center justify-center rounded-full bg-orange-500 px-5 py-2 text-sm font-semibold text-white shadow hover:bg-orange-600"
                 >
-                  ابدأ الآن
+                  عرض التفاصيل
                 </a>
               </div>
             </div>

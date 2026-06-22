@@ -129,7 +129,7 @@ export default function Students() {
     <section className="relative mx-auto mt-24 max-w-6xl px-6 text-right lg:px-8">
       <div className="flex flex-col items-end gap-4 sm:flex-row sm:items-center sm:justify-between">
         <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-          قصص نجاح من مجتمع Spark
+          طلابنا
         </h2>
         <div className="flex gap-3">
           <button
@@ -158,12 +158,15 @@ export default function Students() {
           {stories.map((story) => (
             <figure
               key={story.id}
-              className="relative flex w-80 flex-shrink-0 snap-center flex-col justify-between rounded-3xl border border-orange-100 bg-white p-8 shadow-lg shadow-orange-100"
+              className="student-card relative flex w-80 flex-shrink-0 snap-center flex-col justify-between rounded-3xl border border-orange-100 bg-white/95 p-8 shadow-lg shadow-orange-100"
             >
+              <div className="absolute right-4 top-4 rounded-full bg-orange-100 px-2 py-0.5 text-xs font-semibold text-orange-600">
+                تجربة طالب
+              </div>
               <img
                 src={story.image ?? "./assets/dafult.png"}
                 alt={story.name}
-                className="h-28 w-28 self-center rounded-full border-2 border-orange-200 object-cover"
+                className="h-28 w-28 self-center rounded-full border-2 border-orange-200 object-cover transition duration-300 hover:scale-105"
               />
               <blockquote className="mt-6 text-base leading-8 text-gray-700">
                 <span>“{getQuotePreview(story.quote)}”</span>

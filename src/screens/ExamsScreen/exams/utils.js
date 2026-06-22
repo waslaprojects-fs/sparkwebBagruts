@@ -16,8 +16,8 @@ export function generateExamData(examNumber, checkSolutions = false) {
   for (const year of YEARS) {
     examData[year] = {};
     for (const term of TERMS) {
-      // Skip summer terms for 2026 (only keep winter)
-      if (year === 2026 && term.suffix !== "") continue;
+      // For 2026, only winter and summer term A (26a) are available
+      if (year === 2026 && term.suffix === "b") continue;
 
       const fileSuffix = term.suffix
         ? `${year % 100}${term.suffix}`
@@ -45,7 +45,7 @@ export function generateExamData(examNumber, checkSolutions = false) {
 async function buildExamDataWithCheck(examData, examNumber, solutionsInSeparateFolder = false) {
   const tasks = YEARS.flatMap((year) =>
     TERMS.map(async (term) => {
-      // Skip if this term doesn't exist for this year (e.g., summer terms for 2026)
+      // Skip if this term doesn't exist for this year (e.g., summer term B for 2026)
       if (!examData[year] || !examData[year][term.name]) return;
 
       const solutionUrl = examData[year][term.name].sol;
@@ -68,8 +68,8 @@ export function generateExamDataWithSolFolder(examNumber, checkSolutions = false
   for (const year of YEARS) {
     examData[year] = {};
     for (const term of TERMS) {
-      // Skip summer terms for 2026 (only keep winter)
-      if (year === 2026 && term.suffix !== "") continue;
+      // For 2026, only winter and summer term A (26a) are available
+      if (year === 2026 && term.suffix === "b") continue;
 
       const fileSuffix = term.suffix
         ? `${year % 100}${term.suffix}`

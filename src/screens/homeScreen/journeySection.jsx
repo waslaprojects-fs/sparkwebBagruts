@@ -2,41 +2,41 @@ import "../../styles/tailwind.css";
 
 const steps = [
   {
-    title: "تشخيص نقطة الانطلاق",
+    title: "تشخيص دقيق",
     description:
-      "نبدأ بجلسة تقييم شاملة للتعرف على نقاط القوة والتحديات وبناء خطة ملائمة.",
+      "نحلل مستواك ونحدد أولوياتك لبناء خطة مناسبة ومباشرة.",
   },
   {
-    title: "مسارات تعلم ذكية",
+    title: "محتوى مركّز",
     description:
-      "دروس حضورية ورقمية، بنك أسئلة، ومواد مسجلة تتيح لك التعلم بالوتيرة المناسبة.",
+      "دروس تفاعلية، مواد رقمية، وبنك أسئلة يغطي النماذج الأهم.",
   },
   {
-    title: "متابعة وقياس أسبوعي",
+    title: "نتائج ملموسة",
     description:
-      "تقرير تقدم شخصي، مراجعات مركزة، وإسناد من المدربين حتى يوم الامتحان.",
+      "متابعة أسبوعية وتحديث مستمر للخطة حتى تصل لنتيجة أقوى.",
   },
 ];
 
 export default function JourneySection() {
   return (
-    <section className="mx-auto mt-24 max-w-6xl overflow-hidden rounded-3xl bg-orange-500 text-white lg:px-8">
+    <section className="mx-auto mt-24 max-w-6xl overflow-hidden rounded-3xl bg-gradient-to-br from-orange-500 via-orange-500 to-amber-500 text-white lg:px-8 shadow-2xl shadow-orange-200">
       <div className="relative px-6 py-16 lg:px-12">
-        <div className="absolute -bottom-16 -left-16 h-40 w-40 rounded-full bg-white/20 blur-2xl" />
-        <div className="absolute -top-20 right-16 h-36 w-36 rounded-full bg-white/20 blur-2xl" />
+        <div className="absolute -bottom-16 -left-16 h-40 w-40 rounded-full bg-white/20 blur-2xl animate-floatSlow" />
+        <div className="absolute -top-20 right-16 h-36 w-36 rounded-full bg-white/20 blur-2xl animate-floatSlow [animation-delay:300ms]" />
         <div className="relative">
           <h2 className="text-3xl font-bold sm:text-4xl">
-            رحلتك مع Spark خطوة بخطوة
+            أسلوبنا المرن في العمل
           </h2>
           <p className="mt-4 max-w-2xl text-sm leading-7 text-orange-50">
-            بنينا تجربتنا التعليمية لتدمج بين الدافعية، المحتوى العميق، والسياق
-            الواقعي لامتحانات البجروت. كل مرحلة تقربك أكثر من هدفك.
+            كل طالب له احتياجه الخاص؛ لذلك نبني التجربة التعليمية بشكل منفصل
+            يحقق أعلى استفادة وبأسرع وقت.
           </p>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {steps.map((step, index) => (
               <div
                 key={step.title}
-                className="rounded-2xl bg-white/10 p-6 backdrop-blur"
+                className="rounded-2xl bg-white/10 p-6 backdrop-blur transition duration-300 hover:-translate-y-1 hover:bg-white/15"
               >
                 <span className="text-sm font-semibold text-orange-100">
                   {`0${index + 1}`}

@@ -21,6 +21,7 @@ const socials = [
 export default function Footer() {
   return (
     <footer className="relative mt-24 bg-gradient-to-b from-white via-orange-50 to-white">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-orange-100/40 to-transparent" />
       <div className="absolute inset-x-0 -top-8 flex justify-center">
         <div className="h-1 w-24 rounded-full bg-gradient-to-r from-orange-500 to-amber-400" />
       </div>
@@ -95,7 +96,7 @@ export default function Footer() {
                 <li key={item.label}>
                   <a
                     href={item.href}
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white shadow hover:-translate-y-0.5 hover:shadow-md transition"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white shadow transition duration-300 hover:-translate-y-1 hover:shadow-md"
                   >
                     <img
                       src={item.icon}

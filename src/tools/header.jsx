@@ -108,10 +108,10 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white/80 backdrop-blur border-b border-orange-100 sticky top-0 z-40">
+    <header className="sticky top-0 z-40 border-b border-orange-100 bg-white/75 backdrop-blur-xl">
       <nav
         aria-label="Global"
-        className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-8"
+        className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3 lg:px-8"
       >
         <div className="flex lg:flex-1 relative" ref={logoRef}>
           <Link
@@ -125,7 +125,7 @@ export default function Header() {
             onMouseLeave={endLongPress}
           >
             <span className="sr-only">Spark</span>
-            <img src="./assets/logo512.png" className="h-20" alt="Spark Logo" />
+            <img src="./assets/logo512.png" className="h-16 transition duration-300 hover:scale-105 lg:h-20" alt="Spark Logo" />
           </Link>
           {logoMenuOpen && (
             <div
@@ -165,7 +165,7 @@ export default function Header() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(true)}
-            className="-m-2.5 inline-flex items-center justify-center rounded-lg p-2.5 text-gray-700"
+            className="-m-2.5 inline-flex items-center justify-center rounded-lg p-2.5 text-gray-700 transition hover:bg-orange-50"
           >
             <span className="sr-only">Open main menu</span>
             <Bars3Icon aria-hidden="true" className="size-6" />
@@ -195,7 +195,7 @@ export default function Header() {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <a
             href={registrationLink}
-            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-orange-200 transition hover:shadow-orange-300 hover:scale-105"
+            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-orange-200 transition duration-300 hover:-translate-y-0.5 hover:scale-105 hover:shadow-orange-300"
           >
             سجّل الآن
           </a>

@@ -92,10 +92,11 @@ export default function ResourcesSection() {
         </a>
       </div>
       <div className="mt-10 grid gap-6 md:grid-cols-3">
-        {resources.map((resource) => (
+        {resources.map((resource, index) => (
           <div
             key={`${resource.title}-${resource.year}`}
-            className="flex flex-col rounded-3xl border border-orange-100 bg-white p-6 shadow-sm shadow-orange-100"
+            className="student-card flex flex-col rounded-3xl border border-orange-100 bg-white p-6 shadow-sm shadow-orange-100 animate-fadeSlideUp"
+            style={{ animationDelay: `${index * 120}ms` }}
           >
             <span className="text-sm font-semibold text-orange-500">
               {resource.year}
