@@ -1,10 +1,144 @@
 rules_version = '2';
 
+// Public read stays limited to the content prefixes the site already publishes.
+// Listing is allowed on those prefixes only, because the public screens and the
+// admin inventory discover files with scoped list() calls. The bucket root and
+// every other prefix stay private.
+//
+// Writes and deletes require Firebase Auth custom claim admin == true.
+// Clients cannot grant that claim. See scripts/grantAdminClaim.js.
+// New objects must be application/pdf and at most 40 MiB (MAX_PDF_BYTES).
+// Create is limited to canonical names. Update and delete also allow an existing
+// safe PDF name so unusual legacy objects can be replaced or removed in place.
+// 40 * 1024 * 1024 = 41943040.
+
 service firebase.storage {
   match /b/{bucket}/o {
-    match /{allPaths=**} {
-      allow read: if true;
-      allow write: if false;
+    function isAdmin() {
+      return request.auth != null && request.auth.token.admin == true;
+    }
+
+    function isPdfUpload() {
+      return request.resource != null
+        && request.resource.contentType == 'application/pdf'
+        && request.resource.size > 0
+        && request.resource.size <= 40 * 1024 * 1024;
+    }
+
+    function isSafePdfName(name) {
+      return name.size() > 4
+        && name.size() <= 180
+        && name.matches('^.+\\.pdf$');
+    }
+
+    function isSuffixConventionName(name) {
+      return name.matches('^[0-9]{2}[ab]?\\.pdf$')
+        || name.matches('^[0-9]{2}[ab]?_sol\\.pdf$');
+    }
+
+    function isFolderConventionName(name) {
+      return name.matches('^[0-9]{2}[ab]?\\.pdf$');
+    }
+
+    function isPhysicsName(name) {
+      return name.matches('^[0-9]{4}\\.pdf$')
+        || (name.matches('^[0-9]{4} .+\\.pdf$') && !name.matches('.*\\.\\..*'));
+    }
+
+    function isDiverseName(name) {
+      return isSafePdfName(name) && !name.matches('.*\\.\\..*');
+    }
+
+    function readContent() {
+      return true;
+    }
+
+    match /801/{fileName} {
+      allow get, list: if readContent();
+      allow create: if isAdmin() && isPdfUpload() && isSuffixConventionName(fileName);
+      allow update: if isAdmin() && isPdfUpload() && isSafePdfName(fileName);
+      allow delete: if isAdmin() && isSafePdfName(fileName);
+    }
+    match /802/{fileName} {
+      allow get, list: if readContent();
+      allow create: if isAdmin() && isPdfUpload() && isSuffixConventionName(fileName);
+      allow update: if isAdmin() && isPdfUpload() && isSafePdfName(fileName);
+      allow delete: if isAdmin() && isSafePdfName(fileName);
+    }
+    match /803/{fileName} {
+      allow get, list: if readContent();
+      allow create: if isAdmin() && isPdfUpload() && isSuffixConventionName(fileName);
+      allow update: if isAdmin() && isPdfUpload() && isSafePdfName(fileName);
+      allow delete: if isAdmin() && isSafePdfName(fileName);
+    }
+
+    match /804/{fileName} {
+      allow get, list: if readContent();
+      allow create: if isAdmin() && isPdfUpload() && isFolderConventionName(fileName);
+      allow update: if isAdmin() && isPdfUpload() && isSafePdfName(fileName);
+      allow delete: if isAdmin() && isSafePdfName(fileName);
+    }
+    match /804/sol/{fileName} {
+      allow get, list: if readContent();
+      allow create: if isAdmin() && isPdfUpload() && isFolderConventionName(fileName);
+      allow update: if isAdmin() && isPdfUpload() && isSafePdfName(fileName);
+      allow delete: if isAdmin() && isSafePdfName(fileName);
+    }
+    match /805/{fileName} {
+      allow get, list: if readContent();
+      allow create: if isAdmin() && isPdfUpload() && isFolderConventionName(fileName);
+      allow update: if isAdmin() && isPdfUpload() && isSafePdfName(fileName);
+      allow delete: if isAdmin() && isSafePdfName(fileName);
+    }
+    match /805/sol/{fileName} {
+      allow get, list: if readContent();
+      allow create: if isAdmin() && isPdfUpload() && isFolderConventionName(fileName);
+      allow update: if isAdmin() && isPdfUpload() && isSafePdfName(fileName);
+      allow delete: if isAdmin() && isSafePdfName(fileName);
+    }
+    match /806/{fileName} {
+      allow get, list: if readContent();
+      allow create: if isAdmin() && isPdfUpload() && isFolderConventionName(fileName);
+      allow update: if isAdmin() && isPdfUpload() && isSafePdfName(fileName);
+      allow delete: if isAdmin() && isSafePdfName(fileName);
+    }
+    match /806/sol/{fileName} {
+      allow get, list: if readContent();
+      allow create: if isAdmin() && isPdfUpload() && isFolderConventionName(fileName);
+      allow update: if isAdmin() && isPdfUpload() && isSafePdfName(fileName);
+      allow delete: if isAdmin() && isSafePdfName(fileName);
+    }
+    match /807/{fileName} {
+      allow get, list: if readContent();
+      allow create: if isAdmin() && isPdfUpload() && isFolderConventionName(fileName);
+      allow update: if isAdmin() && isPdfUpload() && isSafePdfName(fileName);
+      allow delete: if isAdmin() && isSafePdfName(fileName);
+    }
+    match /807/sol/{fileName} {
+      allow get, list: if readContent();
+      allow create: if isAdmin() && isPdfUpload() && isFolderConventionName(fileName);
+      allow update: if isAdmin() && isPdfUpload() && isSafePdfName(fileName);
+      allow delete: if isAdmin() && isSafePdfName(fileName);
+    }
+
+    match /ميكانيكا/{fileName} {
+      allow get, list: if readContent();
+      allow create: if isAdmin() && isPdfUpload() && isPhysicsName(fileName);
+      allow update: if isAdmin() && isPdfUpload() && isSafePdfName(fileName);
+      allow delete: if isAdmin() && isSafePdfName(fileName);
+    }
+    match /حشمال/{fileName} {
+      allow get, list: if readContent();
+      allow create: if isAdmin() && isPdfUpload() && isPhysicsName(fileName);
+      allow update: if isAdmin() && isPdfUpload() && isSafePdfName(fileName);
+      allow delete: if isAdmin() && isSafePdfName(fileName);
+    }
+
+    match /diverse/{fileName} {
+      allow get, list: if readContent();
+      allow create: if isAdmin() && isPdfUpload() && isDiverseName(fileName);
+      allow update: if isAdmin() && isPdfUpload() && isSafePdfName(fileName);
+      allow delete: if isAdmin() && isSafePdfName(fileName);
     }
   }
 }

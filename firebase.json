@@ -20,7 +20,19 @@
       }
     ]
   },
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  },
   "emulators": {
+    "auth": {
+      "port": 9099
+    },
+    "storage": {
+      "port": 9199
+    },
     "hosting": {
       "port": 5000
     },
@@ -28,8 +40,5 @@
       "enabled": true
     },
     "singleProjectMode": true
-  },
-  "database": {
-    "rules": "database.rules.json"
   }
 }

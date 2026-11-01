@@ -3,45 +3,36 @@ import { useLocation } from "react-router-dom";
 import "../../styles/tailwind.css";
 import HeroSection from "../../styles/GradientBlob";
 import SEO from "../../components/SEO";
-import exams801 from "./exams/801";
-import exams802 from "./exams/802";
-import exams803 from "./exams/803";
-import exams804 from "./exams/804";
-import exams805 from "./exams/805";
-import exams806 from "./exams/806";
-import exams807 from "./exams/807";
-import mechanicsExams from "./exams/mechanics";
-import electricityExams from "./exams/electricity";
+import { categoryFromPathname } from "../../content/categories.js";
+import { loadPublicExamTree } from "../../content/publicContent.js";
+import { formatStorageError } from "../../content/transfer.js";
 
 const statusBadge = (hasSolution) =>
   hasSolution
     ? "bg-green-100 text-green-700 border border-green-200"
     : "bg-gray-100 text-gray-500 border border-gray-200";
 
-const EXAM_MODULES = {
-  801: exams801,
-  371: exams802,
-  802: exams802,
-  372: exams803,
-  803: exams803,
-  471: exams804,
-  804: exams804,
-  472: exams805,
-  805: exams805,
-  571: exams806,
-  806: exams806,
-  572: exams807,
-  807: exams807,
-};
+function publicTitle(pathname) {
+  if (pathname.includes("/physics/mechanics")) return "ميكانيكا";
+  if (pathname.includes("/physics/electricity")) return "كهرباء";
+  const match = pathname.match(/exams(\d+)/);
+  return match ? `نموذج - ${match[1]}` : "نماذج التمرّن";
+}
 
 export default function MathPage() {
   const location = useLocation();
-  const { examsData: stateExamsData, title: stateTitle } = location.state || {};
+  const category = categoryFromPathname(location.pathname);
+  const stateExamsData = location.state?.examsData;
+  const stateTitle = location.state?.title;
+  const stateLoadError = location.state?.loadError;
   const [yearQuery, setYearQuery] = useState("");
   const [showStickyHeader, setShowStickyHeader] = useState(false);
   const heroTitleRef = useRef(null);
-  const [examsData, setExamsData] = useState(stateExamsData);
-  const [title, setTitle] = useState(stateTitle);
+  const [examsData, setExamsData] = useState(stateExamsData || null);
+  const [title, setTitle] = useState(stateTitle || publicTitle(location.pathname));
+  const [loadStatus, setLoadStatus] = useState(stateLoadError ? "error" : stateExamsData ? "ready" : "loading");
+  const [loadError, setLoadError] = useState(stateLoadError || "");
+  const [reloadToken, setReloadToken] = useState(0);
   const [pdfViewerUrl, setPdfViewerUrl] = useState(null);
   const [pdfViewerLabel, setPdfViewerLabel] = useState("");
   const [pdfViewerAnchor, setPdfViewerAnchor] = useState(null); // null | "formula" | { year, sessionName }
@@ -99,40 +90,52 @@ export default function MathPage() {
     return null;
   }, [location.pathname]);
 
-  // Load exam data from URL if state is not available
   useEffect(() => {
-    if (stateExamsData) {
-      // Data already provided via state, use it
-      setExamsData(stateExamsData);
-      setTitle(stateTitle || `نموذج - ${examNumber}`);
-      return;
+    let cancelled = false;
+    const titleForPage = stateTitle || publicTitle(location.pathname);
+
+    async function run() {
+      if (reloadToken === 0 && stateLoadError) {
+        setTitle(titleForPage);
+        setExamsData(null);
+        setLoadError(stateLoadError);
+        setLoadStatus("error");
+        return;
+      }
+      if (reloadToken === 0 && stateExamsData) {
+        setExamsData(stateExamsData);
+        setTitle(titleForPage);
+        setLoadError("");
+        setLoadStatus("ready");
+        return;
+      }
+      setExamsData(null);
+      if (!category) {
+        setLoadStatus("error");
+        setLoadError("هذا المسار غير مرتبط بمجلد في التخزين.");
+        return;
+      }
+      setLoadStatus("loading");
+      try {
+        const data = await loadPublicExamTree(category.id, { force: reloadToken > 0 });
+        if (cancelled) return;
+        setExamsData(data);
+        setTitle(titleForPage);
+        setLoadError("");
+        setLoadStatus("ready");
+      } catch (error) {
+        if (cancelled) return;
+        setExamsData(null);
+        setLoadError(formatStorageError(error));
+        setLoadStatus("error");
+      }
     }
 
-    // Load data based on URL
-    if (examNumber === "mechanics") {
-      mechanicsExams.then((data) => {
-        if (data && Object.keys(data).length > 0) {
-          setExamsData(data);
-          setTitle("ميكانيكا");
-        }
-      });
-    } else if (examNumber === "electricity") {
-      electricityExams.then((data) => {
-        if (data && Object.keys(data).length > 0) {
-          setExamsData(data);
-          setTitle("كهرباء");
-        }
-      });
-    } else if (examNumber && EXAM_MODULES[examNumber]) {
-      const examModule = EXAM_MODULES[examNumber];
-      examModule.then((data) => {
-        if (data && Object.keys(data).length > 0) {
-          setExamsData(data);
-          setTitle(`نموذج - ${examNumber}`);
-        }
-      });
-    }
-  }, [examNumber, stateExamsData, stateTitle]);
+    run();
+    return () => {
+      cancelled = true;
+    };
+  }, [location.pathname, location.key, reloadToken, category, stateExamsData, stateTitle, stateLoadError]);
 
   const years = useMemo(() => {
     if (!examsData) return [];
@@ -149,7 +152,8 @@ export default function MathPage() {
     return years.filter((year) => year.toString().includes(query));
   }, [years, yearQuery]);
 
-  const isMechanics = title === "ميكانيكا" || title === "كهرباء";
+  const isPhysics = category?.kind === "physics";
+  const solutionsSupported = category?.solutionsSupported === true;
 
   const { seoTitle, seoDescription, breadcrumbs } = useMemo(() => {
     const path = location.pathname;
@@ -188,7 +192,7 @@ export default function MathPage() {
   }, [location.pathname]);
 
   const allCards = useMemo(() => {
-    if (!isMechanics || !examsData) return [];
+    if (!isPhysics || !examsData) return [];
     const cards = [];
     filteredYears.forEach((year) => {
       const sessions = examsData[year] ?? {};
@@ -197,7 +201,7 @@ export default function MathPage() {
       });
     });
     return cards;
-  }, [isMechanics, examsData, filteredYears]);
+  }, [isPhysics, examsData, filteredYears]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -276,41 +280,70 @@ export default function MathPage() {
                 )}
               </div>
             </div>
-            <button
-              type="button"
-              onClick={() => {
-                setPdfViewerLabel("ورقة القوانين");
-                setPdfViewerAnchor("formula");
-                setPdfViewerUrl(
-                  "https://firebasestorage.googleapis.com/v0/b/sparkbagrut.appspot.com/o/diverse%2FAR-4-MATH-Formula_NEW.pdf?alt=media&token=0d01ccae-bee3-47ce-9626-c6e11350ce45"
-                );
-              }}
-              className="whitespace-nowrap rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-6 py-2 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg"
-            >
-              ورقة القوانين
-            </button>
+            <div className="flex flex-wrap justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => setReloadToken((value) => value + 1)}
+                className="whitespace-nowrap rounded-full border border-orange-200 px-5 py-2 text-sm font-semibold text-orange-700 transition hover:bg-orange-50"
+              >
+                تحديث النماذج
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setPdfViewerLabel("ورقة القوانين");
+                  setPdfViewerAnchor("formula");
+                  setPdfViewerUrl(
+                    "https://firebasestorage.googleapis.com/v0/b/sparkbagrut.appspot.com/o/diverse%2FAR-4-MATH-Formula_NEW.pdf?alt=media&token=0d01ccae-bee3-47ce-9626-c6e11350ce45"
+                  );
+                }}
+                className="whitespace-nowrap rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-6 py-2 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg"
+              >
+                ورقة القوانين
+              </button>
+            </div>
           </div>
         </header>
 
-        {years.length === 0 && (
+        {loadStatus === "loading" && (
+          <div className="mt-12 rounded-3xl border border-orange-100 bg-orange-50 p-8 text-right text-sm text-orange-700">
+            جارٍ تحميل النماذج من التخزين…
+          </div>
+        )}
+
+        {loadStatus === "error" && (
+          <div className="mt-12 rounded-3xl border border-red-100 bg-red-50 p-8 text-right text-sm text-red-700">
+            <p className="font-semibold">تعذّر تحميل النماذج.</p>
+            <p className="mt-2">{loadError}</p>
+            <button
+              type="button"
+              onClick={() => setReloadToken((value) => value + 1)}
+              className="mt-4 rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-5 py-2 font-semibold text-white"
+            >
+              إعادة المحاولة
+            </button>
+          </div>
+        )}
+
+        {loadStatus === "ready" && years.length === 0 && (
           <div className="mt-12 rounded-3xl border border-orange-100 bg-orange-50 p-8 text-right text-sm text-orange-700">
             لا تتوفر نماذج لهذا المسار حاليًا. الرجاء العودة لاحقًا أو التواصل مع
             فريق Spark لمزيد من التفاصيل.
           </div>
         )}
 
-        {filteredYears.length === 0 && years.length > 0 && (
+        {loadStatus === "ready" && filteredYears.length === 0 && years.length > 0 && (
           <div className="mt-12 rounded-3xl border border-orange-100 bg-orange-50 p-8 text-right text-sm text-orange-700">
             لا توجد سنوات مطابقة لبحثك. جرّب رقم سنة مختلف.
           </div>
         )}
 
-        {filteredYears.length > 0 && (
+        {loadStatus === "ready" && filteredYears.length > 0 && (
           <>
-            {isMechanics ? (
+            {isPhysics ? (
               <div className="mt-12 grid gap-6 text-right sm:grid-cols-2 lg:grid-cols-3">
                 {allCards.map(({ year, sessionName, sessionData }) => {
-                  const hasSolution = Boolean(sessionData?.sol);
+                  const hasExam = Boolean(sessionData?.ex);
                   const isAnchor = pdfViewerAnchor?.year === year && pdfViewerAnchor?.sessionName === sessionName;
                   return (
                     <Fragment key={`${year}-${sessionName}`}>
@@ -324,45 +357,21 @@ export default function MathPage() {
                               ? year
                               : `${year} ${sessionName}`}
                           </h3>
-                          <span
-                            className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${statusBadge(
-                              hasSolution
-                            )}`}
-                          >
-                            {hasSolution ? "يتضمّن حلًا كاملًا" : "الحل قيد التحضير"}
-                          </span>
                         </div>
                         <div className="mt-6 flex flex-col gap-3 text-sm">
                           <button
                             type="button"
-                            className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-5 py-2 font-semibold text-white shadow hover:-translate-y-0.5 hover:shadow-md transition"
-                            onClick={() => {
-                              openPdfInNewTab(sessionData?.ex);
-                            }}
-                          >
-                            فتح نموذج الامتحان
-                          </button>
-                          <button
-                            type="button"
-                            className={`inline-flex items-center justify-center rounded-full px-5 py-2 font-semibold transition ${
-                              hasSolution
-                                ? "bg-orange-100 text-orange-700 hover:bg-orange-200"
+                            disabled={!hasExam}
+                            className={`inline-flex items-center justify-center rounded-full px-5 py-2 font-semibold shadow transition ${
+                              hasExam
+                                ? "bg-gradient-to-r from-orange-500 to-amber-400 text-white hover:-translate-y-0.5 hover:shadow-md"
                                 : "cursor-not-allowed bg-gray-100 text-gray-400"
                             }`}
                             onClick={() => {
-                              if (hasSolution) {
-                                openPdfInNewTab(sessionData?.sol);
-                              }
+                              if (hasExam) openPdfInNewTab(sessionData.ex);
                             }}
                           >
-                            {hasSolution ? "فتح الحل" : "الحل غير متوفر حالياً"}
-                          </button>
-                          <button
-                            type="button"
-                            className="inline-flex items-center justify-center rounded-full px-5 py-2 font-semibold transition cursor-not-allowed bg-gray-100 text-gray-400"
-                            disabled
-                          >
-                            الحل الكامل - غير متوفر الآن
+                            {hasExam ? "فتح نموذج الامتحان" : "الامتحان غير متوفر"}
                           </button>
                         </div>
                       </article>
@@ -388,6 +397,7 @@ export default function MathPage() {
                       </div>
                       <div className="grid gap-6 px-6 py-8 text-right sm:grid-cols-2 lg:grid-cols-3">
                         {sessionEntries.map(([sessionName, sessionData]) => {
+                          const hasExam = Boolean(sessionData?.ex);
                           const hasSolution = Boolean(sessionData?.sol);
                           const isAnchor = pdfViewerAnchor?.year === year && pdfViewerAnchor?.sessionName === sessionName;
                           return (
@@ -402,39 +412,47 @@ export default function MathPage() {
                                       ? year
                                       : `${year} ${sessionName}`}
                                   </h3>
-                                  <span
-                                    className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${statusBadge(
-                                      hasSolution
-                                    )}`}
-                                  >
-                                    {hasSolution ? "يتضمّن حلًا كاملًا" : "الحل قيد التحضير"}
-                                  </span>
+                                  {solutionsSupported && (
+                                    <span
+                                      className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${statusBadge(
+                                        hasSolution
+                                      )}`}
+                                    >
+                                      {hasSolution ? "يتضمّن حلًا كاملًا" : "لا يوجد حل"}
+                                    </span>
+                                  )}
                                 </div>
                                 <div className="mt-6 flex flex-col gap-3 text-sm">
                                   <button
                                     type="button"
-                                    className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-amber-400 px-5 py-2 font-semibold text-white shadow hover:-translate-y-0.5 hover:shadow-md transition"
-                                    onClick={() => {
-                                      openPdfInNewTab(sessionData?.ex);
-                                    }}
-                                  >
-                                    فتح نموذج الامتحان
-                                  </button>
-                                  <button
-                                    type="button"
-                                    className={`inline-flex items-center justify-center rounded-full px-5 py-2 font-semibold transition ${
-                                      hasSolution
-                                        ? "bg-orange-100 text-orange-700 hover:bg-orange-200"
+                                    disabled={!hasExam}
+                                    className={`inline-flex items-center justify-center rounded-full px-5 py-2 font-semibold shadow transition ${
+                                      hasExam
+                                        ? "bg-gradient-to-r from-orange-500 to-amber-400 text-white hover:-translate-y-0.5 hover:shadow-md"
                                         : "cursor-not-allowed bg-gray-100 text-gray-400"
                                     }`}
                                     onClick={() => {
-                                      if (hasSolution) {
-                                        openPdfInNewTab(sessionData?.sol);
-                                      }
+                                      if (hasExam) openPdfInNewTab(sessionData.ex);
                                     }}
                                   >
-                                    {hasSolution ? "فتح الحل" : "الحل غير متوفر حالياً"}
+                                    {hasExam ? "فتح نموذج الامتحان" : "لا يوجد امتحان"}
                                   </button>
+                                  {solutionsSupported && (
+                                    <button
+                                      type="button"
+                                      disabled={!hasSolution}
+                                      className={`inline-flex items-center justify-center rounded-full px-5 py-2 font-semibold transition ${
+                                        hasSolution
+                                          ? "bg-orange-100 text-orange-700 hover:bg-orange-200"
+                                          : "cursor-not-allowed bg-gray-100 text-gray-400"
+                                      }`}
+                                      onClick={() => {
+                                        if (hasSolution) openPdfInNewTab(sessionData.sol);
+                                      }}
+                                    >
+                                      {hasSolution ? "فتح الحل" : "لا يوجد حل"}
+                                    </button>
+                                  )}
                                   <button
                                     type="button"
                                     className="inline-flex items-center justify-center rounded-full px-5 py-2 font-semibold transition cursor-not-allowed bg-gray-100 text-gray-400"

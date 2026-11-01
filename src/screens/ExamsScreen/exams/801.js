@@ -1,4 +1,5 @@
-import { generateExamData } from "./utils.js";
+import { loadPublicExamTree } from "../../../content/publicContent.js";
 
-const exams801 = generateExamData(801);
-export default exams801;
+export default function loadExams801(options) {
+  return loadPublicExamTree("801", options);
+}

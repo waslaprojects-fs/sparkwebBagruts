@@ -28,7 +28,9 @@
     "deploy": "pnpm run build && firebase deploy --only hosting",
     "firebase:login": "firebase login",
     "firebase:deploy": "firebase deploy --only hosting",
-    "upload:exam": "node scripts/uploadExam.js"
+    "upload:exam": "node scripts/uploadExam.js",
+    "test": "node --test src/content/contentLogic.test.js",
+    "test:rules": "firebase emulators:exec --only auth,storage \"node --test src/content/storage.rules.test.js\""
   },
   "eslintConfig": {
     "extends": [
@@ -50,6 +52,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@firebase/rules-unit-testing": "^5.0.2",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
     "eslint-config-google": "^0.14.0",

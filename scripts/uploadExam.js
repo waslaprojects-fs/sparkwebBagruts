@@ -61,11 +61,16 @@ async function uploadFile(localFilePath, storagePath) {
 }
 
 async function uploadExam(examNumber, year, term, examFilePath, solutionFilePath = null) {
-  const termSuffix = TERM_SUFFIXES[term] !== undefined ? TERM_SUFFIXES[term] : term;
-  const fileName = getFileName(year, termSuffix);
-  
-  const examStoragePath = `${examNumber}/${fileName}.pdf`;
-  const solutionStoragePath = solutionFilePath ? `${examNumber}/${fileName}_sol.pdf` : null;
+  const { buildMathExamPath, buildMathSolutionPath, normalizeSessionId } = await import("../src/content/paths.js");
+  const sessionId = normalizeSessionId(term);
+  if (!sessionId) {
+    throw new Error(`Unknown term: ${term}`);
+  }
+
+  const examStoragePath = buildMathExamPath(String(examNumber), Number(year), sessionId);
+  const solutionStoragePath = solutionFilePath
+    ? buildMathSolutionPath(String(examNumber), Number(year), sessionId)
+    : null;
   
   console.log(`Uploading exam ${examNumber}/${year}/${term}...`);
   console.log(`  Exam file: ${examFilePath} -> ${examStoragePath}`);
@@ -111,10 +116,15 @@ Arguments:
   examFilePath    - Path to the exam PDF file
   solutionFilePath - (Optional) Path to the solution PDF file
 
+Solution paths come from src/content/paths.js:
+  801-803: {folder}/{yy}{suffix}_sol.pdf
+  804-807: {folder}/sol/{yy}{suffix}.pdf
+  Route aliases such as 471 are stored in folder 804.
+
 Examples:
   node uploadExam.js 801 2024 "صيف موعد أ" ./exams/801/24a.pdf ./exams/801/24a_sol.pdf
   node uploadExam.js 802 2023 "b" ./exams/802/23b.pdf ./exams/802/23b_sol.pdf
-  node uploadExam.js 803 2024 "winter" ./exams/803/24.pdf
+  node uploadExam.js 804 2024 "winter" ./exams/804/24.pdf ./exams/804/sol/24.pdf
 `);
     process.exit(1);
   }

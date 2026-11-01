@@ -1,4 +1,5 @@
-import { generateExamDataWithSolFolder } from "./utils.js";
+import { loadPublicExamTree } from "../../../content/publicContent.js";
 
-const exams806 = generateExamDataWithSolFolder(806, false).then((data) => data);
-export default exams806;
+export default function loadExams806(options) {
+  return loadPublicExamTree("806", options);
+}

@@ -1,3 +1,7 @@
+// Public screens no longer invent a file for every year. They list the real
+// Storage objects through src/content/publicContent.js. Canonical paths live in
+// src/content/paths.js. These generators remain only as the previous placeholder
+// shape and are not used by the pages.
 import { YEARS, TERMS, buildPdfProxyUrl } from "./constants.js";
 
 async function checkFileExists(url) {
@@ -16,9 +20,6 @@ export function generateExamData(examNumber, checkSolutions = false) {
   for (const year of YEARS) {
     examData[year] = {};
     for (const term of TERMS) {
-      // For 2026, only winter and summer term A (26a) are available
-      if (year === 2026 && term.suffix === "b") continue;
-
       const fileSuffix = term.suffix
         ? `${year % 100}${term.suffix}`
         : `${year % 100}`;
@@ -45,7 +46,7 @@ export function generateExamData(examNumber, checkSolutions = false) {
 async function buildExamDataWithCheck(examData, examNumber, solutionsInSeparateFolder = false) {
   const tasks = YEARS.flatMap((year) =>
     TERMS.map(async (term) => {
-      // Skip if this term doesn't exist for this year (e.g., summer term B for 2026)
+      // Skip if this term doesn't exist for this year
       if (!examData[year] || !examData[year][term.name]) return;
 
       const solutionUrl = examData[year][term.name].sol;
@@ -68,9 +69,6 @@ export function generateExamDataWithSolFolder(examNumber, checkSolutions = false
   for (const year of YEARS) {
     examData[year] = {};
     for (const term of TERMS) {
-      // For 2026, only winter and summer term A (26a) are available
-      if (year === 2026 && term.suffix === "b") continue;
-
       const fileSuffix = term.suffix
         ? `${year % 100}${term.suffix}`
         : `${year % 100}`;

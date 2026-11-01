@@ -12,6 +12,7 @@ import MemberArea from "./screens/MemberArea.jsx";
 import Footer from "./tools/footer.jsx";
 import NotFound from "./screens/NotFound.jsx";
 import UnderConstruction from "./screens/UnderConstruction.jsx";
+import AdminExamsPage from "./screens/admin/AdminExamsPage.jsx";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -120,6 +121,7 @@ function App() {
           <Route path="/exams807" element={<MathPage />} />
           <Route path="/physics/mechanics" element={<MathPage />} />
           <Route path="/physics/electricity" element={<MathPage />} />
+          <Route path="/admin/exams" element={<AdminExamsPage />} />
           <Route path="/cs/all" element={<UnderConstruction />} />
           <Route path="/electronics/all" element={<UnderConstruction />} />
           <Route path="*" element={<NotFound />} />

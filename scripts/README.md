@@ -16,8 +16,8 @@ This script allows you to upload exam PDF files to Firebase Storage.
    - Click "Generate new private key"
    - Save the JSON file as `serviceAccountKey.json` in the project root or `scripts/` directory
 
-3. **Update Storage Rules:**
-   The storage rules have been updated to allow public reads. Deploy them:
+3. **Deploy Storage rules:**
+   Public read/list is limited to the content prefixes. Writes require the `admin` custom claim. Deploy with:
    ```bash
    firebase deploy --only storage
    ```
@@ -52,23 +52,44 @@ node scripts/uploadExam.js 803 2024 "winter" ./exams/803/24.pdf
 
 ## File Naming Convention
 
-The script automatically generates the correct file names based on the exam number, year, and term:
+Paths are built by `src/content/paths.js`, which is the same resolver the site uses.
 
-- **Exam files**: `{year%100}{suffix}.pdf`
-  - Example: `24a.pdf` (2024, صيف موعد أ)
-  - Example: `23b.pdf` (2023, صيف موعد ب)
-  - Example: `24.pdf` (2024, شتاء)
+- Exam files: `{folder}/{year%100}{suffix}.pdf`
+  - `804/24.pdf` is winter 2024
+  - `805/25a.pdf` is summer session A 2025
+- Solutions for 801, 802, and 803 stay in the same folder with `_sol`: `802/24a_sol.pdf`
+- Solutions for 804, 805, 806, and 807 go in `sol/`: `804/sol/24.pdf`
+- Route numbers such as 371 and 471 are aliases. The file is stored in 802 or 804.
 
-- **Solution files**: `{year%100}{suffix}_sol.pdf`
-  - Example: `24a_sol.pdf`
-  - Example: `23b_sol.pdf`
-  - Example: `24_sol.pdf`
+## Admin claim
 
-- **Storage path**: `{examNumber}/{filename}`
-  - Example: `801/24a.pdf`
-  - Example: `801/24a_sol.pdf`
+The site at `/admin/exams` signs in with Firebase Authentication, but Storage writes succeed only when the ID token has the custom claim `admin: true`. The browser cannot grant that claim.
+
+One-time setup from a trusted machine that already has `serviceAccountKey.json`:
+
+1. Create the admin user in Firebase Authentication (email/password). Do not create the user from the website.
+2. Grant the claim:
+
+```bash
+node scripts/grantAdminClaim.js admin@example.com
+```
+
+3. The script revokes existing refresh tokens. The person must sign out and sign in again at `/admin/exams` so `getIdTokenResult(true)` receives the new claim.
+4. Deploy the Storage rules before expecting uploads to work:
+
+```bash
+firebase deploy --only storage
+```
+
+The rules allow public read and list only on the exam, physics, and `diverse/` prefixes. They allow create, replace, and delete only for an authenticated token whose `admin` claim is true, only for PDF objects up to 40 MiB, and only on those prefixes. Deploying them does not move or delete existing files.
+
+Removing admin access later:
+
+```bash
+node scripts/grantAdminClaim.js admin@example.com --revoke
+```
 
 ## Security Note
 
-⚠️ **Important**: Never commit `serviceAccountKey.json` to version control. It's already added to `.gitignore`.
+Never commit `serviceAccountKey.json`. It is listed in `.gitignore`. Do not put that key, or any other Admin SDK credential, in the client app.
 

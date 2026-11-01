@@ -1,28 +1,16 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import exams801 from "./exams/801";
-import exams802 from "./exams/802";
-import exams803 from "./exams/803";
-import exams804 from "./exams/804";
-import exams805 from "./exams/805";
-import exams806 from "./exams/806";
-import exams807 from "./exams/807";
-import mechanicsExams from "./exams/mechanics";
-import electricityExams from "./exams/electricity";
+import { loadPublicExamTree } from "../../content/publicContent.js";
+import { formatStorageError } from "../../content/transfer.js";
 
-const EXAM_MODULES = {
-  801: exams801,
-  371: exams802,
-  802: exams802,
-  372: exams803,
-  803: exams803,
-  471: exams804,
-  804: exams804,
-  472: exams805,
-  805: exams805,
-  571: exams806,
-  806: exams806,
-  572: exams807,
-  807: exams807,
+const MATH_ROUTES = {
+  801: { categoryId: "801", route: "/exams/exams801" },
+  371: { categoryId: "802", route: "/exams371" },
+  372: { categoryId: "803", route: "/exams372" },
+  471: { categoryId: "804", route: "/exams471" },
+  472: { categoryId: "805", route: "/exams472" },
+  571: { categoryId: "806", route: "/exams571" },
+  572: { categoryId: "807", route: "/exams572" },
 };
 
 const NAVIGATION_ROUTES = {
@@ -40,13 +28,22 @@ const NAVIGATION_ROUTES = {
 
 export default function Card({ title, img, buttons }) {
   const navigate = useNavigate();
+  const [pendingButton, setPendingButton] = useState(null);
 
-  const handleClick = async (num, label, examsPromise) => {
+  const openCategory = async (button, categoryId, route, label) => {
+    setPendingButton(button);
     try {
-      const examsData = await examsPromise;
-      navigate(`/exams${num}`, { state: { examsData, title: label } });
+      const examsData = await loadPublicExamTree(categoryId);
+      navigate(route, { state: { examsData, title: label } });
     } catch (error) {
-      console.error("Error resolving exam data:", error);
+      navigate(route, {
+        state: {
+          loadError: formatStorageError(error),
+          title: label,
+        },
+      });
+    } finally {
+      setPendingButton(null);
     }
   };
 
@@ -71,55 +68,29 @@ export default function Card({ title, img, buttons }) {
           {buttons.map((btn) => (
             <button
               key={btn}
-              className="group/btn relative overflow-hidden rounded-xl bg-gradient-to-r from-orange-500 to-amber-400 px-5 py-3 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:from-orange-600 hover:to-amber-500 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
+              disabled={pendingButton === btn}
+              className="group/btn relative overflow-hidden rounded-xl bg-gradient-to-r from-orange-500 to-amber-400 px-5 py-3 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:from-orange-600 hover:to-amber-500 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] disabled:cursor-wait disabled:opacity-70"
               onClick={async () => {
-                if (typeof btn !== "number") {
-                  if (title === "فيزياء" && btn === "ميكانيكا") {
-                    try {
-                      const examsData = await mechanicsExams;
-                      if (examsData && Object.keys(examsData).length > 0) {
-                        navigate("/physics/mechanics", { state: { examsData, title: "ميكانيكا" } });
-                      } else {
-                        console.error("Mechanics exams data is empty");
-                      }
-                    } catch (error) {
-                      console.error("Error loading mechanics exams:", error);
-                    }
-                    return;
-                  }
-
-                  if (title === "فيزياء" && btn === "كهرباء") {
-                    try {
-                      const examsData = await electricityExams;
-                      if (examsData && Object.keys(examsData).length > 0) {
-                        navigate("/physics/electricity", { state: { examsData, title: "كهرباء" } });
-                      } else {
-                        console.error("Electricity exams data is empty");
-                      }
-                    } catch (error) {
-                      console.error("Error loading electricity exams:", error);
-                    }
-                    return;
-                  }
-                  
-                  const routeMap = NAVIGATION_ROUTES[title];
-                  const route = routeMap?.[btn];
-                  
-                  if (route) {
-                    navigate(route);
-                  } else {
-                    navigate("/examsScreen", { state: { category: title } });
-                  }
+                if (title === "فيزياء" && btn === "ميكانيكا") {
+                  openCategory(btn, "mechanics", "/physics/mechanics", "ميكانيكا");
+                  return;
+                }
+                if (title === "فيزياء" && btn === "كهرباء") {
+                  openCategory(btn, "electricity", "/physics/electricity", "كهرباء");
+                  return;
+                }
+                if (typeof btn === "number" && MATH_ROUTES[btn]) {
+                  const target = MATH_ROUTES[btn];
+                  openCategory(btn, target.categoryId, target.route, `نموذج - ${btn}`);
                   return;
                 }
 
-                const dataPromise = EXAM_MODULES[btn];
-                if (dataPromise) {
-                  handleClick(btn, `نموذج - ${btn}`, dataPromise);
-                }
+                const routeMap = NAVIGATION_ROUTES[title];
+                const route = routeMap?.[btn];
+                navigate(route || "/examsScreen", route ? undefined : { state: { category: title } });
               }}
             >
-              <span className="relative z-10">{btn}</span>
+              <span className="relative z-10">{pendingButton === btn ? "جارٍ التحميل…" : btn}</span>
               <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700" />
             </button>
           ))}
