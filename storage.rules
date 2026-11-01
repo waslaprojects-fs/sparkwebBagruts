@@ -45,6 +45,10 @@ service firebase.storage {
         || (name.matches('^[0-9]{4} .+\\.pdf$') && !name.matches('.*\\.\\..*'));
     }
 
+    function isPhysicsFolder(folder) {
+      return folder == 'ميكانيكا' || folder == 'حشمال';
+    }
+
     function isDiverseName(name) {
       return isSafePdfName(name) && !name.matches('.*\\.\\..*');
     }
@@ -121,17 +125,13 @@ service firebase.storage {
       allow delete: if isAdmin() && isSafePdfName(fileName);
     }
 
-    match /ميكانيكا/{fileName} {
-      allow get, list: if readContent();
-      allow create: if isAdmin() && isPdfUpload() && isPhysicsName(fileName);
-      allow update: if isAdmin() && isPdfUpload() && isSafePdfName(fileName);
-      allow delete: if isAdmin() && isSafePdfName(fileName);
-    }
-    match /حشمال/{fileName} {
-      allow get, list: if readContent();
-      allow create: if isAdmin() && isPdfUpload() && isPhysicsName(fileName);
-      allow update: if isAdmin() && isPdfUpload() && isSafePdfName(fileName);
-      allow delete: if isAdmin() && isSafePdfName(fileName);
+    // Rules paths cannot contain Arabic segments. Match one folder level and
+    // compare the folder name, so only ميكانيكا and حشمال are covered here.
+    match /{folder}/{fileName} {
+      allow get, list: if isPhysicsFolder(folder);
+      allow create: if isAdmin() && isPdfUpload() && isPhysicsFolder(folder) && isPhysicsName(fileName);
+      allow update: if isAdmin() && isPdfUpload() && isPhysicsFolder(folder) && isSafePdfName(fileName);
+      allow delete: if isAdmin() && isPhysicsFolder(folder) && isSafePdfName(fileName);
     }
 
     match /diverse/{fileName} {
